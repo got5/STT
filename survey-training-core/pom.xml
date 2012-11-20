@@ -165,7 +165,7 @@
 				</configuration>
 			</plugin>
 			
-			<plugin>
+		<!--  	<plugin>
 				<groupId>net.atos.xa.maven.plugin</groupId>
 				<artifactId>sharing.ejb3.entity</artifactId>
 				<version>${sharing.ejb3.entity.version}</version>
@@ -177,7 +177,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 			
 		</plugins>
 	</build>
