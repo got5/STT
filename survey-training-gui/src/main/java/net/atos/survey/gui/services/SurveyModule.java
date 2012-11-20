@@ -1,6 +1,6 @@
 package net.atos.survey.gui.services;
 
-import net.atos.survey.core.dao.UsagerDao;
+import net.atos.survey.core.dao.UserDao;
 import net.atos.xa.resourcelocator.ResourceLocator;
 
 import org.apache.tapestry5.SymbolConstants;
@@ -27,9 +27,9 @@ public class SurveyModule {
 	
 	public static void bind(ServiceBinder binder)
 	{ 
-		binder.bind(UsagerDao.class, new ServiceBuilder<UsagerDao>()  {
-			public UsagerDao buildService(ServiceResources serviceResources) {
-				return ResourceLocator.lookup(UsagerDao.class);
+		binder.bind(UserDao.class, new ServiceBuilder<UserDao>()  {
+			public UserDao buildService(ServiceResources serviceResources) {
+				return ResourceLocator.lookup(UserDao.class);
 			}
 		});
 	}
