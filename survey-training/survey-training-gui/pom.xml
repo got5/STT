@@ -1,0 +1,218 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+
+	<parent>
+		<artifactId>survey-training</artifactId>
+		<groupId>net.atos.survey</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>survey-training-gui</artifactId>
+	<packaging>war</packaging>
+	<name>survey-training-gui Tapestry 5 Application</name>
+
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+
+	<dependencies>
+		<!-- AWL Kawwa2 components -->
+		<dependency>
+			<groupId>net.atos.tapestry</groupId>
+			<artifactId>tapestry5-kawwa-components</artifactId>
+			<version>${kawwa.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-core</artifactId>
+			<version>${tapestry.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>javassist</artifactId>
+					<groupId>javassist</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>javax.inject</artifactId>
+					<groupId>javax.inject</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.got5</groupId>
+			<artifactId>tapestry5-jquery</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-yuicompressor</artifactId>
+			<version>${tapestry.version}</version>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.apache.openejb</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>${javaee-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>net.atos.survey</groupId>
+			<artifactId>survey-training-core</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		
+	
+
+		<!-- A dependency on either JUnit or TestNG is required, or the surefire 
+			plugin (which runs the tests) will fail, preventing Maven from packaging 
+			the WAR. Tapestry includes a large number of testing facilities designed 
+			for use with TestNG (http://testng.org/), so it's recommended. -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>${easymock.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-test</artifactId>
+			<version>${tapestry.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Provided by the servlet container, but sometimes referenced in the 
+			application code. -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		
+	</dependencies>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>maven</id>
+			<name>tomee</name>
+			<url>http://repository.atosworldline.com/nexus/content/groups/public
+                  </url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<finalName>survey-training-gui</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<optimize>true</optimize>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<testNGArtifactName>none:none</testNGArtifactName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>test-testng</id>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<junitArtifactName>none:none</junitArtifactName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.openejb.maven</groupId>
+				<artifactId>tomee-maven-plugin</artifactId>
+				<version>1.0.0.xa</version>
+				<configuration>
+					<tomeeVersion>1.5.1-SNAPSHOT</tomeeVersion>
+					<!-- <debug>true</debug> -->
+					<tomeeClassifier>plus</tomeeClassifier>
+					<config>${basedir}/../survey-training-core/src/main/conf</config>
+					<systemVariables>
+						<openjpa.Log>DefaultLevel=TRACE</openjpa.Log>
+					</systemVariables>
+					<libs>
+						<lib>mysql:mysql-connector-java:5.1.6</lib>
+					</libs>
+					<synchronization>
+						<resourcesDir>${project.basedir}/src/main/webapp</resourcesDir>
+						<binariesDir>${project.build.directory}/classes</binariesDir>
+						<targetBinariesDir>${project.build.directory}/apache-tomee/webapps/${project.build.finalName}/WEB-INF/classes</targetBinariesDir>
+						<targetResourcesDir>${project.build.directory}/apache-tomee/webapps/${project.build.finalName}</targetResourcesDir>
+						<updateInterval>15</updateInterval>
+						<extensions>
+							<extension>.class</extension>
+							<extension>.tml</extension>
+						</extensions>
+					</synchronization>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+
+		<!-- Adds a report detailing the components, mixins and base classes defined 
+			by this module. -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tapestry</groupId>
+				<artifactId>tapestry-component-report</artifactId>
+				<version>${tapestry.version}</version>
+				<configuration>
+					<rootPackage>net.atos.survey.gui</rootPackage>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
+</project>

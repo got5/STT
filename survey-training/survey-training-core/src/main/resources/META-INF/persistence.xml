@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+	<persistence-unit name="survey" transaction-type="JTA">
+
+		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+		<jta-data-source>jdbc/surveyDS</jta-data-source>
+
+		
+		<class>net.atos.survey.core.entity.Category</class>
+		<class>net.atos.survey.core.entity.Choice</class>
+		<class>net.atos.survey.core.entity.OQuestion</class>
+		<class>net.atos.survey.core.entity.OResponse</class>
+		<class>net.atos.survey.core.entity.Question</class>
+		<class>net.atos.survey.core.entity.Response</class>
+		<class>net.atos.survey.core.entity.ResponseSurvey</class>
+		<class>net.atos.survey.core.entity.Room</class>
+		<class>net.atos.survey.core.entity.SimpleMCQResponse</class>
+		<class>net.atos.survey.core.entity.SimpleMCQuestion</class>
+		<class>net.atos.survey.core.entity.Survey</class>
+		<class>net.atos.survey.core.entity.SurveyTemplate</class>
+		<class>net.atos.survey.core.entity.Theme</class>
+		<class>net.atos.survey.core.entity.Training</class>
+		<class>net.atos.survey.core.entity.TrainingSession</class>
+		<class>net.atos.survey.core.entity.User</class>		
+		
+		
+		
+		
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<shared-cache-mode>ALL</shared-cache-mode>
+		
+		<properties>
+			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(foreignKeys=true)" />
+			<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE" />
+			<property name="openejb.jpa.init-entitymanager" value="true" />
+			<property name="openjpa.Specification" value="JPA 2.0" />
+			<property name="openjpa.ManagedRuntime" value="auto" />
+			<property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)" />
+			<property name="openjpa.Compatibility" value="StrictIdentityValues=true,NonDefaultMappingAllowed=true,ConvertPositionalParametersToNamed=true" />
+
+		</properties>
+	</persistence-unit>
+</persistence>
+

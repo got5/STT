@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.atos.survey</groupId>
+	<artifactId>survey-training</artifactId>
+	<packaging>pom</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Survey Training</name>
+
+	<repositories>
+		<repository>
+			<!-- This repository is mapped to a Maven2 proxy. This one gives access 
+				to O&D and common Maven2 repositories -->
+			<id>proxiedRepositories</id>
+			<name>OD and common proxied repositories</name>
+			<url>http://repository.atosworldline.com/maven2</url>
+		</repository>
+		
+
+		<repository>
+			<id>proxiedSnapShotRepositories</id>
+			<name>OD and common proxied snapshot repositories</name>
+			<url>http://repository.atosworldline.com/nexus/content/groups/public-snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<!-- This repository is mapped to a Maven2 proxy. This one gives access
+				to O&D and common Maven2 repositories  -->
+			<id>proxiedRepositories</id>
+			<name>OD and common proxied repositories</name>
+			<url>http://repository.atosworldline.com/maven2</url>
+		</pluginRepository>
+	</pluginRepositories>
+	
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<!-- http://maven.apache.org/plugins/maven-compiler-plugin/ -->
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<xa-rm-version>3.1.0-SNAPSHOT</xa-rm-version>
+		<shiro-version>1.2.1</shiro-version>
+		<tynamo.version>0.4.6</tynamo.version>
+		<openjpa.version>2.2.0</openjpa.version>
+		<openejb.version>4.1.0.xa</openejb.version>
+		<xa-rl-openejb.version>2.1.0</xa-rl-openejb.version>
+		<sharing.ejb3.entity.version>0.0.6</sharing.ejb3.entity.version>
+		<javaee-api.version>6.0-3</javaee-api.version>
+		<tapestry.version>5.3.5</tapestry.version>
+		<mysql-connector-java.version>5.1.6</mysql-connector-java.version>
+		<ojdbc14.version>10.2.0.4</ojdbc14.version>
+		<junit.version>4.4</junit.version>
+		<testng.version>5.12.1</testng.version>
+		<easymock.version>2.5.2</easymock.version>
+		<servlet.version>2.5</servlet.version>
+		<kawwa.version>2.0.3</kawwa.version>
+
+
+
+		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
+		<maven-jar-plugin.version>2.4</maven-jar-plugin.version>
+		<maven-assembly-plugin.version>2.3</maven-assembly-plugin.version>
+		<maven-surefire-plugin.version>2.12</maven-surefire-plugin.version>
+
+	</properties>
+
+	<modules>
+		<module>survey-training-core</module>
+		<module>survey-training-wstest</module>
+		<module>survey-training-gui</module>
+	</modules>
+
+
+
+</project>
