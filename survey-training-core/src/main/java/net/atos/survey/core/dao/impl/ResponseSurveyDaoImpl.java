@@ -5,7 +5,7 @@ import javax.ejb.Stateless;
 import net.atos.survey.core.dao.ResponseSurveyDao;
 import net.atos.survey.core.entity.ResponseSurvey;
 
-@Stateless(name="net.atos.survey.core.dao.UsagerDao")
+@Stateless
 public class ResponseSurveyDaoImpl extends DaoImpl<Integer, ResponseSurvey> implements ResponseSurveyDao {
 
 	
