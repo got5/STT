@@ -1,6 +1,7 @@
 package net.atos.survey.gui.services;
 
 import net.atos.survey.core.dao.UserDao;
+import net.atos.survey.core.usecase.InitManager;
 import net.atos.xa.resourcelocator.ResourceLocator;
 
 import org.apache.tapestry5.SymbolConstants;
@@ -12,6 +13,8 @@ import org.apache.tapestry5.ioc.ServiceResources;
 
 
 public class SurveyModule {
+	
+	
 	
 	public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration) {
 		configuration.add(SymbolConstants.START_PAGE_NAME, "Index");
@@ -30,6 +33,11 @@ public class SurveyModule {
 		binder.bind(UserDao.class, new ServiceBuilder<UserDao>()  {
 			public UserDao buildService(ServiceResources serviceResources) {
 				return ResourceLocator.lookup(UserDao.class);
+			}
+		});
+		binder.bind(InitManager.class, new ServiceBuilder<InitManager>()  {
+			public InitManager buildService(ServiceResources serviceResources) {
+				return ResourceLocator.lookup(InitManager.class);
 			}
 		});
 	}

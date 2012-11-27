@@ -18,30 +18,31 @@ public class Theme implements Serializable {
 	
 	private String name;
 	
-	private String title;
+	
 	
 	
 	
 
 	
+
+	public Theme(String name) {
+		super();
+		this.name = name;
+	}
+
+
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+	
 
 	public String getName() {
 		return name;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-
+	
 	public long getId() {
 		return id;
 	}

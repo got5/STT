@@ -9,7 +9,7 @@ import net.atos.survey.core.entity.Choice;
 
 
 @Local
-public interface ChoiceDao extends Dao<Integer, Choice> {
+public interface ChoiceDao extends Dao<Long, Choice> {
 
 
 	

@@ -9,8 +9,8 @@ import net.atos.survey.core.entity.Category;
 
 
 @Local
-public interface CategoryDao extends Dao<Integer, Category> {
+public interface CategoryDao extends Dao<Long, Category> {
 
-
+	Category findByName(String name);
 	
 }

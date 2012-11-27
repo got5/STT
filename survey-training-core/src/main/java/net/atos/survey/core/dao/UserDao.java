@@ -9,7 +9,7 @@ import net.atos.survey.core.entity.User;
 
 
 @Local
-public interface UserDao extends Dao<Integer, User> {
+public interface UserDao extends Dao<Long, User> {
 
 
 	

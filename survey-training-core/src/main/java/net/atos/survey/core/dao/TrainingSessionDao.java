@@ -9,7 +9,7 @@ import net.atos.survey.core.entity.TrainingSession;
 
 
 @Local
-public interface TrainingSessionDao extends Dao<Integer, TrainingSession> {
+public interface TrainingSessionDao extends Dao<Long, TrainingSession> {
 
 
 	

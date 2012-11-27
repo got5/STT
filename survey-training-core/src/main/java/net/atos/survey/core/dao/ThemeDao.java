@@ -9,7 +9,7 @@ import net.atos.survey.core.entity.Theme;
 
 
 @Local
-public interface ThemeDao extends Dao<Integer, Theme> {
+public interface ThemeDao extends Dao<Long, Theme> {
 
 
 	

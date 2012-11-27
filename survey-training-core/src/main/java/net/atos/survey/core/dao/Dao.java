@@ -3,20 +3,24 @@ package net.atos.survey.core.dao;
 import java.util.List;
 
 public interface Dao<K, E> {
-	E enregistrer(E entite);
+	E save(E entite);
 
-	E mettreAJour(E entite);
+	E update(E entite);
 
-	void supprimer(K id);
+	void delete(K id);
 
-	E rechercher(K id);
+	E findById(K id);
 
-	E recharger(K id);
+	E reLoad(K id);
 
-	List<E> lister(Integer first, Integer max, boolean supprime);
+	List<E> list(Integer first, Integer max);
 
-	Long countLister(boolean supprime);
+	Long countLister();
 
 	void flush();
+	
+	Integer getFirst(int page);
+
+	Integer getMax(int page);
 
 }

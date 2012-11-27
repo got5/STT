@@ -10,6 +10,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
@@ -21,7 +22,12 @@ public class SimpleMCQuestion extends Question {
 	
 	private boolean uniqueAnswer=true;
 	
-	private int triggerElse=0;
+	private String elseClause;
+	
+	@ManyToOne
+	private Choice trigger;
+	
+	private boolean triggerOrLess=false;
 	
 	
 	@ElementCollection
@@ -30,6 +36,24 @@ public class SimpleMCQuestion extends Question {
 	@Column(name="NUMERO")
 	@OrderColumn(name="NUMERO")
 	private Map<Choice,Integer> choices = new HashMap<Choice,Integer>();
+	
+	
+
+	public SimpleMCQuestion() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public SimpleMCQuestion(String name, boolean uniqueAnswer,
+			String elseClause, boolean triggerOrLess) {
+		super();
+		this.name = name;
+		this.uniqueAnswer = uniqueAnswer;
+		this.elseClause = elseClause;
+		this.trigger = trigger;
+		this.triggerOrLess = triggerOrLess;
+		this.choices = choices;
+	}
 
 	private int getChoicesSize(){
 		return choices.size();
@@ -63,15 +87,30 @@ public class SimpleMCQuestion extends Question {
 
 	
 
+	public Choice getTrigger() {
+		return trigger;
+	}
+
+	public void setTrigger(Choice trigger) {
+		this.trigger = trigger;
+	}
+
+	
+	
+	public SimpleMCQuestion clone(){
+		
+		SimpleMCQuestion question = new SimpleMCQuestion(null, this.uniqueAnswer, this.elseClause, this.triggerOrLess);
+		question.trigger=this.trigger;
+		
+		for(Choice k:this.choices.keySet())
+			question.choices.put(k, this.choices.get(k));
+		
+		return question;
+	}
+
 	
 
-	public int getTrigger() {
-		return triggerElse;
-	}
-
-	public void setTrigger(int trigger) {
-		this.triggerElse = trigger;
-	}
+	
 	
 	
 	

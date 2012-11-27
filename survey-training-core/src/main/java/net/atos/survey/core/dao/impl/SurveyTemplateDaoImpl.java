@@ -5,8 +5,8 @@ import javax.ejb.Stateless;
 import net.atos.survey.core.dao.SurveyTemplateDao;
 import net.atos.survey.core.entity.SurveyTemplate;
 
-@Stateless
-public class SurveyTemplateDaoImpl extends DaoImpl<Integer, SurveyTemplate> implements SurveyTemplateDao {
+@Stateless(name="net.atos.survey.core.dao.SurveyTemplateDao")
+public class SurveyTemplateDaoImpl extends DaoImpl<Long, SurveyTemplate> implements SurveyTemplateDao {
 
 	
 	

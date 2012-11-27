@@ -9,7 +9,7 @@ import net.atos.survey.core.entity.Room;
 
 
 @Local
-public interface RoomDao extends Dao<Integer, Room> {
+public interface RoomDao extends Dao<Long, Room> {
 
 
 	

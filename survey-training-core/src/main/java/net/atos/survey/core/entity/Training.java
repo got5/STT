@@ -33,6 +33,14 @@ public class Training implements Serializable{
 	private List<User> inChargeUsers = new ArrayList<User>();
 	
 
+	
+	
+	public Training(String name, TypeTraining type) {
+		super();
+		this.name = name;
+		this.type = type;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -81,6 +89,27 @@ public class Training implements Serializable{
 	public List<TrainingSession> getTrainingSessions(){
 		return sessions;
 	}
+
+	public TypeTraining getType() {
+		return type;
+	}
+
+	public void setType(TypeTraining type) {
+		this.type = type;
+	}
+
+	public List<TrainingSession> getSessions() {
+		return sessions;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setInChargeUsers(List<User> inChargeUsers) {
+		this.inChargeUsers = inChargeUsers;
+	}
+	
 	
 	
 }

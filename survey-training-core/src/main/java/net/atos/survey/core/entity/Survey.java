@@ -32,9 +32,6 @@ public class Survey implements Serializable{
 	
 	
 	
-	
-
-
 	public long getId() {
 		return id;
 	}
@@ -44,7 +41,7 @@ public class Survey implements Serializable{
 	public void addQuestion(Question question) {
 		if(!questions.contains(question)){
 			
-			question.setNumQ(getQuestionSize());
+			
 			questions.add(question);
 		}	
 	}
@@ -59,6 +56,12 @@ public class Survey implements Serializable{
 	
 	
 	
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+
 
 	@Override
 	public int hashCode() {

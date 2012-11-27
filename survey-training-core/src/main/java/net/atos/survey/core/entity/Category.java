@@ -2,6 +2,7 @@ package net.atos.survey.core.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,31 +17,31 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
+	@Column(unique=true,nullable=false)
 	private String name;
 	
-	private String title;
+	
+	
 	
 	
 	
 
-	
+	public Category(String name) {
+		super();
+		this.name = name;
+		
+	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
+	
 	public String getName() {
 		return name;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
+	
 
 	public long getId() {
 		return id;

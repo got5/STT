@@ -9,7 +9,7 @@ import net.atos.survey.core.entity.Response;
 
 
 @Local
-public interface ResponseDao extends Dao<Integer, Response> {
+public interface ResponseDao extends Dao<Long, Response> {
 
 
 	

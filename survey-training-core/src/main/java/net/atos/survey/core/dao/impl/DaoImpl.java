@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
@@ -32,12 +31,12 @@ public abstract class DaoImpl<K, E> implements Dao<K, E> {
 	}
 
 	@Override
-	public E rechercher(K id) {
+	public E findById(K id) {
 		return entityManagerRW.find(entityClass, id);
 	}
 
 	@Override
-	public E enregistrer(E entite) {
+	public E save(E entite) {
 		try{
 		
 		entityManagerRW.persist(entite);
@@ -48,37 +47,36 @@ public abstract class DaoImpl<K, E> implements Dao<K, E> {
 	}
 
 	@Override
-	public E mettreAJour(E entite) {
+	public E update(E entite) {
 		return entityManagerRW.merge(entite);
 	}
 
 	@Override
-	public E recharger(K id) {
-		E entite = rechercher(id);
+	public E reLoad(K id) {
+		E entite = findById(id);
 		entityManagerRW.refresh(entite);
 		return entite;
 	}
 
 	@Override
-	public void supprimer(K id) {
-		E entite = rechercher(id);
+	public void delete(K id) {
+		E entite = findById(id);
 		entityManagerRW.remove(entite);
 	}
 
 	@Override
-	public List<E> lister(Integer first, Integer max, boolean del) {
-		return liste(first, max,
-				"select distinct e from " + entityClass.getName() + " e "
-						+ "where e.supprime =?1", del);
+	public List<E> list(Integer first, Integer max) {
+		return list(first, max,
+				"select distinct e from " + entityClass.getName() + " e ");
 	}
 
-	protected List<E> liste(Integer first, Integer max, String queryString,
+	protected List<E> list(Integer first, Integer max, String queryString,
 			Object... params) {
 		TypedQuery<E> query = buildQuery(first, max, queryString, params);
 		return query.getResultList();
 	}
 
-	protected E recherche(String queryString, Object... params) {
+	protected E find(String queryString, Object... params) {
 		TypedQuery<E> query = buildQuery(queryString, params);
 		try {
 			return query.getSingleResult();
@@ -172,10 +170,9 @@ public abstract class DaoImpl<K, E> implements Dao<K, E> {
 	}
 
 	@Override
-	public Long countLister(boolean del) {
+	public Long countLister() {
 
-		return count("select count(e) from " + entityClass.getName() + " e "
-				+ "where e.supprime =?1", del);
+		return count("select count(e) from " + entityClass.getName() + " e ");
 	}
 
 	protected Long count(String queryString, Object... params) {
@@ -183,5 +180,20 @@ public abstract class DaoImpl<K, E> implements Dao<K, E> {
 		return query.getSingleResult();
 	}
 
+	@Override
+	public Integer getFirst(int page) {
+
+		if (page != 0)
+			return 1 * (page - 1);
+		return null;
+
+	}
+
+	@Override
+	public Integer getMax(int page) {
+		if (page != 0)
+			return 1;
+		return null;
+	}
 	
 }

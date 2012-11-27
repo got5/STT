@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,59 +17,50 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
-@Table@Entity
+@Table
+@Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Question implements Serializable{
-	
+public class Question implements Serializable {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	@Temporal(TemporalType.DATE)
-	private Calendar dateCreation= new GregorianCalendar();
-	
+	private Calendar dateCreation = new GregorianCalendar();
+
+	@Column(nullable = true, unique = true)
+	protected String name;
+
 	protected String title;
 
-	private int numQ;
+	@ManyToOne
+	@JoinColumn(name = "CATEGORY_ID")
+	protected Category category;
 
 	@ManyToOne
-	@JoinColumn(name="CATEGORY_ID")
-	protected Category category;
-	
-	@ManyToOne
-	@JoinColumn(name="THEME_ID")
+	@JoinColumn(name = "THEME_ID")
 	protected Theme theme;
 
 	public long getId() {
 		return id;
 	}
-	
-	
 
 	public Category getCategory() {
 		return category;
 	}
 
-
-
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-
-
 
 	public Theme getTheme() {
 		return theme;
 	}
 
-
-
 	public void setTheme(Theme theme) {
 		this.theme = theme;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -92,40 +84,24 @@ public class Question implements Serializable{
 		return true;
 	}
 
-
-
-
-
 	public Calendar getDateCreation() {
 		return dateCreation;
 	}
-
-
 
 	public String getTitle() {
 		return title;
 	}
 
-
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-
-
-	public int getNumQ() {
-		return numQ;
+	public String getName() {
+		return name;
 	}
 
-
-
-	public void setNumQ(int numQ) {
-		this.numQ = numQ;
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	
-	
-	
 
 }

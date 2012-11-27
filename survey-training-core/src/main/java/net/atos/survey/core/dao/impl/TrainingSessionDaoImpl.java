@@ -5,8 +5,8 @@ import javax.ejb.Stateless;
 import net.atos.survey.core.dao.TrainingSessionDao;
 import net.atos.survey.core.entity.TrainingSession;
 
-@Stateless
-public class TrainingSessionDaoImpl extends DaoImpl<Integer, TrainingSession> implements TrainingSessionDao {
+@Stateless(name="net.atos.survey.core.dao.TrainingSessionDao")
+public class TrainingSessionDaoImpl extends DaoImpl<Long, TrainingSession> implements TrainingSessionDao {
 
 	
 	

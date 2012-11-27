@@ -2,4 +2,12 @@
 		xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
 	
 	<p>Index page</p>
+	
+	
+	<a t:type="pageLink" 
+	 t:page="Index" 
+	 t:mixins="jquery/tooltip" 
+	 title="a small tooltip">Lien vers l'Index</a>
+
+<p>yo</p>
 </html>
