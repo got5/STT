@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
@@ -21,8 +22,12 @@ public class Survey implements Serializable{
 	
 	private boolean publish = false;
 	
+	private int version = 0;
 	
+	private String name;
 	
+	@ManyToOne
+	private Training training;
 	
 	
 	@OneToMany
@@ -32,6 +37,13 @@ public class Survey implements Serializable{
 	
 	
 	
+	public Survey(String name,Training training) {
+		super();
+		this.training = training;
+	}
+
+
+
 	public long getId() {
 		return id;
 	}
@@ -93,5 +105,38 @@ public class Survey implements Serializable{
 	private int getQuestionSize(){
 		return questions.size();
 	}
+
+
+
+	public int getVersion() {
+		return version;
+	}
+
+
+
+	public void incVersion() {
+		this.version++;
+	}
+
+
+
+	public Training getTraining() {
+		return training;
+	}
+
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
 
 }

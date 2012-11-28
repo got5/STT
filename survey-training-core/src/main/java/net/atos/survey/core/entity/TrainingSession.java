@@ -56,6 +56,15 @@ public class TrainingSession implements Serializable{
 	
 	
 	
+	public TrainingSession(Calendar dateS, Calendar dateE, Training training,
+			Room room) {
+		super();
+		this.dateS = dateS;
+		this.dateE = dateE;
+		this.training = training;
+		this.room = room;
+	}
+
 	public TrainingSession(Calendar dateS, Calendar dateE, Room room,
 			User instructor, Survey survey,Training training) {
 		super();
@@ -139,6 +148,10 @@ public class TrainingSession implements Serializable{
 
 	public Survey getSurvey() {
 		return survey;
+	}
+
+	public void setSurvey(Survey survey) {
+		this.survey = survey;
 	}
 
 	public Calendar getDateS() {

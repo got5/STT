@@ -108,6 +108,22 @@ public class SimpleMCQuestion extends Question {
 		return question;
 	}
 
+	public String getElseClause() {
+		return elseClause;
+	}
+
+	public void setElseClause(String elseClause) {
+		this.elseClause = elseClause;
+	}
+
+	public boolean isTriggerOrLess() {
+		return triggerOrLess;
+	}
+
+	public void setTriggerOrLess(boolean triggerOrLess) {
+		this.triggerOrLess = triggerOrLess;
+	}
+
 	
 
 	
