@@ -188,7 +188,7 @@
 						<binariesDir>${project.build.directory}/classes</binariesDir>
 						<targetBinariesDir>${project.build.directory}/apache-tomee/webapps/${project.build.finalName}/WEB-INF/classes</targetBinariesDir>
 						<targetResourcesDir>${project.build.directory}/apache-tomee/webapps/${project.build.finalName}</targetResourcesDir>
-						<updateInterval>5</updateInterval>
+						<updateInterval>15</updateInterval>
 						<extensions>
 							<extension>.class</extension>
 							<extension>.tml</extension>

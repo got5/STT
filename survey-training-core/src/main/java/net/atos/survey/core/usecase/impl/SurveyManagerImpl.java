@@ -38,6 +38,14 @@ public class SurveyManagerImpl implements SurveyManager{
 	public Survey updateSurvey(Survey survey) {
 		return surveyDao.update(survey);
 	}
+
+	@Override
+	public Survey loadAll(Survey survey) {
+		survey = surveyDao.findById(survey.getId());
+		survey.getQuestions().size();
+		return survey;
+		
+	}
 	
 	
 

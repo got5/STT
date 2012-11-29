@@ -2,6 +2,8 @@ package net.atos.survey.gui.services;
 
 import net.atos.survey.core.dao.UserDao;
 import net.atos.survey.core.usecase.InitManager;
+import net.atos.survey.core.usecase.SurveyManager;
+import net.atos.survey.core.usecase.TrainingSessionManager;
 import net.atos.xa.resourcelocator.ResourceLocator;
 
 import org.apache.tapestry5.SymbolConstants;
@@ -38,6 +40,17 @@ public class SurveyModule {
 		binder.bind(InitManager.class, new ServiceBuilder<InitManager>()  {
 			public InitManager buildService(ServiceResources serviceResources) {
 				return ResourceLocator.lookup(InitManager.class);
+			}
+		});
+		binder.bind(TrainingSessionManager.class, new ServiceBuilder<TrainingSessionManager>()  {
+			public TrainingSessionManager buildService(ServiceResources serviceResources) {
+				return ResourceLocator.lookup(TrainingSessionManager.class);
+			}
+		});
+		
+		binder.bind(SurveyManager.class, new ServiceBuilder<SurveyManager>()  {
+			public SurveyManager buildService(ServiceResources serviceResources) {
+				return ResourceLocator.lookup(SurveyManager.class);
 			}
 		});
 	}

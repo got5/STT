@@ -44,6 +44,11 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager{
 	public TrainingSession updateTrainingSession(TrainingSession trainingSession){
 		return trainingSessionDao.update(trainingSession);
 	}
+
+	@Override
+	public TrainingSession findById(Long trainingSessionId) {
+		return trainingSessionDao.findById(trainingSessionId);
+	}
 	
 	
 	

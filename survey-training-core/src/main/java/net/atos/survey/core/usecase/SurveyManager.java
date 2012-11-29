@@ -15,6 +15,8 @@ public interface SurveyManager{
 	Survey createSurveyFromTemplate(Long trainingId,SurveyTemplate template);
 	
 	Survey updateSurvey(Survey survey);
+
+	Survey loadAll(Survey survey);
 	
 	
 }

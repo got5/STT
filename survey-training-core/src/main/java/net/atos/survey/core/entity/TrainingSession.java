@@ -169,6 +169,11 @@ public class TrainingSession implements Serializable{
 	public void setDateE(Calendar dateE) {
 		this.dateE = dateE;
 	}
+
+	public Training getTraining() {
+		return training;
+	}
+	
 	
 	
 	

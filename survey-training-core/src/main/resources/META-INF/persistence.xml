@@ -33,8 +33,8 @@
 		<shared-cache-mode>ALL</shared-cache-mode>
 		
 		<properties>
-			<!-- property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(foreignKeys=true)" /-->
-			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(foreignKeys=true,SchemaAction='add,deleteTableContents')" />
+			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(foreignKeys=true)" />
+			<!-- property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(foreignKeys=true,SchemaAction='add,deleteTableContents')" / -->
 			<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE" />
 			<property name="openejb.jpa.init-entitymanager" value="true" />
 			<property name="openjpa.Specification" value="JPA 2.0" />
