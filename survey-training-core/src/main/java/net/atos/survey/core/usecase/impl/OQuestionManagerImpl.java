@@ -32,4 +32,9 @@ public class OQuestionManagerImpl implements OQuestionManager {
 		return oQuestionDao.save(oq);
 	}
 
+	@Override
+	public OQuestion updateQuestion(OQuestion question) {
+		return oQuestionDao.update(question);
+	}
+
 }

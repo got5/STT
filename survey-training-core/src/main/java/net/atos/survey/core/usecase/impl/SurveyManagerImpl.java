@@ -42,7 +42,7 @@ public class SurveyManagerImpl implements SurveyManager{
 	@Override
 	public Survey loadAll(Survey survey) {
 		survey = surveyDao.findById(survey.getId());
-		survey.getQuestions().size();
+		survey.loadQuestions();
 		return survey;
 		
 	}

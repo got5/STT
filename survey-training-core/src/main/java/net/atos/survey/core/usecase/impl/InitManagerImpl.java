@@ -295,6 +295,12 @@ public class InitManagerImpl implements InitManager {
 		q14=simpleMCQuestionManager.updateQuestion(q14);
 		q15=simpleMCQuestionManager.updateQuestion(q15);
 		q16=simpleMCQuestionManager.updateQuestion(q16);
+		q17=simpleMCQuestionManager.updateQuestion(q17);
+		q18=simpleMCQuestionManager.updateQuestion(q18);
+		
+		q19=oQuestionManager.updateQuestion(q19);
+		q20=oQuestionManager.updateQuestion(q20);
+		
 		
 		//Survey
 		
@@ -316,6 +322,10 @@ public class InitManagerImpl implements InitManager {
 		survey.addQuestion(q14);
 		survey.addQuestion(q15);
 		survey.addQuestion(q16);
+		survey.addQuestion(q17);
+		survey.addQuestion(q18);
+		survey.addQuestion(q19);
+		survey.addQuestion(q20);
 		
 		surveyManager.updateSurvey(survey);
 		

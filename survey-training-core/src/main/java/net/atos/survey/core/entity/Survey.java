@@ -136,6 +136,13 @@ public class Survey implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
+
+	public void loadQuestions() {
+		questions.size();
+		
+	}
 	
 	
 

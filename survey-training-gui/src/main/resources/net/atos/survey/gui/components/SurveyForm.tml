@@ -1,0 +1,31 @@
+<t:container
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+	<t:form t:clientValidation="false" t:id="form">
+		<t:errors />
+		<t:loop t:index="index" t:source="survey.questions" t:value="question">
+			
+			<t:if test="checkendcategory">
+					</fieldset>
+			</t:if>
+			
+			<t:if test="checknewcategory">
+
+				<fieldset>
+					<legend>${question.category.name }</legend>
+					<p>${question.title}</p>
+
+					<p:else>
+						
+						<p>${question.title}</p>
+					</p:else>
+			</t:if>
+
+		</t:loop>
+
+		</fieldset>
+
+		<t:submit />
+	</t:form>
+</t:container>

@@ -1,0 +1,27 @@
+<html t:type="Layout" t:title="survey-training-gui"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+	xmlns:p="tapestry:parameter">
+
+<div class="k-info-block">
+	<div class="hgroup">
+		<h3>La formation</h3>
+	</div>
+	<div class="content">
+		<p>Here goes the content of your block.</p>
+		<p>${trainingSession.training.name}</p>
+	</div>
+	<div class="hgroup">
+		<h3>L'instructeur</h3>
+	</div>
+	<div class="content">
+		<p>${trainingSession.instructor.firstname} ${trainingSession.instructor.name}</p>
+	</div>
+</div>
+
+<t:surveyForm />
+
+
+
+
+
+</html>

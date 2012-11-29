@@ -1,0 +1,47 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+	
+	<t:form t:clientValidation="false" t:id="form">
+ 		
+ 		<t:errors />
+ 		
+ 		<fieldset class="k-sub-group">
+ 		
+ 			
+ 			<legend>Une Categorie</legend>
+ 			
+ 			<t:textfield  t:validate="required"/><br />
+ 			<t:textfield  t:validate="required"/><br />
+ 			<t:textfield  t:validate="required"/><br />
+ 			
+ 			
+ 		</fieldset>
+ 		
+ 		<fieldset class="k-sub-group">
+ 		
+ 			
+ 			<legend>Une autre Categorie</legend>
+ 			
+ 			<fieldset>
+ 				<legend>Un theme </legend>
+ 				
+ 				<t:textfield  t:validate="required"/><br />
+ 				<t:textfield  t:validate="required"/><br />
+ 				
+ 			</fieldset>
+ 			
+ 			<fieldset>
+ 				<legend>Un autre theme</legend>
+ 				
+ 				<t:textfield  t:validate="required"/><br />
+ 				<t:textfield  t:validate="required"/><br />
+ 				
+ 			</fieldset>
+ 			
+ 	
+ 		</fieldset>
+ 		
+ 		
+ 		
+ 		<t:submit />
+ 	</t:form>
+</t:container>
