@@ -28,7 +28,7 @@ public class OQuestionManagerImpl implements OQuestionManager {
 			throw new NotInitaliazedSurveyDataBaseException(CAT_DEFAULT
 					+ " doen't exist yet. Please init your database");
 		OQuestion oq = new OQuestion();
-		oq.setCategory(category);
+		
 		return oQuestionDao.save(oq);
 	}
 

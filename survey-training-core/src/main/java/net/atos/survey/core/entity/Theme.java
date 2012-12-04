@@ -12,6 +12,11 @@ import javax.persistence.Table;
 @Table
 public class Theme implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3577432366104064282L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;

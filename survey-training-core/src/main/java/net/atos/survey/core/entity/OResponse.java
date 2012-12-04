@@ -6,6 +6,10 @@ import javax.persistence.Table;
 @Table@Entity
 public class OResponse extends Response {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1593189140443365958L;
 	private String answer;
 
 	public OResponse(Question question,String answer) {

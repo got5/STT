@@ -1,7 +1,10 @@
 package net.atos.survey.core.usecase;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
+import net.atos.survey.core.entity.Question;
 import net.atos.survey.core.entity.Survey;
 import net.atos.survey.core.entity.SurveyTemplate;
 import net.atos.survey.core.exception.TrainingNotExistException;
@@ -18,5 +21,6 @@ public interface SurveyManager{
 
 	Survey loadAll(Survey survey);
 	
+	List<Question> getAllQuestion(Survey survey);
 	
 }

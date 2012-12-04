@@ -4,27 +4,25 @@
 
 	<t:form t:clientValidation="false" t:id="form">
 		<t:errors />
-		<t:loop t:index="index" t:source="survey.questions" t:value="question">
-			
-			<t:if test="checkendcategory">
-					</fieldset>
-			</t:if>
-			
-			<t:if test="checknewcategory">
 
-				<fieldset>
-					<legend>${question.category.name }</legend>
-					<p>${question.title}</p>
 
-					<p:else>
-						
-						<p>${question.title}</p>
-					</p:else>
-			</t:if>
-
+		<t:loop t:index="indexC" t:source="survey.categories"
+			t:value="category">
+			<fieldset>
+				<legend>${category.name }</legend>
+				
+				<t:loop t:index="indexQ" t:source="category.questions"
+					t:value="question">
+					<t:if test="affichertheme">
+						<h3>${question.theme.name }</h3>
+					</t:if>
+					
+					<t:questioncomponent t:question="question" t:response="responsesurvey.responses.get('question')"/>
+				</t:loop>
+			</fieldset>
 		</t:loop>
 
-		</fieldset>
+
 
 		<t:submit />
 	</t:form>

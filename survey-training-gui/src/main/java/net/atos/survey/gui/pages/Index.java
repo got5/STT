@@ -17,6 +17,8 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 public class Index {
 	
 	
+	
+	
 	@Inject InitManager initManager;
 	
 	@OnEvent(value=EventConstants.ACTION,component="initdb")

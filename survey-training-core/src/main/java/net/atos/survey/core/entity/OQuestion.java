@@ -9,6 +9,11 @@ public class OQuestion extends Question {
 	
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3923357049318966368L;
+
 	public OQuestion() {
 		super();
 		// TODO Auto-generated constructor stub

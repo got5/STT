@@ -11,6 +11,8 @@ import net.atos.survey.core.entity.User;
 @Local
 public interface UserDao extends Dao<Long, User> {
 
+	User getUserByLogin(String login);
+
 
 	
 }

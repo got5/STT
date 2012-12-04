@@ -10,12 +10,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 @Table@Entity
 public class Survey implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2582069950464526420L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
@@ -30,10 +34,9 @@ public class Survey implements Serializable{
 	private Training training;
 	
 	
+	
 	@OneToMany
-	@OrderColumn
-	private List<Question> questions = new ArrayList<Question>();
-
+	private List<Category> categories = new ArrayList<Category>();
 	
 	
 	
@@ -50,30 +53,7 @@ public class Survey implements Serializable{
 	
 	
 	
-	public void addQuestion(Question question) {
-		if(!questions.contains(question)){
-			
-			
-			questions.add(question);
-		}	
-	}
 	
-	public void deleteQuestion(Question question){
-		
-			
-		int index = questions.indexOf(question);
-		if(index!=-1)
-			questions.remove(index);
-	}
-	
-	
-	
-
-	public List<Question> getQuestions() {
-		return questions;
-	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -102,10 +82,7 @@ public class Survey implements Serializable{
 		publish = true;
 	}
 	
-	private int getQuestionSize(){
-		return questions.size();
-	}
-
+	
 
 
 	public int getVersion() {
@@ -139,11 +116,37 @@ public class Survey implements Serializable{
 
 
 
-	public void loadQuestions() {
-		questions.size();
-		
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+
+
+	public void setCategory(List<Category> categories) {
+		this.categories = categories;
+	}
+
+
+	
+	public void addCategory(Category category) {
+		if(!categories.contains(category)){
+			
+			
+			categories.add(category);
+		}	
 	}
 	
+	public void deleteCategory(Category category){
+		
+			
+		int index = categories.indexOf(category);
+		if(index!=-1)
+			categories.remove(index);
+	}
+	
+	public void loadCategories(){
+		this.categories.size();
+	}
 	
 
 }

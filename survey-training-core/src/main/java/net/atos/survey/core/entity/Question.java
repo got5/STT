@@ -22,6 +22,11 @@ import javax.persistence.TemporalType;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Question implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1509918249731449869L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -34,9 +39,7 @@ public class Question implements Serializable {
 
 	protected String title;
 
-	@ManyToOne
-	@JoinColumn(name = "CATEGORY_ID")
-	protected Category category;
+	
 
 	@ManyToOne
 	@JoinColumn(name = "THEME_ID")
@@ -46,13 +49,7 @@ public class Question implements Serializable {
 		return id;
 	}
 
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+	
 
 	public Theme getTheme() {
 		return theme;

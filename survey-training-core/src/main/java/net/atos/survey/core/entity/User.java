@@ -14,6 +14,11 @@ import javax.persistence.Table;
 @Table@Entity
 public class User implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4248590089806363944L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
@@ -28,28 +33,21 @@ public class User implements Serializable {
 	
 	private String dept;
 	
+	private String login;
+	
+	private String password;
+	
 	@ManyToMany(mappedBy="inChargeUsers")
 	private List<Training> inChargeOfTrainings = new ArrayList<Training>();
 	
 
-	public void addInChargeOfTrainings(Training training){
-		if(!inChargeOfTrainings.contains(training))
-			inChargeOfTrainings.add(training);
-	}
-	
-
-	public List<Training> getInChargeOfTrainings() {
-		return inChargeOfTrainings;
-	}
-
-
-
-
-
 	
 
 
-
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public User(String name, String firstName, String entity, String bu,
 			String dept) {
@@ -61,7 +59,16 @@ public class User implements Serializable {
 		this.dept = dept;
 	}
 	
+	public void addInChargeOfTrainings(Training training){
+		if(!inChargeOfTrainings.contains(training))
+			inChargeOfTrainings.add(training);
+	}
 	
+
+	public List<Training> getInChargeOfTrainings() {
+		return inChargeOfTrainings;
+	}
+
 
 
 	public long getId() {
@@ -97,8 +104,28 @@ public class User implements Serializable {
 	}
 
 
-
 	
+	
+
+
+	public String getLogin() {
+		return login;
+	}
+
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 
 	@Override

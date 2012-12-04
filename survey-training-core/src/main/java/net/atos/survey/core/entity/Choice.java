@@ -8,49 +8,39 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-@Table@Entity
+@Table
+@Entity
 public class Choice implements Serializable {
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4041364884117857633L;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	private String name;
-	
-	
-	
-	
-	
-	
+
 	public Choice() {
 		super();
-		
+
 	}
-	
-
-
 
 	public Choice(String name) {
 		super();
 		this.name = name;
-		
+
 	}
-
-
-
-
 
 	public long getId() {
 		return id;
 	}
 
-
-
 	public String getName() {
 		return name;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -73,5 +63,5 @@ public class Choice implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

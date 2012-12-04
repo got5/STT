@@ -11,6 +11,11 @@ import javax.persistence.Table;
 @Table@Entity
 public class Room implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8008503619290696220L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;

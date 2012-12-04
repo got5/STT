@@ -31,7 +31,7 @@ public class SimpleMCQuestionManagerImpl implements SimpleMCQuestionManager{
 			throw new NotInitaliazedSurveyDataBaseException(q+" doen't exist yet. Please init your database");
 		
 		question = question.clone();
-		question.setCategory(category);
+		
 		
 		question = simpleMCQuestionDao.save(question);
 		
@@ -62,6 +62,13 @@ public class SimpleMCQuestionManagerImpl implements SimpleMCQuestionManager{
 	public SimpleMCQuestion updateQuestion(SimpleMCQuestion question) {
 		
 		return simpleMCQuestionDao.update(question);
+	}
+
+	@Override
+	public SimpleMCQuestion loadAll(SimpleMCQuestion simpleMCQuestion) {
+		simpleMCQuestion = simpleMCQuestionDao.findById(simpleMCQuestion.getId());
+		simpleMCQuestion.loadChoices();
+		return simpleMCQuestion;
 	}
 
 }

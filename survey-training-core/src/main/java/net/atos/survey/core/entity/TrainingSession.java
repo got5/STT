@@ -24,6 +24,11 @@ import javax.persistence.TemporalType;
 public class TrainingSession implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8661434591689190746L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
@@ -172,6 +177,11 @@ public class TrainingSession implements Serializable{
 
 	public Training getTraining() {
 		return training;
+	}
+
+	public int loadAll() {
+		return responses.size();
+		
 	}
 	
 	

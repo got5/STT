@@ -15,6 +15,13 @@ import javax.persistence.Table;
 @Table@Entity
 public class SurveyTemplate implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8223808575959159628L;
+
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;

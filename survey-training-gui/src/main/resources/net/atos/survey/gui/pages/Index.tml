@@ -6,6 +6,7 @@
 
 	 
 	<a t:type="pageLink" t:page="summarysurveyform" t:context="401" >Access Form </a><br />
+	<a t:type="pageLink" t:page="login" >Login </a><br />
 	<a t:type="actionlink" t:id="initdb">Init Database</a><br />
 
 </html>

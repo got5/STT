@@ -200,9 +200,10 @@ public class InitManagerImpl implements InitManager {
 		SimpleMCQuestion q2 = simpleMCQuestionManager.createTFQuestion();
 		SimpleMCQuestion q3 = simpleMCQuestionManager.createTFQuestion();
 		
-		q1.setCategory(ca1);
-		q2.setCategory(ca1);
-		q3.setCategory(ca1);
+		
+		ca1.addQuestion(q1);
+		ca1.addQuestion(q2);
+		ca1.addQuestion(q3);
 		
 		q1.setTitle("Quelle est votre connaissance actuelle du sujet ?");
 		q2.setTitle("Les objectifs rappelés en début de stage correspondent-ils à ceux que vous avez définis avec votre entreprise ?");
@@ -236,19 +237,20 @@ public class InitManagerImpl implements InitManager {
 		q15.setTheme(t6);
 		q16.setTheme(t6);
 		
-		q4.setCategory(ca2);
-		q5.setCategory(ca2);
-		q6.setCategory(ca2);
-		q7.setCategory(ca2);
-		q8.setCategory(ca2);
-		q9.setCategory(ca2);
-		q10.setCategory(ca2);
-		q11.setCategory(ca2);
-		q12.setCategory(ca2);
-		q13.setCategory(ca2);
-		q14.setCategory(ca2);
-		q15.setCategory(ca2);
-		q16.setCategory(ca2);
+		ca2.addQuestion(q4);
+		ca2.addQuestion(q5);
+		ca2.addQuestion(q6);
+		ca2.addQuestion(q7);
+		ca2.addQuestion(q8);
+		ca2.addQuestion(q9);
+		ca2.addQuestion(q10);
+		ca2.addQuestion(q11);
+		ca2.addQuestion(q12);
+		ca2.addQuestion(q13);
+		ca2.addQuestion(q14);
+		ca2.addQuestion(q15);
+		ca2.addQuestion(q16);
+		
 		
 		q4.setTitle("Points abordés");
 		q5.setTitle("Progression pédagogique");
@@ -269,10 +271,11 @@ public class InitManagerImpl implements InitManager {
 		OQuestion q19 = oQuestionManager.createDefaultOQuestion();
 		OQuestion q20 = oQuestionManager.createDefaultOQuestion();
 		
-		q17.setCategory(ca3);
-		q18.setCategory(ca3);
-		q19.setCategory(ca3);
-		q20.setCategory(ca3);
+		ca3.addQuestion(q17);
+		ca3.addQuestion(q18);
+		ca3.addQuestion(q19);
+		ca3.addQuestion(q20);
+		
 		
 		q17.setTitle("Les objectifs du stage sont-ils atteints ?");
 		q18.setTitle("Pensez-vous être apte à mettre en oeuvre les acquis de ce stage ?");
@@ -306,26 +309,13 @@ public class InitManagerImpl implements InitManager {
 		
 		Survey survey = surveyManager.createSurvey("Questionnaire d'évaluation", tapestryBasic.getId());
 		
-		survey.addQuestion(q1);
-		survey.addQuestion(q2);
-		survey.addQuestion(q3);
-		survey.addQuestion(q4);
-		survey.addQuestion(q5);
-		survey.addQuestion(q6);
-		survey.addQuestion(q7);
-		survey.addQuestion(q8);
-		survey.addQuestion(q9);
-		survey.addQuestion(q10);
-		survey.addQuestion(q11);
-		survey.addQuestion(q12);
-		survey.addQuestion(q13);
-		survey.addQuestion(q14);
-		survey.addQuestion(q15);
-		survey.addQuestion(q16);
-		survey.addQuestion(q17);
-		survey.addQuestion(q18);
-		survey.addQuestion(q19);
-		survey.addQuestion(q20);
+		survey.addCategory(ca1);
+		survey.addCategory(ca2);
+		survey.addCategory(ca3);
+		
+		ca1 = categoryDao.update(ca1);
+		ca2 = categoryDao.update(ca2);
+		ca3 = categoryDao.update(ca3);
 		
 		surveyManager.updateSurvey(survey);
 		

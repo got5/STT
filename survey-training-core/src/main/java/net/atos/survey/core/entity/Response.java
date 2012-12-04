@@ -15,6 +15,11 @@ import javax.persistence.Table;
 public class Response implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7878477100060259226L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;

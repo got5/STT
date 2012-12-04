@@ -1,10 +1,15 @@
 package net.atos.survey.core.usecase.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import net.atos.survey.core.dao.SurveyDao;
 import net.atos.survey.core.dao.TrainingDao;
+import net.atos.survey.core.entity.Category;
+import net.atos.survey.core.entity.Question;
 import net.atos.survey.core.entity.Survey;
 import net.atos.survey.core.entity.SurveyTemplate;
 import net.atos.survey.core.entity.Training;
@@ -42,9 +47,21 @@ public class SurveyManagerImpl implements SurveyManager{
 	@Override
 	public Survey loadAll(Survey survey) {
 		survey = surveyDao.findById(survey.getId());
-		survey.loadQuestions();
+		survey.loadCategories();
 		return survey;
 		
+	}
+
+	@Override
+	public List<Question> getAllQuestion(Survey survey) {
+		survey = surveyDao.findById(survey.getId());
+		survey.loadCategories();
+		List<Question> questions = new ArrayList<Question>();
+		for(Category c:survey.getCategories()){
+			c.loadQuestions();
+			questions.addAll(c.getQuestions());
+		}
+		return questions;
 	}
 	
 	

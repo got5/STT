@@ -1,9 +1,12 @@
 package net.atos.survey.gui.services;
 
 import net.atos.survey.core.dao.UserDao;
+import net.atos.survey.core.usecase.CategoryManager;
 import net.atos.survey.core.usecase.InitManager;
+import net.atos.survey.core.usecase.SimpleMCQuestionManager;
 import net.atos.survey.core.usecase.SurveyManager;
 import net.atos.survey.core.usecase.TrainingSessionManager;
+import net.atos.survey.core.usecase.UserManager;
 import net.atos.xa.resourcelocator.ResourceLocator;
 
 import org.apache.tapestry5.SymbolConstants;
@@ -51,6 +54,23 @@ public class SurveyModule {
 		binder.bind(SurveyManager.class, new ServiceBuilder<SurveyManager>()  {
 			public SurveyManager buildService(ServiceResources serviceResources) {
 				return ResourceLocator.lookup(SurveyManager.class);
+			}
+		});
+		
+		binder.bind(CategoryManager.class, new ServiceBuilder<CategoryManager>()  {
+			public CategoryManager buildService(ServiceResources serviceResources) {
+				return ResourceLocator.lookup(CategoryManager.class);
+			}
+		});
+		binder.bind(SimpleMCQuestionManager.class, new ServiceBuilder<SimpleMCQuestionManager>()  {
+			public SimpleMCQuestionManager buildService(ServiceResources serviceResources) {
+				return ResourceLocator.lookup(SimpleMCQuestionManager.class);
+			}
+		});
+		
+		binder.bind(UserManager.class, new ServiceBuilder<UserManager>()  {
+			public UserManager buildService(ServiceResources serviceResources) {
+				return ResourceLocator.lookup(UserManager.class);
 			}
 		});
 	}

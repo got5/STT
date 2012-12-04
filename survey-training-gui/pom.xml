@@ -171,9 +171,9 @@
 			<plugin>
 				<groupId>org.apache.openejb.maven</groupId>
 				<artifactId>tomee-maven-plugin</artifactId>
-				<version>1.0.0.xa</version>
+				<version>${tomee-xa-plugin-version}</version>
 				<configuration>
-					<tomeeVersion>1.5.1-SNAPSHOT</tomeeVersion>
+					<tomeeVersion>${tomee-xa-version}</tomeeVersion>
 					<!-- <debug>true</debug> -->
 					<tomeeClassifier>plus</tomeeClassifier>
 					<config>${basedir}/../survey-training-core/src/main/conf</config>
@@ -183,6 +183,7 @@
 					<libs>
 						<lib>mysql:mysql-connector-java:5.1.6</lib>
 					</libs>
+					<args>-Xms256m -Xmx1024m</args>
 					<synchronization>
 						<resourcesDir>${project.basedir}/src/main/webapp</resourcesDir>
 						<binariesDir>${project.build.directory}/classes</binariesDir>

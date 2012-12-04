@@ -1,8 +1,9 @@
 package net.atos.survey.core.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,29 +16,30 @@ import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
-@Table@Entity
+@Table
+@Entity
 public class SimpleMCQuestion extends Question {
-	
-	
-	
-	private boolean uniqueAnswer=true;
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8374850305291884636L;
+
+	private boolean uniqueAnswer = true;
+
 	private String elseClause;
-	
+
 	@ManyToOne
 	private Choice trigger;
-	
-	private boolean triggerOrLess=false;
-	
-	
+
+	private boolean triggerOrLess = false;
+
 	@ElementCollection
-	@CollectionTable(name="MCQ_CHOICE")
-	@MapKeyJoinColumn(name="CHOICE_ID")
-	@Column(name="NUMERO")
-	@OrderColumn(name="NUMERO")
-	private Map<Choice,Integer> choices = new HashMap<Choice,Integer>();
-	
-	
+	@CollectionTable(name = "MCQ_CHOICE")
+	@MapKeyJoinColumn(name = "CHOICE_ID")
+	@Column(name = "NUMERO")
+	@OrderColumn(name = "NUMERO")
+	private Map<Choice, Integer> choices = new LinkedHashMap<Choice, Integer>();
 
 	public SimpleMCQuestion() {
 		super();
@@ -55,24 +57,27 @@ public class SimpleMCQuestion extends Question {
 		this.choices = choices;
 	}
 
-	private int getChoicesSize(){
+	private int getChoicesSize() {
 		return choices.size();
 	}
-	
-	public void addChoice(Choice choice){
+
+	public void addChoice(Choice choice) {
 		Set<Choice> keys = choices.keySet();
-		if(!keys.contains(choice))
+		if (!keys.contains(choice))
 			choices.put(choice, getChoicesSize());
 	}
-	
-	public Collection<Choice> getChoices(){
-		return Collections.unmodifiableCollection(choices.keySet());
-	}
-	
 
-	public void deleteLastChoice(Choice choice){
-		if(choices.containsKey(choice)){
-			if(choices.get(choice)==getChoicesSize()-1) //On s'assure qu'on retire bien le dernier élément
+	public Collection<Choice> getChoices() {
+		return choices.keySet();
+	}
+
+	public void deleteLastChoice(Choice choice) {
+		if (choices.containsKey(choice)) {
+			if (choices.get(choice) == getChoicesSize() - 1) // On s'assure
+																// qu'on retire
+																// bien le
+																// dernier
+																// élément
 				choices.remove(choice);
 		}
 	}
@@ -85,8 +90,6 @@ public class SimpleMCQuestion extends Question {
 		this.uniqueAnswer = uniqueAnswer;
 	}
 
-	
-
 	public Choice getTrigger() {
 		return trigger;
 	}
@@ -95,16 +98,15 @@ public class SimpleMCQuestion extends Question {
 		this.trigger = trigger;
 	}
 
-	
-	
-	public SimpleMCQuestion clone(){
-		
-		SimpleMCQuestion question = new SimpleMCQuestion(null, this.uniqueAnswer, this.elseClause, this.triggerOrLess);
-		question.trigger=this.trigger;
-		
-		for(Choice k:this.choices.keySet())
+	public SimpleMCQuestion clone() {
+
+		SimpleMCQuestion question = new SimpleMCQuestion(null,
+				this.uniqueAnswer, this.elseClause, this.triggerOrLess);
+		question.trigger = this.trigger;
+
+		for (Choice k : this.choices.keySet())
 			question.choices.put(k, this.choices.get(k));
-		
+
 		return question;
 	}
 
@@ -124,13 +126,11 @@ public class SimpleMCQuestion extends Question {
 		this.triggerOrLess = triggerOrLess;
 	}
 
-	
+	public void loadChoices() {
+		choices.size();
+		
+	}
 
-	
-	
-	
-	
-	
 	
 
 }

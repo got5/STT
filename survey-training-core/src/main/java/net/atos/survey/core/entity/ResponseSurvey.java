@@ -14,6 +14,11 @@ import javax.persistence.Table;
 public class ResponseSurvey implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5440382429358094349L;
+
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 

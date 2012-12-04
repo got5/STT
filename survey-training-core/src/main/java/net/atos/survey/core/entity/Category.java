@@ -1,18 +1,27 @@
 package net.atos.survey.core.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table
 public class Category implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8241322362901355084L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
@@ -20,7 +29,9 @@ public class Category implements Serializable {
 	@Column(unique=true,nullable=false)
 	private String name;
 	
-	
+	@OneToMany
+	@OrderColumn
+	private List<Question> questions = new ArrayList<Question>();
 	
 	
 	
@@ -69,6 +80,32 @@ public class Category implements Serializable {
 		return true;
 	}
 	
+	public void addQuestion(Question question) {
+		if(!questions.contains(question)){
+			
+			
+			questions.add(question);
+		}	
+	}
 	
+	public void deleteQuestion(Question question){
+		
+			
+		int index = questions.indexOf(question);
+		if(index!=-1)
+			questions.remove(index);
+	}
+	
+	
+	
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void loadQuestions() {
+		questions.size();
+		
+	}
 
 }

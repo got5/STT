@@ -18,6 +18,8 @@ public interface SimpleMCQuestionManager {
 
 	SimpleMCQuestion updateQuestion(SimpleMCQuestion question);
 	
+	SimpleMCQuestion loadAll(SimpleMCQuestion simpleMCQuestion);
+	
 	
 
 }

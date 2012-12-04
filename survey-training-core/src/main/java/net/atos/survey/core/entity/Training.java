@@ -19,6 +19,11 @@ import javax.persistence.Table;
 @Table@Entity
 public class Training implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2146399977210907120L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
