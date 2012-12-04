@@ -1,0 +1,31 @@
+<t:container
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+	<t:if test="ismcquestion">
+
+
+		<fieldset class="k-radio">
+			<legend>${mcquestion.title }</legend>
+			<t:radiogroup t:id="chosen" t:value="simplemcqresponse?.choice">
+				<t:loop t:source="mcquestion.choices" t:value="choice">
+					<p>
+						<label t:type="label" for="mcq"> <input t:type="radio"
+							t:id="mcq" value="choice.name" />${prop:choice.name}
+						</label>
+					</p>
+				</t:loop>
+			</t:radiogroup>
+
+		</fieldset>
+
+		<p:else>
+			<p>
+				<label t:type="label" for="oq">${oquestion.title}</label>
+				<textarea t:type="textarea" value="oresponse?.answer"
+				 class="k-field-comment" rows="5" cols="40" t:id="oq" />
+			</p>
+		</p:else>
+	</t:if>
+
+</t:container>
