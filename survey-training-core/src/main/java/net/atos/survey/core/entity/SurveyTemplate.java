@@ -12,44 +12,39 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Table@Entity
-public class SurveyTemplate implements Serializable{
-	
+@Table
+@Entity
+public class SurveyTemplate implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8223808575959159628L;
 
-
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
-	
-	
+
 	@ManyToMany
 	private List<Question> questions = new ArrayList<Question>();
 
 	public long getId() {
 		return id;
 	}
-	
-	
-	public void addQuestion(Question question){
-		if(!questions.contains(question))
+
+	public void addQuestion(Question question) {
+		if (!questions.contains(question))
 			questions.add(question);
-			
+
 	}
-	
-	public void deleteQuestion(Question question){
+
+	public void deleteQuestion(Question question) {
 		int index = questions.indexOf(question);
-		if(index!=-1)
+		if (index != -1)
 			questions.remove(index);
 	}
-	
-	
-	public List<Question> getQuestions(){
+
+	public List<Question> getQuestions() {
 		return Collections.unmodifiableList(questions);
 	}
 
@@ -74,9 +69,5 @@ public class SurveyTemplate implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 
 }

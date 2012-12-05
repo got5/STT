@@ -3,42 +3,51 @@
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
 	xmlns:p="tapestry:parameter">
-	<head>
-		<title>${title}</title>
-	</head>
-	<body>
+<head>
+<title>${title}</title>
+</head>
+<body>
 
-		<div id="container">
+	<div id="container">
 
-			<!-- PAGE HEADER -->
-			<div id="header">
-				<a t:type="pageLink" t:page="Index">
-					<h1>
-						<img src="${asset:context:static/img/xa.png}" />
-					</h1>
-					<div class="clearer"></div>
-				</a>
-			 	<div id="navbar">
-				 	<ul class="k-navbar">
-						<li class="home"><a t:type="pageLink" t:page="Index">Home</a></li>
-						<li><a t:type="pageLink" t:page="sample/Timer">Example page</a></li>
-				 	</ul>
-			 	</div>
+		<!-- PAGE HEADER -->
+		<div id="header">
+			<a t:type="pageLink" t:page="Index">
+				<h1>
+					<img src="${asset:context:static/img/xa.png}" />
+				</h1>
+				<div class="clearer"></div>
+			</a>
+			<div id="navbar">
+				<ul class="k-navbar">
+					<li class="home"><a t:type="pageLink" t:page="Index">Home</a></li>
+					<li><a t:type="pageLink" t:page="sample/Timer">Example
+							page</a></li>
+				</ul>
+				<div t:type="if" t:test="loggedUserExists">
+					<p class="k-login-data">
+						Welcome, <span id="user-name">loggedUser?.firstname loggedUser?.name</span> [<strong><a
+							t:type="actionLink" t:id="logout">Logout</a></strong>]
+					</p>
+				</div>
 			</div>
+		</div>
 
-			<hr />
-			<!-- COLUMNS WRAPPER/ -->
-			<div id="wrapper">
-				<t:body />
-			</div>
-			<!-- /COLUMNS WRAPPER -->
+		<hr />
+		<!-- COLUMNS WRAPPER/ -->
+		<div id="wrapper">
+			<t:body />
+		</div>
+		<!-- /COLUMNS WRAPPER -->
 
-			<hr />
-			<!-- FOOTER -->
-			<div id="footer">
-				<p class="k-copyright">&copy; Le Studio/Web Platform, Atos Worldline, 2011</p>
-			</div>
+		<hr />
+		<!-- FOOTER -->
+		<div id="footer">
+			<p class="k-copyright">&copy; Le Studio/Web Platform, Atos
+				Worldline, 2011</p>
+		</div>
 
-		</div> <!-- /container -->
-	</body>
+	</div>
+	<!-- /container -->
+</body>
 </html>

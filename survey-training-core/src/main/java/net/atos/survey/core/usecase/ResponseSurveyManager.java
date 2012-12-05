@@ -9,7 +9,7 @@ import net.atos.survey.core.entity.Survey;
 @Local
 public interface ResponseSurveyManager {
 
-	ResponseSurvey createResponseSurvey(Survey survey);
+	ResponseSurvey save(ResponseSurvey responseSurvey);
 	
 	
 

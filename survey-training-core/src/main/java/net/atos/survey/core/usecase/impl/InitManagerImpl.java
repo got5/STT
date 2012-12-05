@@ -167,8 +167,14 @@ public class InitManagerImpl implements InitManager {
 	public void testOneSurvey() throws Exception {
 		
 		User responsable = new User("Facon","François","AWL","GPS","TD");
+		responsable.setLogin("facon");
+		responsable.setPassword("facon");
 		User instructeur = new User("Khadri","Nourredine","AWL","GPS","TD");
+		instructeur.setLogin("khadri");
+		instructeur.setPassword("khadri");
 		User stagiaire1 = new User("Marot","Pierre","AWL","GPS","TD");
+		stagiaire1.setLogin("marot");
+		stagiaire1.setPassword("marot");
 		
 		responsable = userDao.save(responsable);
 		instructeur = userDao.save(instructeur);

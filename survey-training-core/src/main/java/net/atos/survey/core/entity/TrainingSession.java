@@ -19,48 +19,45 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Table
+@Entity
+public class TrainingSession implements Serializable {
 
-@Table@Entity
-public class TrainingSession implements Serializable{
-
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8661434591689190746L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Calendar dateS;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Calendar dateE;
 
 	@ManyToOne
 	private Training training;
-	
+
 	@ManyToOne
-	@JoinColumn(name="ROOM_ID")
+	@JoinColumn(name = "ROOM_ID")
 	private Room room;
-	
+
 	@ManyToOne
-	@JoinColumn(name="INSTRUCTOR_ID")
+	@JoinColumn(name = "INSTRUCTOR_ID")
 	private User instructor;
-	
+
 	@ManyToOne
 	private Survey survey;
-	
+
 	@ManyToMany
 	private List<User> trainees = new ArrayList<User>();
-	
+
 	@OneToMany
-	private Map<User,ResponseSurvey> responses = new HashMap<User,ResponseSurvey>();
-	
-	
-	
+	private Map<User, ResponseSurvey> responses = new HashMap<User, ResponseSurvey>();
+
 	public TrainingSession(Calendar dateS, Calendar dateE, Training training,
 			Room room) {
 		super();
@@ -71,7 +68,7 @@ public class TrainingSession implements Serializable{
 	}
 
 	public TrainingSession(Calendar dateS, Calendar dateE, Room room,
-			User instructor, Survey survey,Training training) {
+			User instructor, Survey survey, Training training) {
 		super();
 		this.dateS = dateS;
 		this.dateE = dateE;
@@ -79,7 +76,7 @@ public class TrainingSession implements Serializable{
 		this.instructor = instructor;
 		this.survey = survey;
 		this.training = training;
-		
+
 	}
 
 	public long getId() {
@@ -124,30 +121,29 @@ public class TrainingSession implements Serializable{
 		this.instructor = instructor;
 	}
 
-	
-	
 	public List<User> getTrainees() {
 		return trainees;
 	}
-	
-	public void addTrainee(User user){
+
+	public void addTrainee(User user) {
 		if (!trainees.contains(user))
-				trainees.add(user);
-		}
-	
-	public void removeTrainee(User user){
+			trainees.add(user);
+	}
+
+	public void removeTrainee(User user) {
 		trainees.remove(user);
 	}
 
-	public void addResponseSurvey(User user,ResponseSurvey rS){
+	public void addResponseSurvey(User user, ResponseSurvey rS) {
 		responses.put(user, rS);
 	}
-	
+
 	public List<ResponseSurvey> getResponseSurveys() {
 		return (List<ResponseSurvey>) responses.values();
 	}
-	public ResponseSurvey getResponseSurvey(User user){
-		
+
+	public ResponseSurvey getResponseSurvey(User user) {
+
 		return responses.get(user);
 	}
 
@@ -179,15 +175,13 @@ public class TrainingSession implements Serializable{
 		return training;
 	}
 
-	public int loadAll() {
+	public int loadResponses() {
 		return responses.size();
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	public int loadUsers() {
+		return trainees.size();
+	}
+
 }

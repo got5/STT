@@ -11,38 +11,35 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Table@Entity
+@Table
+@Entity
 public class User implements Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4248590089806363944L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	private String name;
-	
+
 	private String firstName;
-	
+
 	private String entity;
-	
+
 	private String bu;
-	
+
 	private String dept;
-	
+
 	private String login;
-	
+
 	private String password;
-	
-	@ManyToMany(mappedBy="inChargeUsers")
+
+	@ManyToMany(mappedBy = "inChargeUsers")
 	private List<Training> inChargeOfTrainings = new ArrayList<Training>();
-	
-
-	
-
 
 	public User() {
 		super();
@@ -58,75 +55,55 @@ public class User implements Serializable {
 		this.bu = bu;
 		this.dept = dept;
 	}
-	
-	public void addInChargeOfTrainings(Training training){
-		if(!inChargeOfTrainings.contains(training))
+
+	public void addInChargeOfTrainings(Training training) {
+		if (!inChargeOfTrainings.contains(training))
 			inChargeOfTrainings.add(training);
 	}
-	
 
 	public List<Training> getInChargeOfTrainings() {
 		return inChargeOfTrainings;
 	}
 
-
-
 	public long getId() {
 		return id;
 	}
-
-
-	
 
 	public String getEntity() {
 		return entity;
 	}
 
-
 	public String getBu() {
 		return bu;
 	}
-
 
 	public String getDept() {
 		return dept;
 	}
 
-
 	public String getName() {
 		return name;
 	}
-
-
 
 	public String getFirstName() {
 		return firstName;
 	}
 
-
-	
-	
-
-
 	public String getLogin() {
 		return login;
 	}
-
 
 	public void setLogin(String login) {
 		this.login = login;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -149,9 +126,5 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
+
 }

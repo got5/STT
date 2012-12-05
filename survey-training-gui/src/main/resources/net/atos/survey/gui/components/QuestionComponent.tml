@@ -6,7 +6,7 @@
 		<fieldset class="k-radio">
 			<legend>${mcquestion.title }</legend>
 			<t:radiogroup t:id="chosen" t:value="simplemcqresponse?.choice">
-				<t:loop t:source="mcquestion.choices" t:value="choice">
+				<t:loop t:source="mcquestion.choices" t:value="choice" t:formstate="iteration">
 					<p>
 						<t:if test="istrigger">
 							<label t:type="label" for="mcqwithtrigger"> <input

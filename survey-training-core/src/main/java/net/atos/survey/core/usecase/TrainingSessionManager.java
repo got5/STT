@@ -9,6 +9,7 @@ import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.exception.RoomNotExistException;
 import net.atos.survey.core.exception.TrainingNotExistException;
+import net.atos.survey.core.exception.UserNotInTrainingSessionException;
 
 
 @Local
@@ -21,4 +22,9 @@ public interface TrainingSessionManager{
 	TrainingSession findById(Long trainingSessionId);
 	
 	ResponseSurvey createResponseSurveyWithoutPersist(TrainingSession trainingSession);
+	
+	Boolean alreadyAnsweredToSurvey(Long trainingSessionId,Long userId) throws UserNotInTrainingSessionException;
+	
+	TrainingSession saveResultForTrainee(Long trainingSessionId,Long userId,ResponseSurvey responseSurvey);
+
 }

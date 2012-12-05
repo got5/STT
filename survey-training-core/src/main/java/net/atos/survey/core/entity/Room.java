@@ -8,53 +8,39 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table@Entity
+@Table
+@Entity
 public class Room implements Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8008503619290696220L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	private String name;
-	
-	
-	
-	
-	
-	
+
 	public Room() {
 		super();
-		
+
 	}
-	
-
-
 
 	public Room(String name) {
 		super();
 		this.name = name;
-		
+
 	}
-
-
-
-
 
 	public long getId() {
 		return id;
 	}
 
-
-
 	public String getName() {
 		return name;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -77,6 +63,5 @@ public class Room implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
-	

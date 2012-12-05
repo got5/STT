@@ -8,42 +8,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-@Table@Entity
+
+@Table
+@Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Response implements Serializable {
 
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7878477100060259226L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	@ManyToOne
+	@JoinColumn(name="QUESTION_REF")
 	protected Question question;
-	
 
 	public Response(Question question) {
 		super();
 		this.question = question;
 	}
 
-
-
 	public long getId() {
 		return id;
 	}
-	
-	
-	
-
-
-
 
 	@Override
 	public int hashCode() {
@@ -67,14 +61,8 @@ public class Response implements Serializable {
 		return true;
 	}
 
-
-
 	public Question getQuestion() {
 		return question;
 	}
-	
-	
-	
-	
-	
+
 }

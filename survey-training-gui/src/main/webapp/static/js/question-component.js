@@ -5,6 +5,10 @@ function loading() {
 	});
 
 	$(".notrigger").click(function() {
-		$(this).parent().parent().parent().next().hide()
+		
+		var $myP = $(this).parent().parent().parent().next();
+		if($myP.is("p")){
+			$myP.hide();
+		}
 	});
 }

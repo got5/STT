@@ -23,6 +23,10 @@ import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.exception.RoomNotExistException;
 import net.atos.survey.core.exception.TrainingNotExistException;
+import net.atos.survey.core.exception.UserNotInTrainingSessionException;
+import net.atos.survey.core.usecase.OResponseManager;
+import net.atos.survey.core.usecase.ResponseSurveyManager;
+import net.atos.survey.core.usecase.SimpleMCQResponseManager;
 import net.atos.survey.core.usecase.SurveyManager;
 import net.atos.survey.core.usecase.TrainingSessionManager;
 
@@ -39,6 +43,14 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	UserDao userDao;
 	@EJB
 	SurveyManager surveyManager;
+	@EJB
+	SimpleMCQResponseManager simpleMCQResponseManager;
+	@EJB
+	OResponseManager oResponseManager;
+	@EJB 
+	ResponseSurveyManager responseSurveyManager;
+	
+	
 
 	public TrainingSession createTrainingSession(Calendar dateS,
 			Calendar dateE, Long trainingId, Long roomId)
@@ -88,6 +100,57 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 			}
 		}
 		return rs;
+	}
+
+	@Override
+	public Boolean alreadyAnsweredToSurvey(Long trainingSessionId,
+			Long userId) throws UserNotInTrainingSessionException {
+		TrainingSession trainingSession = findById(trainingSessionId);
+		User user = userDao.findById(userId);
+		
+		trainingSession.loadResponses();
+		trainingSession.loadUsers();
+		
+		if(!trainingSession.getTrainees().contains(user)){
+			throw new UserNotInTrainingSessionException();
+		}
+		
+		if(trainingSession.getResponseSurvey(user)==null)
+			return false;
+		else	
+			return true;	
+		
+		
+	}
+
+	@Override
+	public TrainingSession saveResultForTrainee(Long trainingSessionId,
+			Long userId, ResponseSurvey responseSurvey) {
+		
+		
+		
+		
+		TrainingSession trainingSession = findById(trainingSessionId);
+		User user = userDao.findById(userId);
+		ResponseSurvey temp = new ResponseSurvey();
+		
+		
+		
+		for (Response r:responseSurvey.getResponses().values()){
+			temp.addResponse(saveResponse(r));
+		}
+		responseSurvey = responseSurveyManager.save(temp);
+		
+		trainingSession.addResponseSurvey(user, responseSurvey);
+		
+		return trainingSessionDao.update(trainingSession);
+	}
+
+	private Response saveResponse(Response r) {
+		if(r instanceof SimpleMCQResponse)
+			return simpleMCQResponseManager.save((SimpleMCQResponse)r);
+		else
+			return oResponseManager.save((OResponse)r);
 	}
 
 }

@@ -6,12 +6,12 @@
 		<t:errors />
 
 
-		<t:loop t:index="indexC" t:source="survey.categories"
+		<t:loop t:index="indexC" t:source="survey.categories" t:formstate="iteration"
 			t:value="category">
 			<fieldset>
 				<legend>${category.name }</legend>
 				
-				<t:loop t:index="indexQ" t:source="category.questions"
+				<t:loop t:index="indexQ" t:source="category.questions" t:formstate="iteration"
 					t:value="question">
 					<t:if test="affichertheme">
 						<h3>${question.theme.name }</h3>

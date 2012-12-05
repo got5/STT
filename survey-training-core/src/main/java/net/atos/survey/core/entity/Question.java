@@ -39,8 +39,6 @@ public class Question implements Serializable {
 
 	protected String title;
 
-	
-
 	@ManyToOne
 	@JoinColumn(name = "THEME_ID")
 	protected Theme theme;
@@ -48,8 +46,6 @@ public class Question implements Serializable {
 	public long getId() {
 		return id;
 	}
-
-	
 
 	public Theme getTheme() {
 		return theme;

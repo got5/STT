@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,11 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Table@Entity
-public class Training implements Serializable{
+@Table
+@Entity
+public class Training implements Serializable {
 
 	/**
 	 * 
@@ -25,24 +24,20 @@ public class Training implements Serializable{
 	private static final long serialVersionUID = -2146399977210907120L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	private String name;
-	
+
 	@Enumerated(EnumType.STRING)
 	private TypeTraining type;
-	
-	@OneToMany(mappedBy="training")
-    private List<TrainingSession> sessions = new ArrayList<TrainingSession>();
-	
+
+	@OneToMany(mappedBy = "training")
+	private List<TrainingSession> sessions = new ArrayList<TrainingSession>();
+
 	@ManyToMany
 	private List<User> inChargeUsers = new ArrayList<User>();
-	
-	
 
-	
-	
 	public Training(String name, TypeTraining type) {
 		super();
 		this.name = name;
@@ -56,9 +51,9 @@ public class Training implements Serializable{
 	public String getName() {
 		return name;
 	}
-	
-	public void addUserInCharge(User user){
-		if(!inChargeUsers.contains(user))
+
+	public void addUserInCharge(User user) {
+		if (!inChargeUsers.contains(user))
 			inChargeUsers.add(user);
 	}
 
@@ -87,14 +82,14 @@ public class Training implements Serializable{
 			return false;
 		return true;
 	}
-	
-	public void addTrainingSession(TrainingSession tS){
-		if(!sessions.contains(tS))
-				
-				sessions.add(tS);
+
+	public void addTrainingSession(TrainingSession tS) {
+		if (!sessions.contains(tS))
+
+			sessions.add(tS);
 	}
-	
-	public List<TrainingSession> getTrainingSessions(){
+
+	public List<TrainingSession> getTrainingSessions() {
 		return sessions;
 	}
 
@@ -118,6 +113,4 @@ public class Training implements Serializable{
 		this.inChargeUsers = inChargeUsers;
 	}
 
-		
-	
 }

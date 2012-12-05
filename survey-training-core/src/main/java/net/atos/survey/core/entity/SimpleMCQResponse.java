@@ -14,7 +14,7 @@ public class SimpleMCQResponse extends Response {
 	private static final long serialVersionUID = 3543551957793901412L;
 	@ManyToOne
 	private Choice choice;
-	
+
 	private String elseClause;
 
 	public SimpleMCQResponse(Question question) {
@@ -37,7 +37,5 @@ public class SimpleMCQResponse extends Response {
 	public void setElseClause(String elseClause) {
 		this.elseClause = elseClause;
 	}
-	
-	
 
 }
