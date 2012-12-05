@@ -9,14 +9,18 @@ import net.atos.survey.core.entity.SimpleMCQResponse;
 import net.atos.survey.core.entity.SimpleMCQuestion;
 import net.atos.survey.core.usecase.SimpleMCQuestionManager;
 
+import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 
 @Import(stylesheet="context:static/css/question-component.css")
 public class QuestionComponent {
+	
+	
 	
 	@Inject 
 	SimpleMCQuestionManager simpleMCQuestionManager;
@@ -31,7 +35,8 @@ public class QuestionComponent {
 	@Property
 	private Choice choice;
 
-	public SimpleMCQuestion getMCQuestion() {		
+	public SimpleMCQuestion getMCQuestion() {	
+		//load all bc  categories are in lazy mode
 		return simpleMCQuestionManager.loadAll((SimpleMCQuestion)question);	
 	}
 
@@ -48,14 +53,21 @@ public class QuestionComponent {
 		return (SimpleMCQResponse) response;
 	}
 
-	public String getOQuestionId() {
-		return "oquestion" + question.getId();
-
-	}
 
 	public boolean getIsMCQuestion() {
 		return (question instanceof SimpleMCQuestion);
 	}
+	
+	public boolean getMCQuestionHasElseClause(){
+		
+		return getMCQuestion().getElseClause()!=null;
+	}
+	
+	public boolean getIsTrigger(){
+		return getMCQuestion().isTrigger(choice);
+	}
+	
+	
 
 	
 }

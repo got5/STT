@@ -1,4 +1,4 @@
-fieldset.k-radio legend {
+fieldset.k-radio legend{
 
 	text-align:left;
 	width: 35em;
@@ -13,4 +13,13 @@ form fieldset legend {
 	
 	font-size:1.5em;
 	
+}
+
+.elseclause{
+	margin-left: 30px;
+}
+
+.openquestion label{
+	text-align:left;
+	width: 35em;
 }

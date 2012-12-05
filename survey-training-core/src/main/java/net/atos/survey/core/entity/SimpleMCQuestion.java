@@ -128,9 +128,22 @@ public class SimpleMCQuestion extends Question {
 
 	public void loadChoices() {
 		choices.size();
-		
+
 	}
 
-	
+	public boolean isTrigger(Choice choice) {
+		boolean ret = false;
+		if (elseClause != null) {
+			if (isTriggerOrLess()) {
+				if (choices.get(choice) >= choices.get(trigger))
+					ret = true;
+			} else {
+				if (choices.get(choice) == choices.get(trigger))
+					ret = true;
+
+			}
+		}
+		return ret;
+	}
 
 }

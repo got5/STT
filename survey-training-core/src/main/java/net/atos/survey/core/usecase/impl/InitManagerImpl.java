@@ -141,7 +141,7 @@ public class InitManagerImpl implements InitManager {
 		mcq2.setTrigger(ch6);
 		
 		
-		SimpleMCQuestion mcq3 =  new SimpleMCQuestion(MCQ2, true, "merci de justifier toute note inférieure à 3", true);
+		SimpleMCQuestion mcq3 =  new SimpleMCQuestion(MCQ2, true, "merci de justifier toute note inférieure à "+ch9.getName(), true);
 		mcq3.addChoice(ch7);
 		mcq3.addChoice(ch8);
 		mcq3.addChoice(ch9);
