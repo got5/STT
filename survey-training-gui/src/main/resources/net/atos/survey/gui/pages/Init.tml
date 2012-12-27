@@ -1,0 +1,9 @@
+<html t:type="Layout" t:title="survey-training-gui" 
+		xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+	
+	<p>Hello</p>
+	
+	<a t:type="actionlink" t:id="initdb">Init Database</a><br />
+	 
+
+</html>

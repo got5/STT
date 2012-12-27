@@ -1,0 +1,29 @@
+<html t:type="Layout" t:title="survey-training-gui"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+<div>
+	<h2>My  Trainings</h2>
+
+	<p>Please, answer each surveys for the following trainings, you have followed recently.</p>
+	
+	<table borlder="1" cellpadding="0" cellspacing="0" class="forms">
+	
+		<tr>
+			<th align="center" class="tableh">Training</th>
+			<th align="center" class="tableh">Date</th>
+			
+		</tr>
+		<t:if test="notrainingsession">
+			<tr>	<td colspan="3">You have no pending survey.</td></tr>
+			</t:if>
+		<tr t:type="loop" t:index="index" t:source="trainingSessions" t:value="trainingSession" class="${rowClass}">
+			
+			<td align="center">	<a t:type="pageLink" t:page="summarysurveyform" t:context="trainingSession.id" >${trainingSession.training.name}</a></td>
+			<td align="center"><t:output value="trainingSession.dateS.time" format="dateFormat" /> - <t:output value="trainingSession.dateE.time" format="dateFormat" /></td>
+			
+		</tr>
+	</table>
+	
+</div>
+</html>
