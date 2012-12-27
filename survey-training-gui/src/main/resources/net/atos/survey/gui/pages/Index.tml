@@ -1,12 +1,30 @@
 <html t:type="Layout" t:title="survey-training-gui" 
-		xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+		xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
 	
-	<p>Index page</p>
+	<t:kawwa2.CollapsiblePanel id="loginLink" t:header="please-sign-in">
+	
+	<t:zone t:id="myzone">
+	<form t:type="form" t:id="loginForm" class="k-login collapsible" t:zone="^" t:disableKawwaMandatory="true">
+		<fieldset>
+			<legend>${message:sign-in}</legend>
+			<t:errors t:banner="message:error" />
+			
+	
+	       	<p><t:label t:for="login" /> 
+	       		<input t:type="textField" t:id="login"/></p>
+	       	<p><t:label t:for="password" /> 
+	       		<input t:type="passwordfield" t:id="password" class="k-field-comment" /> 
+			</p>
+			<p><input t:type="submit" value="${message:submit-label}" /></p>
+	    </fieldset>
+	</form>
+	</t:zone>
+</t:kawwa2.CollapsiblePanel>
+	
 	
 
-	 
-	<a t:type="pageLink" t:page="summarysurveyform" t:context="401" >Access Form </a><br />
-	<a t:type="pageLink" t:page="login" >Login </a><br />
-	<a t:type="actionlink" t:id="initdb">Init Database</a><br />
+	
+	
+	<a t:type="pageLink" t:page="Init" >Init </a><br />
 
 </html>

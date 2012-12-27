@@ -1,7 +1,9 @@
 package net.atos.survey.gui.services;
 
 import net.atos.survey.core.dao.UserDao;
+import net.atos.survey.core.entity.Choice;
 import net.atos.survey.core.usecase.CategoryManager;
+import net.atos.survey.core.usecase.ChoiceManager;
 import net.atos.survey.core.usecase.InitManager;
 import net.atos.survey.core.usecase.SimpleMCQuestionManager;
 import net.atos.survey.core.usecase.SurveyManager;
@@ -10,16 +12,37 @@ import net.atos.survey.core.usecase.UserManager;
 import net.atos.xa.resourcelocator.ResourceLocator;
 
 import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.ServiceBuilder;
 import org.apache.tapestry5.ioc.ServiceResources;
+import org.apache.tapestry5.ioc.annotations.Contribute;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.annotations.Local;
+import org.apache.tapestry5.services.ValueEncoderFactory;
+import org.apache.tapestry5.services.ValueEncoderSource;
 
 
 public class SurveyModule {
 	
 	
+	
+	@Contribute(ValueEncoderSource.class)
+	public static void provideEncoders(
+			MappedConfiguration<Class, ValueEncoderFactory>
+		configuration,
+		@Local @Inject final ChoiceManager choiceManager){
+		
+		ValueEncoderFactory<Choice> factory = new ValueEncoderFactory<Choice>(){
+			public ValueEncoder<Choice> create(Class<Choice> clazz){
+				return new ChoiceEncoder(choiceManager);
+			}
+			
+		};
+		configuration.add(Choice.class, factory);
+	}
 	
 	public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration) {
 		configuration.add(SymbolConstants.START_PAGE_NAME, "Index");
@@ -71,6 +94,12 @@ public class SurveyModule {
 		binder.bind(UserManager.class, new ServiceBuilder<UserManager>()  {
 			public UserManager buildService(ServiceResources serviceResources) {
 				return ResourceLocator.lookup(UserManager.class);
+			}
+		});
+		
+		binder.bind(ChoiceManager.class, new ServiceBuilder<ChoiceManager>()  {
+			public ChoiceManager buildService(ServiceResources serviceResources) {
+				return ResourceLocator.lookup(ChoiceManager.class);
 			}
 		});
 	}

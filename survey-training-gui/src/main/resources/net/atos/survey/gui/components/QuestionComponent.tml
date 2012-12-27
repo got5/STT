@@ -6,17 +6,19 @@
 		<fieldset class="k-radio">
 			<legend>${mcquestion.title }</legend>
 			<t:radiogroup t:id="chosen" t:value="simplemcqresponse?.choice">
+				
+				
 				<t:loop t:source="mcquestion.choices" t:value="choice" t:formstate="iteration">
 					<p>
 						<t:if test="istrigger">
 							<label t:type="label" for="mcqwithtrigger"> <input
 								class="trigger" t:type="radio" t:id="mcqwithtrigger"
-								value="choice.name" />${prop:choice.name}
+								value="choice" />${prop:choice.name}
 							</label>
 							<p:else>
 								<label t:type="label" for="mcq"> <input 
 								class="notrigger" t:type="radio" t:id="mcq" 
-								value="choice.name" />${prop:choice.name}
+								value="choice" />${prop:choice.name}
 								</label>
 							</p:else>
 						</t:if>
@@ -28,7 +30,7 @@
 		<t:if test="mcquestionhaselseclause">
 			<p class="elseclause" style="display: none;">
 				<label t:type="label" for="else">${mcquestion.elseclause}</label>
-				<textarea t:type="textarea" value="simplemcqresponse?.elseclause"
+				<textarea t:type="textarea" value="simplemcqresponse?.answer"
 					class="k-field-comment" rows="" cols="40" t:id="else" />
 			</p>
 		</t:if>

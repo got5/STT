@@ -1,7 +1,7 @@
 package net.atos.survey.core.usecase.impl;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 import net.atos.survey.core.dao.TrainingDao;
 import net.atos.survey.core.dao.UserDao;
@@ -14,8 +14,8 @@ import net.atos.survey.core.usecase.TrainingManager;
 @Stateless(name="net.atos.survey.core.usecase.TrainingManager")
 public class TrainingManagerImpl implements TrainingManager{
 
-	@EJB TrainingDao trainingDao;
-	@EJB UserDao userDao;
+	@Inject TrainingDao trainingDao;
+	@Inject UserDao userDao;
 	
 	@Override
 	public Training createTraining(String name, TypeTraining typeTraining,

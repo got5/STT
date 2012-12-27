@@ -5,8 +5,8 @@ import static net.atos.survey.core.tool.Param.MCQ1;
 import static net.atos.survey.core.tool.Param.MCQ2;
 import static net.atos.survey.core.tool.Param.TF;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 import net.atos.survey.core.dao.CategoryDao;
 import net.atos.survey.core.dao.SimpleMCQuestionDao;
@@ -18,8 +18,8 @@ import net.atos.survey.core.usecase.SimpleMCQuestionManager;
 @Stateless(name="net.atos.survey.core.usecase.SimpleMCQuestionManager")
 public class SimpleMCQuestionManagerImpl implements SimpleMCQuestionManager{
 	
-	@EJB SimpleMCQuestionDao simpleMCQuestionDao;
-	@EJB CategoryDao categoryDao;
+	@Inject SimpleMCQuestionDao simpleMCQuestionDao;
+	@Inject CategoryDao categoryDao;
 
 	
 	private SimpleMCQuestion createMCQuestion(String q)

@@ -3,6 +3,7 @@ package net.atos.survey.core.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,14 @@ public class TrainingSession implements Serializable {
 
 	@OneToMany
 	private Map<User, ResponseSurvey> responses = new HashMap<User, ResponseSurvey>();
+	
+	
+
+	public TrainingSession() {
+				
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public TrainingSession(Calendar dateS, Calendar dateE, Training training,
 			Room room) {

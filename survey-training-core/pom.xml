@@ -47,6 +47,53 @@
 				</dependency>
 			</dependencies>
 		</profile>
+		<profile>
+    <id>arquillian-tomee-embedded</id>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.openejb</groupId>
+            <artifactId>arquillian-tomee-embedded</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</profile>
+<profile>
+    <id>arquillian-tomee-managed</id>
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-6.0</artifactId>
+            <version>1.0.0.Final</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.openejb</groupId>
+            <artifactId>arquillian-tomee-managed</artifactId>
+            <version>1.0.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</profile>
+<profile>
+    <id>arquillian-tomee-remote</id>
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-6.0</artifactId>
+            <version>1.0.0.Final</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.openejb</groupId>
+            <artifactId>arquillian-tomee-remote</artifactId>
+            <version>1.0.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</profile>
 	</profiles>
 
 	<dependencies>
@@ -88,13 +135,17 @@
 			</exclusions>
 		</dependency>
 		
-			
+
+
 	</dependencies>
+
+
+
 
 	<build>
 		<plugins>
-		
-		<plugin> <!-- needed otherwise it will not work at runtime -->
+
+			<plugin> <!-- needed otherwise it will not work at runtime -->
 				<groupId>org.apache.openjpa</groupId>
 				<artifactId>openjpa-maven-plugin</artifactId>
 				<version>${openjpa.version}</version>
@@ -105,13 +156,8 @@
 					<enforcePropertyRestrictions>true</enforcePropertyRestrictions>
 				</configuration>
 				<executions>
-					<!--  <execution>
-						<id>enhancer</id>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>enhance</goal>
-						</goals>
-					</execution> -->
+					<!-- <execution> <id>enhancer</id> <phase>process-classes</phase> <goals> 
+						<goal>enhance</goal> </goals> </execution> -->
 				</executions>
 				<dependencies>
 					<dependency>
@@ -164,21 +210,12 @@
 					</additionalClasspathElements>
 				</configuration>
 			</plugin>
-			
-		<!--  	<plugin>
-				<groupId>net.atos.xa.maven.plugin</groupId>
-				<artifactId>sharing.ejb3.entity</artifactId>
-				<version>${sharing.ejb3.entity.version}</version>
-				<executions>
-					<execution>
-						<phase>process-test-resources</phase>
-						<goals>
-							<goal>handle-ejb-jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>-->
-			
+
+			<!-- <plugin> <groupId>net.atos.xa.maven.plugin</groupId> <artifactId>sharing.ejb3.entity</artifactId> 
+				<version>${sharing.ejb3.entity.version}</version> <executions> <execution> 
+				<phase>process-test-resources</phase> <goals> <goal>handle-ejb-jar</goal> 
+				</goals> </execution> </executions> </plugin> -->
+
 		</plugins>
 	</build>
 

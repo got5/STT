@@ -3,51 +3,105 @@
  */
 package net.atos.survey.gui.pages;
 
-import net.atos.survey.core.exception.NotInitaliazedSurveyDataBaseException;
-import net.atos.survey.core.exception.RoomNotExistException;
-import net.atos.survey.core.exception.TrainingNotExistException;
-import net.atos.survey.core.exception.UserNotExistException;
-import net.atos.survey.core.usecase.InitManager;
+import net.atos.survey.core.entity.User;
+import net.atos.survey.core.usecase.UserManager;
 
 import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.OnEvent;
-import org.apache.tapestry5.annotations.PageLoaded;
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SessionState;
+import org.apache.tapestry5.beaneditor.Validate;
+import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 public class Index {
-	
-	
-	
-	
-	@Inject InitManager initManager;
-	
-	@OnEvent(value=EventConstants.ACTION,component="initdb")
-	public void clickOnForward(){
 
-		initManager.initDB();
-		try {
-			initManager.testOneSurvey();
-		} catch (UserNotExistException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TrainingNotExistException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotInitaliazedSurveyDataBaseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RoomNotExistException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	@SessionState
+	@Property
+	private User loggedUser;
+
+	@Property
+	private boolean loggedUserExists;
+
+	@Property
+	@Validate(value = "required")
+	private String login;
+
+	@Property
+	@Validate(value = "required")
+	private String password;
+
+	@Component(id = "loginForm")
+	private Form loginForm;
+
+	@Inject
+	private Messages messages;
+
+	@Inject
+	private UserManager userManager;
+
+	@Property
+	@Persist
+	private int count;
+	
+	@Component
+	private Zone myZone;
+
+	@OnEvent(value = EventConstants.VALIDATE, component = "loginForm")
+	public void validation() {
 		
+		if (!userManager.checkLoginPassword(login, password)) {
+				String errorMessage = "Wrong login or password";
+				if (messages.contains("wrong-login-password"))
+					errorMessage = messages.get("wrong-login-password");
+				loginForm.recordError(errorMessage);
 		}
-	
-	
-	
-	
+	}
 
+	/*
+	 * This method is only called if you've NOT used the "recordError" method
+	 * exposed by the Form component
+	 */
+	@OnEvent(value = EventConstants.SUCCESS, component = "loginForm")
+	public Object loggingSuccess() {
+		loggedUser = userManager.getUserByLogin(login);
+		count=0;
+		return MyTrainings.class;
+	}
+
+	/*
+	 * This method is only called if you've used the "recordError" method
+	 * exposed by the Form component
+	 */
+	@OnEvent(value = EventConstants.FAILURE, component = "loginForm")
+	public void loggingFailure() {
+		
+		count++;
+	}
+
+	/*
+	 * This method is always called
+	 */
+	@OnEvent(value = EventConstants.SUBMIT, component = "loginForm")
+	public Object loggingSubmit() {
+		if (getMaxAttemptsExceeded()) {
+			loginForm.clearErrors();
+			if (messages.contains("limit-exceeded")) {
+				loginForm.recordError(messages.get("limit-exceeded"));
+			} else {
+				loginForm.recordError("You have failed 3 times.");
+			}
+		}
+		return myZone.getBody();
+	}
+
+	private boolean getMaxAttemptsExceeded() {
+		return count >= 3;
+	}
+
+	
 }

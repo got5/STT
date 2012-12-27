@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Table
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Response implements Serializable {
 
 	/**
@@ -29,6 +29,15 @@ public class Response implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="QUESTION_REF")
 	protected Question question;
+	
+	private String answer;
+
+	
+	
+	public Response() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Response(Question question) {
 		super();
@@ -37,6 +46,17 @@ public class Response implements Serializable {
 
 	public long getId() {
 		return id;
+	}
+
+	
+	
+	
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
 
 	@Override

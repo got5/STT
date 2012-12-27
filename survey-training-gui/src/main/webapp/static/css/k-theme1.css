@@ -282,7 +282,7 @@ tr:nth-child(even) {color: #000; background: #E8E8E8;}
 
 th, td {
 	font-size: 0.75em;
-	text-align: left;
+	text-align: center;
 	padding: 5px 8px;
 	border-bottom: 1px solid #BFBFBF;
 }

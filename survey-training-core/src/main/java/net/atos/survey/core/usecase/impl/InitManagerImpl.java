@@ -7,8 +7,8 @@ import static net.atos.survey.core.tool.Param.TF;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 import net.atos.survey.core.dao.CategoryDao;
 import net.atos.survey.core.dao.ChoiceDao;
@@ -47,26 +47,26 @@ public class InitManagerImpl implements InitManager {
 
 	
 	
-	@EJB CategoryDao categoryDao;
-	@EJB ChoiceDao choiceDao;
-	@EJB OQuestionDao oQuestionDao;
-	@EJB OResponseDao oResponseDao;
-	@EJB ResponseSurveyDao responseSurveyDao;
-	@EJB RoomDao roomDao;
-	@EJB SimpleMCQResponseDao simpleMCQResponseDao;
-	@EJB SimpleMCQuestionDao simpleMCQuestionDao;
-	@EJB SurveyDao survey;
-	@EJB SurveyTemplateDao surveyTemplateDao;
-	@EJB ThemeDao themeDao;
-	@EJB TrainingDao trainingDao;
-	@EJB TrainingSessionDao trainingSessionDao;
-	@EJB UserDao userDao;
+	@Inject CategoryDao categoryDao;
+	@Inject ChoiceDao choiceDao;
+	@Inject OQuestionDao oQuestionDao;
+	@Inject OResponseDao oResponseDao;
+	@Inject ResponseSurveyDao responseSurveyDao;
+	@Inject RoomDao roomDao;
+	@Inject SimpleMCQResponseDao simpleMCQResponseDao;
+	@Inject SimpleMCQuestionDao simpleMCQuestionDao;
+	@Inject SurveyDao survey;
+	@Inject SurveyTemplateDao surveyTemplateDao;
+	@Inject ThemeDao themeDao;
+	@Inject TrainingDao trainingDao;
+	@Inject TrainingSessionDao trainingSessionDao;
+	@Inject UserDao userDao;
 	
-	@EJB SimpleMCQuestionManager simpleMCQuestionManager;
-	@EJB OQuestionManager oQuestionManager;
-	@EJB TrainingManager trainingManager;
-	@EJB SurveyManager surveyManager;
-	@EJB TrainingSessionManager trainingSessionManager;
+	@Inject SimpleMCQuestionManager simpleMCQuestionManager;
+	@Inject OQuestionManager oQuestionManager;
+	@Inject TrainingManager trainingManager;
+	@Inject SurveyManager surveyManager;
+	@Inject TrainingSessionManager trainingSessionManager;
 
 	
 	private Category ca1;
@@ -135,7 +135,7 @@ public class InitManagerImpl implements InitManager {
 		mcq1.addChoice(ch3);
 		mcq1.addChoice(ch4);
 		
-		SimpleMCQuestion mcq2 =  new SimpleMCQuestion(TF, true, "Si non pourquoi", false);
+		SimpleMCQuestion mcq2 =  new SimpleMCQuestion(TF, true, "Si non pourquoi ?", false);
 		mcq2.addChoice(ch5);
 		mcq2.addChoice(ch6);
 		mcq2.setTrigger(ch6);
@@ -176,9 +176,19 @@ public class InitManagerImpl implements InitManager {
 		stagiaire1.setLogin("marot");
 		stagiaire1.setPassword("marot");
 		
+		User stagiaire2 = new User("Marot","Pierreeee","AWL","GPS","TD");
+		stagiaire2.setLogin("marot1");
+		stagiaire2.setPassword("marot1");
+		
+		User stagiaire3 = new User("Marottt","Pierre","AWL","GPS","TD");
+		stagiaire3.setLogin("marot2");
+		stagiaire3.setPassword("marot2");
+		
 		responsable = userDao.save(responsable);
 		instructeur = userDao.save(instructeur);
 		stagiaire1 = userDao.save(stagiaire1);
+		stagiaire2 = userDao.save(stagiaire2);
+		stagiaire3 = userDao.save(stagiaire3);
 		
 		//THEME
 		Theme t1 = new Theme("Partie théorique");
@@ -338,11 +348,20 @@ public class InitManagerImpl implements InitManager {
 		TrainingSession trainingNovembre = trainingSessionManager.createTrainingSession(now, afterNow, tapestryBasic.getId(), room.getId());
 		
 		trainingNovembre.addTrainee(stagiaire1);
+		trainingNovembre.addTrainee(stagiaire2);
+		trainingNovembre.addTrainee(stagiaire3);
 		trainingNovembre.setInstructor(instructeur);
 		trainingNovembre.setSurvey(survey);
 		
 		trainingNovembre = trainingSessionManager.updateTrainingSession(trainingNovembre);
 		
+	}
+
+	@Override
+	public String hello() {
+		
+		
+		return "";
 	}
 
 }

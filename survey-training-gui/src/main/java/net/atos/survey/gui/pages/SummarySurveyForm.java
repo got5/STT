@@ -17,10 +17,11 @@ import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-@Import(library = "context:static/js/question-component.js")
+@Import(library = {"context:static/js/question-component.js","context:static/js/surveyForm.js"})
 public class SummarySurveyForm {
 
 	@Inject
@@ -50,12 +51,15 @@ public class SummarySurveyForm {
 
 	@Component
 	private SurveyForm surveyForm;
+	
+	@Inject
+	private Messages messages;
 
 	@OnEvent(EventConstants.ACTIVATE)
 	public Object loadingForm(Long trainingSessionId) {
 
 		if (!loggedUserExists) {
-			return Login.class;
+			return Index.class;
 		}
 
 		trainingSession = trainingSessionManager.findById(trainingSessionId);
@@ -72,7 +76,7 @@ public class SummarySurveyForm {
 			responseSurvey = trainingSessionManager
 					.createResponseSurveyWithoutPersist(trainingSession);
 		}
-
+		
 		survey = surveyManager.loadAll(trainingSession.getSurvey());
 
 		return null;
@@ -83,23 +87,7 @@ public class SummarySurveyForm {
 		return trainingSession.getId();
 	}
 
-	/*
-	 * @OnEvent(EventConstants.PREPARE) public void prepareForAction(){
-	 * 
-	 * for(Question q:responseSurvey.getResponses().keySet()){ if(q instanceof
-	 * SimpleMCQuestion){ SimpleMCQuestion mcq = (SimpleMCQuestion)q;
-	 * SimpleMCQResponse mcqr =
-	 * (SimpleMCQResponse)responseSurvey.getResponses().get(q);
-	 * 
-	 * if(!mcq.isTrigger(mcqr.getChoice())) mcqr.setElseClause(null);
-	 * 
-	 * }
-	 * 
-	 * 
-	 * }
-	 * 
-	 * }
-	 */
+	
 
 	@OnEvent(EventConstants.SUCCESS)
 	public Object applyForSuccess() {
@@ -110,7 +98,13 @@ public class SummarySurveyForm {
 
 	@AfterRender
 	public void loadingScript() {
+		String mcq_error_message = "Veuillez répondre à toutes les questions à choix multiples.";
+		if(messages.contains("mcq-error")){
+			mcq_error_message = messages.get("mcq-error");
+			
+		}
 		jss.addScript("loading();");
+		jss.addScript("checkForm('%s');",mcq_error_message);
 	}
 
 }

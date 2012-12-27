@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 
 @Table
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Question implements Serializable {
 
 	/**
@@ -42,6 +42,13 @@ public class Question implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "THEME_ID")
 	protected Theme theme;
+	
+	
+
+	public Question() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public long getId() {
 		return id;

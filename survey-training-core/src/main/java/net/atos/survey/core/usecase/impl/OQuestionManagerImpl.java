@@ -2,8 +2,8 @@ package net.atos.survey.core.usecase.impl;
 
 import static net.atos.survey.core.tool.Param.CAT_DEFAULT;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 import net.atos.survey.core.dao.CategoryDao;
 import net.atos.survey.core.dao.OQuestionDao;
@@ -15,9 +15,9 @@ import net.atos.survey.core.usecase.OQuestionManager;
 @Stateless(name = "net.atos.survey.core.usecase.OQuestionManager")
 public class OQuestionManagerImpl implements OQuestionManager {
 
-	@EJB
+	@Inject
 	OQuestionDao oQuestionDao;
-	@EJB
+	@Inject
 	CategoryDao categoryDao;
 
 	@Override

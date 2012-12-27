@@ -7,12 +7,16 @@ import javax.persistence.Table;
 @Entity
 public class OResponse extends Response {
 
+	
 
-	private String answer;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3385376762085197632L;
 
-	public OResponse(Question question, String answer) {
-		super(question);
-		this.answer = answer;
+	public OResponse() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public OResponse(Question question) {
@@ -20,12 +24,8 @@ public class OResponse extends Response {
 
 	}
 
-	public String getAnswer() {
-		return answer;
-	}
+	
 
-	public void setAnswer(String answer) {
-		this.answer = answer;
-	}
+	
 
 }

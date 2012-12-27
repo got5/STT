@@ -9,5 +9,7 @@ import net.atos.survey.core.entity.User;
 public interface UserManager {
 	
 	User getUserByLogin(String login);
+	
+	boolean checkLoginPassword(String login,String password);
 
 }

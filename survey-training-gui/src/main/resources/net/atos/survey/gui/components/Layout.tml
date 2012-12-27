@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns:p="tapestry:parameter">
 <head>
 <title>${title}</title>
@@ -18,21 +18,17 @@
 				</h1>
 				<div class="clearer"></div>
 			</a>
-			<div id="navbar">
-				<ul class="k-navbar">
-					<li class="home"><a t:type="pageLink" t:page="Index">Home</a></li>
-					<li><a t:type="pageLink" t:page="sample/Timer">Example
-							page</a></li>
-				</ul>
-				<div t:type="if" t:test="loggedUserExists">
-					<p class="k-login-data">
-						Welcome, <span id="user-name">loggedUser?.firstname loggedUser?.name</span> [<strong><a
-							t:type="actionLink" t:id="logout">Logout</a></strong>]
-					</p>
-				</div>
-			</div>
+			<t:kawwa2.MainNav>
+				<li class="home"><a t:type="pageLink" t:page="Index">Home</a></li>
+				<li><a t:type="pageLink" t:page="sample/Timer">Example page</a></li>
+				
+				<t:if t:test="loggedUserExists">
+				<li><a t:type="pageLink" t:page="MyTrainings">Welcome,  <span id="user-name">${loggedUser?.firstname}</span></a></li>
+				<li> <strong><a t:type="actionLink" t:id="logout">Logout</a></strong></li>
+				</t:if>
+			</t:kawwa2.MainNav>
 		</div>
-
+		
 		<hr />
 		<!-- COLUMNS WRAPPER/ -->
 		<div id="wrapper">

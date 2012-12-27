@@ -9,12 +9,11 @@ import net.atos.survey.core.entity.SimpleMCQResponse;
 import net.atos.survey.core.entity.SimpleMCQuestion;
 import net.atos.survey.core.usecase.SimpleMCQuestionManager;
 
-import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 
 @Import(stylesheet="context:static/css/question-component.css")
@@ -37,10 +36,11 @@ public class QuestionComponent {
 
 	public SimpleMCQuestion getMCQuestion() {	
 		//load all bc  categories are in lazy mode
-		return simpleMCQuestionManager.loadAll((SimpleMCQuestion)question);	
+		return (SimpleMCQuestion)question;	
 	}
 
 	public OQuestion getOQuestion() {
+		
 		return (OQuestion) question;
 	}
 	
@@ -50,6 +50,7 @@ public class QuestionComponent {
 	}
 	
 	public SimpleMCQResponse getSimpleMCQResponse(){
+		
 		return (SimpleMCQResponse) response;
 	}
 

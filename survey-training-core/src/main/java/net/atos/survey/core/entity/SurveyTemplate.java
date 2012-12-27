@@ -27,6 +27,13 @@ public class SurveyTemplate implements Serializable {
 
 	@ManyToMany
 	private List<Question> questions = new ArrayList<Question>();
+	
+	
+
+	public SurveyTemplate() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public long getId() {
 		return id;

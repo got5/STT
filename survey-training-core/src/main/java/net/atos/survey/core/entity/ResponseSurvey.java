@@ -29,6 +29,14 @@ public class ResponseSurvey implements Serializable {
 	@OneToMany
 	@MapKey(name="question")
 	private Map<Question, Response> responses = new HashMap<Question, Response>();
+	
+	
+	
+
+	public ResponseSurvey() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public long getId() {
 		return id;

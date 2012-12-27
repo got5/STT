@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,9 +30,16 @@ public class Category implements Serializable {
 	@Column(unique = true, nullable = false)
 	private String name;
 
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	@OrderColumn
 	private List<Question> questions = new ArrayList<Question>();
+	
+	
+
+	public Category() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Category(String name) {
 		super();

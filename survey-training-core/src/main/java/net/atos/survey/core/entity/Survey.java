@@ -37,6 +37,14 @@ public class Survey implements Serializable {
 	@OneToMany
 	private List<Category> categories = new ArrayList<Category>();
 
+	
+	
+	
+	public Survey() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Survey(String name, Training training) {
 		super();
 		this.training = training;

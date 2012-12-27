@@ -3,8 +3,8 @@ package net.atos.survey.core.usecase.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 import net.atos.survey.core.dao.SurveyDao;
 import net.atos.survey.core.dao.TrainingDao;
@@ -19,8 +19,8 @@ import net.atos.survey.core.usecase.SurveyManager;
 @Stateless(name="net.atos.survey.core.usecase.SurveyManager")
 public class SurveyManagerImpl implements SurveyManager{
 
-	@EJB SurveyDao surveyDao;
-	@EJB TrainingDao trainingDao;
+	@Inject SurveyDao surveyDao;
+	@Inject TrainingDao trainingDao;
 	
 	@Override
 	public Survey createSurvey(String name,Long trainingId) throws TrainingNotExistException {

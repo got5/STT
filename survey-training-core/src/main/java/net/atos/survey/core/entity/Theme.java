@@ -22,6 +22,13 @@ public class Theme implements Serializable {
 	private long id;
 
 	private String name;
+	
+	
+
+	public Theme() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Theme(String name) {
 		super();

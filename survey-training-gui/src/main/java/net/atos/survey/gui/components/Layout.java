@@ -1,6 +1,7 @@
 package net.atos.survey.gui.components;
 
 import net.atos.survey.core.entity.User;
+import net.atos.survey.gui.pages.Index;
 
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.EventConstants;
@@ -16,21 +17,27 @@ public class Layout {
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String title;
 	
+	@Property
 	@SessionState
 	private User loggedUser;
 
 	@Property
-	private Boolean loggedUserExists; 
+	private boolean loggedUserExists; 
 	
 	public String getTitle(){
 		return title;
 	}
+	
 
 	@OnEvent(value=EventConstants.ACTION, component="logout")
-	public void logout(){
+	public Object logout(){
 		
 		loggedUser = null;
+		return Index.class;
 		
 	}
+
+
+	
 
 }

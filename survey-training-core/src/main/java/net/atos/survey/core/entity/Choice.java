@@ -41,6 +41,8 @@ public class Choice implements Serializable {
 	public String getName() {
 		return name;
 	}
+	
+
 
 	@Override
 	public int hashCode() {

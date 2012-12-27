@@ -69,7 +69,7 @@
 		<tapestry.version>5.3.5</tapestry.version>
 		<mysql-connector-java.version>5.1.6</mysql-connector-java.version>
 		<ojdbc14.version>10.2.0.4</ojdbc14.version>
-		<junit.version>4.4</junit.version>
+		<junit.version>4.8.1</junit.version>
 		<testng.version>5.12.1</testng.version>
 		<easymock.version>2.5.2</easymock.version>
 		<servlet.version>2.5</servlet.version>

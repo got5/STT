@@ -37,6 +37,13 @@ public class Training implements Serializable {
 
 	@ManyToMany
 	private List<User> inChargeUsers = new ArrayList<User>();
+	
+	
+
+	public Training() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Training(String name, TypeTraining type) {
 		super();

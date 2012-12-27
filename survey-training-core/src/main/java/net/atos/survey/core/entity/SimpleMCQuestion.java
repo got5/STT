@@ -9,6 +9,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.OrderColumn;
@@ -32,7 +33,7 @@ public class SimpleMCQuestion extends Question {
 
 	private boolean triggerOrLess = false;
 
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name = "MCQ_CHOICE")
 	@MapKeyJoinColumn(name = "CHOICE_ID")
 	@Column(name = "NUMERO")

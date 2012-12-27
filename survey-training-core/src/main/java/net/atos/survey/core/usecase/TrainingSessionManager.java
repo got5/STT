@@ -1,6 +1,7 @@
 package net.atos.survey.core.usecase;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.ejb.Local;
 
@@ -26,5 +27,7 @@ public interface TrainingSessionManager{
 	Boolean alreadyAnsweredToSurvey(Long trainingSessionId,Long userId) throws UserNotInTrainingSessionException;
 	
 	TrainingSession saveResultForTrainee(Long trainingSessionId,Long userId,ResponseSurvey responseSurvey);
+
+	List<TrainingSession> findByTrainee(long id) throws Exception;
 
 }

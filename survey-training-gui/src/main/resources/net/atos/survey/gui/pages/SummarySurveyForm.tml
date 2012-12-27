@@ -1,28 +1,14 @@
 <html t:type="Layout" t:title="survey-training-gui"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns:p="tapestry:parameter">
 
-<div class="k-info-block">
 	
-	
-	<div t:type="kawwa2/collapsiblePanel" t:header="literal:La formation" 
+	<div t:type="kawwa2/collapsiblePanel" t:header="La formation - ${trainingSession.training.name}" 
  	t:title="literal:title" t:autoOpen="literal:false">
+ 		<p><strong>Instructeur : </strong>${trainingSession.instructor.firstname} ${trainingSession.instructor.name}</p>
  		
- 		<p>${trainingSession.training.name}</p>
  	</div>
- 	
- 	<div t:type="kawwa2/collapsiblePanel" t:header="literal:L'instructeur" 
- 	t:title="literal:title" t:autoOpen="literal:false">
- 		<p>${trainingSession.instructor.firstname} ${trainingSession.instructor.name}</p>
- 	</div>
-	
-	
-</div>
 
 	<t:surveyForm t:survey="survey" t:id="surveyForm" t:responsesurvey="responsesurvey" />
-
-
-
-
 
 </html>
