@@ -1,5 +1,8 @@
 package net.atos.survey.core.usecase.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -29,6 +32,18 @@ public class TrainingManagerImpl implements TrainingManager{
 		Training training = new Training(name, typeTraining);
 		training.addUserInCharge(owner);
 		return trainingDao.save(training);
+	}
+
+	@Override
+	public List<String> listTrainingName(String trainingName) {
+		
+		List<Training> temp=  trainingDao.listNameByName(trainingName);
+		List<String> ret = new ArrayList<String>();
+		for(Training t:temp){
+			ret.add(t.getName());
+		}
+		return ret;
+			
 	}
 
 }

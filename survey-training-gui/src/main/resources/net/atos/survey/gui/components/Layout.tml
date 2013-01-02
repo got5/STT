@@ -21,7 +21,7 @@
 			<t:kawwa2.MainNav>
 				<li class="home"><a t:type="pageLink" t:page="Index">Home</a></li>
 				<li><a t:type="pageLink" t:page="sample/Timer">Example page</a></li>
-				
+				<li><a t:type="pageLink" t:page="admin/Results">Results</a></li>
 				<t:if t:test="loggedUserExists">
 				<li><a t:type="pageLink" t:page="MyTrainings">Welcome,  <span id="user-name">${loggedUser?.firstname}</span></a></li>
 				<li> <strong><a t:type="actionLink" t:id="logout">Logout</a></strong></li>

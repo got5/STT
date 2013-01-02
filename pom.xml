@@ -27,6 +27,26 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		
+		 <repository>
+        <id>devlab722-repo</id>
+        <url>http://nexus.devlab722.net/nexus/content/repositories/releases
+        </url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+
+    <repository>
+        <id>devlab722-snapshot-repo</id>
+        <url>http://nexus.devlab722.net/nexus/content/repositories/snapshots
+        </url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+    </repository>
+		
+		
 	</repositories>
 	
 	<pluginRepositories>
@@ -76,8 +96,7 @@
 		<kawwa.version>2.0.3</kawwa.version>
 		<tomee-xa-version>1.5.1-snapshot</tomee-xa-version>
 		<tomee-xa-plugin-version>1.0.0.xa</tomee-xa-plugin-version>
-
-
+		<tapestry.jquery.version>3.3.4</tapestry.jquery.version>
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
 		<maven-jar-plugin.version>2.4</maven-jar-plugin.version>
 		<maven-assembly-plugin.version>2.3</maven-assembly-plugin.version>

@@ -1,0 +1,50 @@
+<html t:type="Layout" t:title="survey-training-gui"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+
+<form t:type="form" t:id="searchForm" t:disableKawwaMandatory="true">
+
+
+
+	<span class="datepickers">	
+			<p class="oneLine">
+		        <t:label t:for="training">${message:training} :
+		             <input t:type="TextField" t:id="training" t:name="training"
+		                t:mixins="jquery/Autocomplete" t:minChars="3" t:value="trainingName" />
+		        </t:label>
+		
+		        <t:label t:for="instructor">${message:instructor} :
+		             <input t:type="TextField" t:id="instructor" t:name="instructor"
+		                t:mixins="jquery/Autocomplete" t:minChars="3" t:value="instructorName"/>
+		        </t:label>
+		
+		
+		
+		        <t:label t:for="fromD">${message:from } :
+		            <input t:type="datefield" t:format="message:datePatternJava" t:id="fromD" class="k-datepick"
+		                t:name="fromD" t:mixins="jquery/CustomDatepicker" t:params="options" value="fromD"/>
+		
+		        </t:label>
+		        <t:label t:for="toD">${message:to } :
+		            <input t:type="datefield" t:format="message:datePatternJava" t:id="toD" class="k-datepick" t:name="toD"
+		                t:mixins="jquery/CustomDatepicker" t:params="options" value="toD"/>
+		        </t:label>
+		    </p>
+		</span>	
+
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
+</html>

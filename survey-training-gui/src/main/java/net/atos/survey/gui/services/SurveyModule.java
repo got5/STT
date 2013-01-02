@@ -7,6 +7,7 @@ import net.atos.survey.core.usecase.ChoiceManager;
 import net.atos.survey.core.usecase.InitManager;
 import net.atos.survey.core.usecase.SimpleMCQuestionManager;
 import net.atos.survey.core.usecase.SurveyManager;
+import net.atos.survey.core.usecase.TrainingManager;
 import net.atos.survey.core.usecase.TrainingSessionManager;
 import net.atos.survey.core.usecase.UserManager;
 import net.atos.xa.resourcelocator.ResourceLocator;
@@ -71,6 +72,12 @@ public class SurveyModule {
 		binder.bind(TrainingSessionManager.class, new ServiceBuilder<TrainingSessionManager>()  {
 			public TrainingSessionManager buildService(ServiceResources serviceResources) {
 				return ResourceLocator.lookup(TrainingSessionManager.class);
+			}
+		});
+		
+		binder.bind(TrainingManager.class, new ServiceBuilder<TrainingManager>()  {
+			public TrainingManager buildService(ServiceResources serviceResources) {
+				return ResourceLocator.lookup(TrainingManager.class);
 			}
 		});
 		
