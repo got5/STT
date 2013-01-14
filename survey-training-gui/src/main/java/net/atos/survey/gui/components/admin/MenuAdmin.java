@@ -7,12 +7,11 @@ import java.util.List;
 
 import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
-import net.atos.survey.core.usecase.SimpleMCQResponseManager;
 import net.atos.survey.core.usecase.TrainingManager;
 import net.atos.survey.core.usecase.TrainingSessionManager;
 import net.atos.survey.core.usecase.UserManager;
 
-import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
@@ -22,8 +21,10 @@ import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.services.AssetSource;
+import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
+import org.apache.tapestry5.services.ajax.JavaScriptCallback;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
@@ -76,6 +77,12 @@ public class MenuAdmin {
 
 	@Inject
 	private JavaScriptSupport js;
+	
+	@Inject
+	private AjaxResponseRenderer ajaxRR;
+	
+	@Inject
+	private Request request;
 
 	@Inject
 	private Messages messages;
@@ -87,9 +94,18 @@ public class MenuAdmin {
 
 	@Property
 	private int year;
+	
+	@Property
+	private TrainingSession sessionForBlock;
+	
+
+	@Property
+	private User traineeForBlock;
 
 	@SetupRender
 	public void applyForActivate() {
+		
+		
 
 		if (messages.contains("datePattern")) {
 			try {
@@ -101,6 +117,17 @@ public class MenuAdmin {
 		} else {
 			dateFormat = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
 		}
+		
+		
+		/*if (request.isXHR()) {
+			ajaxRR.addCallback(new JavaScriptCallback() {
+
+				public void run(JavaScriptSupport javascriptSupport) {
+					javascriptSupport.addScript("improveaccordion();");
+
+				}
+			});
+		}*/
 	}
 
 	public List<User> getTrainees() {
@@ -110,11 +137,11 @@ public class MenuAdmin {
 	
 	@AfterRender
 	public void launchJs() {
-		js.addScript(InitializationPriority.LATE, "improveaccordion();");
+		js.addScript(InitializationPriority.LATE, "improveaccordion('%s');","menuTraining"+trainingId);
 	}
 	
 	public List<Integer> getYears() {
-		System.out.println("coucou");
+		
 		// on assume que les trainingSession sont ordonné par date
 		List<Integer> years = new ArrayList<Integer>();
 
@@ -150,6 +177,18 @@ public class MenuAdmin {
 				tss.add(ts);
 		}
 		return tss;
+	}
+	
+	@OnEvent(component = "sessionzone")
+	public void updateSessionZone(Long id) {
+		sessionForBlock = trainingSessionManager.loadAll(id);
+		
+	}
+
+	@OnEvent(component = "studentzone")
+	public void updateTraineeZone(Long id) {
+		traineeForBlock = userManager.findById(id);
+		
 	}
 
 }

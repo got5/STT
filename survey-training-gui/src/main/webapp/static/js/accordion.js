@@ -1,19 +1,19 @@
-function improveaccordion() {
+function improveaccordion(id) {
 	$("ul.trainee-menu").hide();
 	$("ul.level3").hide();
 
 	
-	$('.year > a').click(function() {
+	$("#"+id+" .year > a").click(function() {
 		$(this).next().slideToggle();
 		
 		
 	});
 	
-	$('li.training-session-title > a').click(function() {
+	$("#"+id+" li.training-session-title > a").click(function() {
 
 		if ($(this).has('ul')) {
 			
-			select($(this),$('li.training-session-title > a'),"selected-session");
+			select($(this),$("#"+id+" li.training-session-title > a"),"selected-session");
 			
 			$(this).nextAll().slideToggle();
 			
@@ -21,9 +21,9 @@ function improveaccordion() {
 		return false;
 	});
 	
-	$('li.trainee-title > a').click(function() {
+	$("#"+id+" li.trainee-title > a").click(function() {
 		
-		select($(this),$('li.trainee-title > a'),"selected-trainee");
+		select($(this),$("#"+id+" li.trainee-title > a"),"selected-trainee");
 	});
 
 }
