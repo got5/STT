@@ -8,6 +8,9 @@ import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.TrainingSessionManager;
 
 import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.alerts.AlertManager;
+import org.apache.tapestry5.alerts.Duration;
+import org.apache.tapestry5.alerts.Severity;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
@@ -39,6 +42,9 @@ public class MyTrainings {
 		
 		@Inject
 		private Messages messages;
+		
+		@Inject
+	    private AlertManager manager;
 		
 
 		private String rowClass;
@@ -87,6 +93,28 @@ public class MyTrainings {
 
 		public boolean isNoTrainingSession(){
 			return trainingSessions.size()==0;
+		}
+		
+		public void setStatusFromSurvey(String status){
+			if(status.equals("OK")){
+				if(messages.contains("status-message-ok")){
+					 manager.alert(Duration.SINGLE, Severity.INFO, messages.get("status-message-ok"));
+				}
+				
+			}
+			if(status.equals("ERROR")){
+				if(messages.contains("status-message-error")){
+					 manager.alert(Duration.SINGLE, Severity.ERROR, messages.get("status-message-error"));
+				}
+				
+			}
+			if(status.equals("PERMISSION")){
+				if(messages.contains("status-message-permission")){
+					 manager.alert(Duration.SINGLE, Severity.ERROR, messages.get("status-message-permission"));
+				}
+				
+			}
+				
 		}
 		
 	}

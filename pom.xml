@@ -10,6 +10,29 @@
 	<name>Survey Training</name>
 
 	<repositories>
+
+		
+
+		<repository>
+			<id>devlab722-snapshot-repo</id>
+			<url>http://nexus.devlab722.net/nexus/content/repositories/snapshots
+        </url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+
+		<repository>
+			<id>devlab722-repo</id>
+			<url>http://nexus.devlab722.net/nexus/content/repositories/releases
+        </url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+
+
 		<repository>
 			<!-- This repository is mapped to a Maven2 proxy. This one gives access 
 				to O&D and common Maven2 repositories -->
@@ -17,7 +40,7 @@
 			<name>OD and common proxied repositories</name>
 			<url>http://repository.atosworldline.com/maven2</url>
 		</repository>
-		
+
 
 		<repository>
 			<id>proxiedSnapShotRepositories</id>
@@ -27,38 +50,42 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
-		
-		 <repository>
-        <id>devlab722-repo</id>
-        <url>http://nexus.devlab722.net/nexus/content/repositories/releases
-        </url>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-    </repository>
 
-    <repository>
-        <id>devlab722-snapshot-repo</id>
-        <url>http://nexus.devlab722.net/nexus/content/repositories/snapshots
-        </url>
-        <releases>
-            <enabled>false</enabled>
-        </releases>
-    </repository>
-		
-		
+
+
+
 	</repositories>
-	
+
 	<pluginRepositories>
 		<pluginRepository>
-			<!-- This repository is mapped to a Maven2 proxy. This one gives access
-				to O&D and common Maven2 repositories  -->
+			<!-- This repository is mapped to a Maven2 proxy. This one gives access 
+				to O&D and common Maven2 repositories -->
 			<id>proxiedRepositories</id>
 			<name>OD and common proxied repositories</name>
 			<url>http://repository.atosworldline.com/maven2</url>
 		</pluginRepository>
+
+		
+
+		<pluginRepository>
+			<id>maven</id>
+			<name>tomee</name>
+			<url>http://repository.atosworldline.com/nexus/content/groups/public
+                  </url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>proxiedSnapShotRepositories</id>
+			<name>OD and common proxied snapshot repositories</name>
+			<url>http://repository.atosworldline.com/nexus/content/groups/public-snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+
 	</pluginRepositories>
-	
+
+
+
 
 	<build>
 		<pluginManagement>
@@ -86,17 +113,17 @@
 		<xa-rl-openejb.version>2.1.0</xa-rl-openejb.version>
 		<sharing.ejb3.entity.version>0.0.6</sharing.ejb3.entity.version>
 		<javaee-api.version>6.0-3</javaee-api.version>
-		<tapestry.version>5.3.5</tapestry.version>
+		<tapestry.version>5.3.6</tapestry.version>
 		<mysql-connector-java.version>5.1.6</mysql-connector-java.version>
 		<ojdbc14.version>10.2.0.4</ojdbc14.version>
 		<junit.version>4.8.1</junit.version>
 		<testng.version>5.12.1</testng.version>
 		<easymock.version>2.5.2</easymock.version>
 		<servlet.version>2.5</servlet.version>
-		<kawwa.version>2.0.3</kawwa.version>
+		<kawwa.version>2.0.4-SNAPSHOT</kawwa.version>
 		<tomee-xa-version>1.5.1-snapshot</tomee-xa-version>
-		<tomee-xa-plugin-version>1.0.0.xa</tomee-xa-plugin-version>
-		<tapestry.jquery.version>3.3.4</tapestry.jquery.version>
+		<tomee-plugin-version>1.5.2-SNAPSHOT</tomee-plugin-version>
+		<tapestry.jquery.version>3.3.5-SNAPSHOT</tapestry.jquery.version>
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
 		<maven-jar-plugin.version>2.4</maven-jar-plugin.version>
 		<maven-assembly-plugin.version>2.3</maven-assembly-plugin.version>

@@ -14,7 +14,7 @@ public interface TrainingManager {
 
 	Training createTraining(String name,TypeTraining typeTraining,long managerId)throws UserNotExistException;
 	
-	List<String>listTrainingName(String trainingName);
+	List<Training>listTrainingName(String trainingName);
 	
 	
 }

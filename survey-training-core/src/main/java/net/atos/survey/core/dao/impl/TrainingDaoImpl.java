@@ -11,7 +11,7 @@ import net.atos.survey.core.entity.Training;
 public class TrainingDaoImpl extends DaoImpl<Long, Training> implements TrainingDao {
 
 	@Override
-	public List<Training> listNameByName(String mot) {
+	public List<Training> listByName(String mot) {
 		String queryString = "";
 
 		if (mot != null)
@@ -20,7 +20,7 @@ public class TrainingDaoImpl extends DaoImpl<Long, Training> implements Training
 
 				queryString = "select t from Training t "
 						
-						+ " and lower(t.name) like ?1 " + " order by c.nom ";
+						+ " where lower(t.name) like ?1 " + " order by t.name ";
 				return list(null, null, queryString, mot);
 			}
 		queryString = "select t from Training t " + "order by t.name";

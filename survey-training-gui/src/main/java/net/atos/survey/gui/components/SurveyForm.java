@@ -36,6 +36,7 @@ public class SurveyForm {
 	private Category category;
 
 	@Parameter
+	@Property
 	private Survey survey;
 
 	@Parameter
@@ -54,13 +55,9 @@ public class SurveyForm {
 	@Property
 	private Theme previousTheme;
 
-	public Survey getSurvey() {
-		return survey;
-	}
+	
 
-	public void setSurvey(Survey survey) {
-		this.survey = survey;
-	}
+	
 
 	public Category getCategory() {
 		return category;

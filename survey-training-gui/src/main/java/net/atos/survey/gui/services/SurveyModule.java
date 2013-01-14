@@ -5,6 +5,8 @@ import net.atos.survey.core.entity.Choice;
 import net.atos.survey.core.usecase.CategoryManager;
 import net.atos.survey.core.usecase.ChoiceManager;
 import net.atos.survey.core.usecase.InitManager;
+import net.atos.survey.core.usecase.ResponseSurveyManager;
+import net.atos.survey.core.usecase.SimpleMCQResponseManager;
 import net.atos.survey.core.usecase.SimpleMCQuestionManager;
 import net.atos.survey.core.usecase.SurveyManager;
 import net.atos.survey.core.usecase.TrainingManager;
@@ -47,10 +49,12 @@ public class SurveyModule {
 	
 	public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration) {
 		configuration.add(SymbolConstants.START_PAGE_NAME, "Index");
-		configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
-		
+		configuration.add(SymbolConstants.PRODUCTION_MODE, "true");
+		configuration.add(SymbolConstants.APPLICATION_VERSION, "1.0.0");
 		configuration.add(SymbolConstants.SUPPORTED_LOCALES, "fr,en");
 		
+		configuration.add(SymbolConstants.HMAC_PASSPHRASE, "GPS_rules_the_world_689");
+		 
 		
 	}
 	
@@ -97,6 +101,11 @@ public class SurveyModule {
 				return ResourceLocator.lookup(SimpleMCQuestionManager.class);
 			}
 		});
+		binder.bind(SimpleMCQResponseManager.class, new ServiceBuilder<SimpleMCQResponseManager>()  {
+			public SimpleMCQResponseManager buildService(ServiceResources serviceResources) {
+				return ResourceLocator.lookup(SimpleMCQResponseManager.class);
+			}
+		});
 		
 		binder.bind(UserManager.class, new ServiceBuilder<UserManager>()  {
 			public UserManager buildService(ServiceResources serviceResources) {
@@ -107,6 +116,12 @@ public class SurveyModule {
 		binder.bind(ChoiceManager.class, new ServiceBuilder<ChoiceManager>()  {
 			public ChoiceManager buildService(ServiceResources serviceResources) {
 				return ResourceLocator.lookup(ChoiceManager.class);
+			}
+		});
+		
+		binder.bind(ResponseSurveyManager.class, new ServiceBuilder<ResponseSurveyManager>()  {
+			public ResponseSurveyManager buildService(ServiceResources serviceResources) {
+				return ResourceLocator.lookup(ResponseSurveyManager.class);
 			}
 		});
 	}

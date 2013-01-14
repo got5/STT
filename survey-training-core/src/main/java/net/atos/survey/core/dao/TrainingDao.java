@@ -13,7 +13,7 @@ import net.atos.survey.core.entity.Training;
 @Local
 public interface TrainingDao extends Dao<Long, Training> {
 
-	List<Training> listNameByName(String trainingName);
+	List<Training> listByName(String trainingName);
 
 
 	

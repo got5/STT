@@ -13,6 +13,7 @@ import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
+import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -29,6 +30,15 @@ public class SummarySurveyForm {
 
 	@Inject
 	private TrainingSessionManager trainingSessionManager;
+	
+	@Property
+	private TrainingSession trainingSession;
+
+	@Property
+	private Survey survey;
+
+	@Property
+	private ResponseSurvey responseSurvey;
 
 	@Inject
 	private JavaScriptSupport jss;
@@ -39,15 +49,8 @@ public class SummarySurveyForm {
 
 	private boolean loggedUserExists;
 
-	@Property
-	private TrainingSession trainingSession;
-
-	@Property
-	private Survey survey;
-
-	@Property
-	@Persist
-	private ResponseSurvey responseSurvey;
+	@InjectPage 
+	MyTrainings myTrainings;
 
 	@Component
 	private SurveyForm surveyForm;
@@ -62,14 +65,21 @@ public class SummarySurveyForm {
 			return Index.class;
 		}
 
-		trainingSession = trainingSessionManager.findById(trainingSessionId);
-
+		trainingSession = trainingSessionManager.findById(trainingSessionId,loggedUser.getId());
+		if(trainingSession==null){
+			myTrainings.setStatusFromSurvey("PERMISSION");
+			return myTrainings;
+		}
+		
 		try {
 			if (trainingSessionManager.alreadyAnsweredToSurvey(
-					trainingSessionId, loggedUser.getId()))
-				return Index.class;
+					trainingSessionId, loggedUser.getId())){
+				myTrainings.setStatusFromSurvey("ALREADY");
+			return myTrainings;
+			}
 		} catch (UserNotInTrainingSessionException e) {
-			return Index.class;
+			myTrainings.setStatusFromSurvey("ERROR");
+			return myTrainings;
 		}
 
 		if (responseSurvey == null) {
@@ -93,7 +103,9 @@ public class SummarySurveyForm {
 	public Object applyForSuccess() {
 		this.trainingSession = trainingSessionManager.saveResultForTrainee(
 				trainingSession.getId(), loggedUser.getId(), responseSurvey);
-		return Index.class;
+		
+		myTrainings.setStatusFromSurvey("OK");
+		return myTrainings;
 	}
 
 	@AfterRender

@@ -20,7 +20,11 @@ public interface TrainingSessionManager{
 	
 	TrainingSession updateTrainingSession(TrainingSession trainingSession);
 	
+	TrainingSession findById(Long trainingSessionId,Long userId);
+	
 	TrainingSession findById(Long trainingSessionId);
+	
+	
 	
 	ResponseSurvey createResponseSurveyWithoutPersist(TrainingSession trainingSession);
 	
@@ -29,5 +33,12 @@ public interface TrainingSessionManager{
 	TrainingSession saveResultForTrainee(Long trainingSessionId,Long userId,ResponseSurvey responseSurvey);
 
 	List<TrainingSession> findByTrainee(long id) throws Exception;
+
+	List<TrainingSession> listByCriteria(Long trainingId, Long instructorId,
+			Calendar from, Calendar to);
+	
+	void loadTrainees(Long trainingSessionId);
+
+	TrainingSession loadAll(Long id);
 
 }

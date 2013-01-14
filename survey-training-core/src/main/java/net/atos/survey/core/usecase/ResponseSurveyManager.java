@@ -10,6 +10,8 @@ import net.atos.survey.core.entity.Survey;
 public interface ResponseSurveyManager {
 
 	ResponseSurvey save(ResponseSurvey responseSurvey);
+
+	ResponseSurvey findByTrainingSessionAndByTrainee(Long id, Long id2);
 	
 	
 

@@ -56,7 +56,7 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	public TrainingSession createTrainingSession(Calendar dateS,
 			Calendar dateE, Long trainingId, Long roomId)
 			throws TrainingNotExistException, RoomNotExistException {
-		System.out.println("hello");
+		
 
 		Training training = trainingDao.findById(trainingId);
 		Room room = roomDao.findById(roomId);
@@ -78,14 +78,26 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	}
 
 	@Override
+	public TrainingSession findById(Long trainingSessionId,Long userId) {
+		User user = userDao.findById(userId);
+		TrainingSession ret = trainingSessionDao.findById(trainingSessionId);
+		
+		if(ret!=null && ret.getTrainees().contains(user))
+			return ret;
+		return null;
+	}
+	
+	@Override
 	public TrainingSession findById(Long trainingSessionId) {
+		
 		return trainingSessionDao.findById(trainingSessionId);
 	}
+
 
 	@Override
 	public ResponseSurvey createResponseSurveyWithoutPersist(
 			TrainingSession trainingSession) {
-		trainingSession = findById(trainingSession.getId());
+		trainingSession = trainingSessionDao.findById(trainingSession.getId());
 		Survey survey = trainingSession.getSurvey();
 
 		List<Question> questions = surveyManager.getAllQuestion(survey);
@@ -106,7 +118,7 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	@Override
 	public Boolean alreadyAnsweredToSurvey(Long trainingSessionId, Long userId)
 			throws UserNotInTrainingSessionException {
-		TrainingSession trainingSession = findById(trainingSessionId);
+		TrainingSession trainingSession =  trainingSessionDao.findById(trainingSessionId);
 		User user = userDao.findById(userId);
 
 		trainingSession.loadResponses();
@@ -127,7 +139,7 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	public TrainingSession saveResultForTrainee(Long trainingSessionId,
 			Long userId, ResponseSurvey responseSurvey) {
 
-		TrainingSession trainingSession = findById(trainingSessionId);
+		TrainingSession trainingSession =  trainingSessionDao.findById(trainingSessionId);
 		User user = userDao.findById(userId);
 		List<Response> responses = new ArrayList<Response>();
 
@@ -167,4 +179,30 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 		return ret;
 	}
 
+	@Override
+	public List<TrainingSession> listByCriteria(Long trainingId,
+			Long instructorId, Calendar from, Calendar to) {
+		if(trainingId==null)
+			return new ArrayList<TrainingSession>();
+		
+		Training training = trainingDao.findById(trainingId);
+		User instructor = userDao.findById(instructorId);
+		return trainingSessionDao.listByCriteria(training,instructor,from,to);
+	}
+
+	@Override
+	public void loadTrainees(Long trainingSessionId) {
+		 trainingSessionDao.findById(trainingSessionId).loadUsers();
+		
+	}
+
+	@Override
+	public TrainingSession loadAll(Long id) {
+		TrainingSession ts = findById(id);
+		ts.loadUsers();
+		ts.loadResponses();
+		return ts;
+	}
+
+	
 }

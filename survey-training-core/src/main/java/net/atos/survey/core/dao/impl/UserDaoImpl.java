@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 
 import net.atos.survey.core.dao.UserDao;
+import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 
 @Stateless(name="net.atos.survey.core.dao.UserDao")
@@ -36,5 +37,10 @@ public class UserDaoImpl extends DaoImpl<Long, User> implements UserDao {
 				+ "order by t.instructor.name";
 		return list(null, null, queryString);
 	}
+
+
+
+
+
 	
 }

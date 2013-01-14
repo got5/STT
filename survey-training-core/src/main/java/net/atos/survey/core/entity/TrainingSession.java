@@ -192,5 +192,6 @@ public class TrainingSession implements Serializable {
 	public int loadUsers() {
 		return trainees.size();
 	}
+	
 
 }

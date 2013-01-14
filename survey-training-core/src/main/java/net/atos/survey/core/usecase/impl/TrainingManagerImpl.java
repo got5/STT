@@ -35,14 +35,10 @@ public class TrainingManagerImpl implements TrainingManager{
 	}
 
 	@Override
-	public List<String> listTrainingName(String trainingName) {
+	public List<Training> listTrainingName(String trainingName) {
 		
-		List<Training> temp=  trainingDao.listNameByName(trainingName);
-		List<String> ret = new ArrayList<String>();
-		for(Training t:temp){
-			ret.add(t.getName());
-		}
-		return ret;
+		return trainingDao.listByName(trainingName);
+		
 			
 	}
 

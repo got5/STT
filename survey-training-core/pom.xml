@@ -30,70 +30,54 @@
 				</dependency>
 			</dependencies>
 		</profile>
+
 		<profile>
-			<id>oracle</id>
+			<id>arquillian-tomee-embedded</id>
 			<dependencies>
 				<dependency>
-					<groupId>com.oracle</groupId>
-					<artifactId>ojdbc14</artifactId>
-					<version>${ojdbc14.version}</version>
-					<scope>runtime</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.oracle</groupId>
-					<artifactId>nls_charset</artifactId>
-					<version>12</version>
-					<scope>runtime</scope>
+					<groupId>org.apache.openejb</groupId>
+					<artifactId>arquillian-tomee-embedded</artifactId>
+					<version>1.0.0</version>
+					<scope>provided</scope>
 				</dependency>
 			</dependencies>
 		</profile>
 		<profile>
-    <id>arquillian-tomee-embedded</id>
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.openejb</groupId>
-            <artifactId>arquillian-tomee-embedded</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
-</profile>
-<profile>
-    <id>arquillian-tomee-managed</id>
-    <dependencies>
-        <dependency>
-            <groupId>org.jboss.spec</groupId>
-            <artifactId>jboss-javaee-6.0</artifactId>
-            <version>1.0.0.Final</version>
-            <type>pom</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.openejb</groupId>
-            <artifactId>arquillian-tomee-managed</artifactId>
-            <version>1.0.0</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-</profile>
-<profile>
-    <id>arquillian-tomee-remote</id>
-    <dependencies>
-        <dependency>
-            <groupId>org.jboss.spec</groupId>
-            <artifactId>jboss-javaee-6.0</artifactId>
-            <version>1.0.0.Final</version>
-            <type>pom</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.openejb</groupId>
-            <artifactId>arquillian-tomee-remote</artifactId>
-            <version>1.0.0</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-</profile>
+			<id>arquillian-tomee-managed</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-6.0</artifactId>
+					<version>1.0.0.Final</version>
+					<type>pom</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.openejb</groupId>
+					<artifactId>arquillian-tomee-managed</artifactId>
+					<version>1.0.0</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>arquillian-tomee-remote</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-6.0</artifactId>
+					<version>1.0.0.Final</version>
+					<type>pom</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.openejb</groupId>
+					<artifactId>arquillian-tomee-remote</artifactId>
+					<version>1.0.0</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
 	</profiles>
 
 	<dependencies>
@@ -134,7 +118,14 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
+
+		<dependency>
+			<groupId>pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>0.7.3</version>
+		</dependency>
+
 
 
 	</dependencies>

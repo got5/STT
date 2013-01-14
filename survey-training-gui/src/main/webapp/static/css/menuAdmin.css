@@ -1,31 +1,3 @@
-.oneLine {
-	margin-left: 5%;
-}
-
-.oneLine label {
-	float: none;
-}
-
-#searchForm {
-	margin-bottom: 5%;
-}
-
-.accordion {
-	width: 80%;
-}
-
-
-
-.col-left {
-	float: left;
-	width: 47%;
-}
-
-.col-right {
-	float: right;
-	width: 47%;
-}
-
 .training-session-title{
 	font-size: 1.1em!important;
 }
@@ -52,7 +24,8 @@
 }
 
 .fromtoinst {
-	list-style-type: none ! important;
+	list-style-type: none !important;
+	
 }
 
 .li-header {

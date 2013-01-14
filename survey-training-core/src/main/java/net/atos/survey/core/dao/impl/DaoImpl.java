@@ -19,6 +19,7 @@ public abstract class DaoImpl<K, E> implements Dao<K, E> {
 
 	private Class<E> entityClass;
 
+	
 	@PersistenceContext(unitName = "survey")
 	private EntityManager entityManagerRW;
 
@@ -70,8 +71,7 @@ public abstract class DaoImpl<K, E> implements Dao<K, E> {
 				"select distinct e from " + entityClass.getName() + " e ");
 	}
 
-	protected List<E> list(Integer first, Integer max, String queryString,
-			Object... params) {
+	protected List<E> list(Integer first, Integer max, String queryString,Object... params) {
 		TypedQuery<E> query = buildQuery(first, max, queryString, params);
 		return query.getResultList();
 	}

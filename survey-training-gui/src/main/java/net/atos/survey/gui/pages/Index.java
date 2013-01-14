@@ -50,6 +50,13 @@ public class Index {
 	
 	@Component
 	private Zone myZone;
+	
+	@OnEvent(value=EventConstants.ACTIVATE)
+	public Object activate(){
+		if(loggedUserExists)
+			return MyTrainings.class;
+		return null;
+	}
 
 	@OnEvent(value = EventConstants.VALIDATE, component = "loginForm")
 	public void validation() {

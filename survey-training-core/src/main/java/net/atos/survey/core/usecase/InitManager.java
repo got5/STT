@@ -9,7 +9,6 @@ public interface InitManager {
 	
 	void testOneSurvey() throws Exception;
 	
-	String hello();
 	
 	
 }

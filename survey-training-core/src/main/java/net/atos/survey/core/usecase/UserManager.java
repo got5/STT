@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 
 
@@ -12,8 +13,14 @@ public interface UserManager {
 	
 	User getUserByLogin(String login);
 	
+	User findById(Long id);
+	
 	boolean checkLoginPassword(String login,String password);
 
-	List<String> listInstructor(String mot);
+	List<User> listInstructor(String mot);
+
+	List<User> listTrainees(long id);
+	
+	
 
 }

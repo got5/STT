@@ -2,47 +2,130 @@
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns:p="tapestry:parameter">
 
+<h1>${message:title }</h1>
+<div id="menu"></div>
 
-<form t:type="form" t:id="searchForm" t:disableKawwaMandatory="true">
+<div id="main">
+
+	<form t:type="form" t:id="searchForm" t:disableKawwaMandatory="true"
+		t:zone="zone1" t:mixins="">
 
 
 
-	<span class="datepickers">	
+		<span class="datepickers">
 			<p class="oneLine">
-		        <t:label t:for="training">${message:training} :
-		             <input t:type="TextField" t:id="training" t:name="training"
-		                t:mixins="jquery/Autocomplete" t:minChars="3" t:value="trainingName" />
-		        </t:label>
-		
-		        <t:label t:for="instructor">${message:instructor} :
-		             <input t:type="TextField" t:id="instructor" t:name="instructor"
-		                t:mixins="jquery/Autocomplete" t:minChars="3" t:value="instructorName"/>
-		        </t:label>
-		
-		
-		
-		        <t:label t:for="fromD">${message:from } :
-		            <input t:type="datefield" t:format="message:datePatternJava" t:id="fromD" class="k-datepick"
-		                t:name="fromD" t:mixins="jquery/CustomDatepicker" t:params="options" value="fromD"/>
-		
-		        </t:label>
-		        <t:label t:for="toD">${message:to } :
-		            <input t:type="datefield" t:format="message:datePatternJava" t:id="toD" class="k-datepick" t:name="toD"
-		                t:mixins="jquery/CustomDatepicker" t:params="options" value="toD"/>
-		        </t:label>
-		    </p>
-		</span>	
+
+				<t:label t:for="training">${message:training} :
+				              <t:hidden t:id="trainingId" t:value="trainingId" />
+					<input t:type="TextField" t:id="training" t:name="training"
+						t:mixins="jquery/Autocomplete" t:minChars="3"
+						t:value="trainingName" />
+				</t:label>
+
+
+				<t:label t:for="instructor">${message:instructor} :
+				            <t:hidden t:id="instructorId" t:value="instructorId" />
+					<input t:type="TextField" t:id="instructor" t:name="instructor"
+						t:mixins="jquery/Autocomplete" t:minChars="3"
+						t:value="instructorName" />
+				</t:label>
+
+
+
+				<t:label t:for="fromD">${message:from } :
+				            <input t:type="datefield"
+						t:format="message:datePatternJava" t:id="fromD" class="k-datepick"
+						t:name="fromD" t:mixins="jquery/CustomDatepicker"
+						t:params="options" t:value="fromD" />
+
+				</t:label>
+				<t:label t:for="toD">${message:to } :
+				            <input t:type="datefield"
+						t:format="message:datePatternJava" t:id="toD" class="k-datepick"
+						t:name="toD" t:mixins="jquery/CustomDatepicker" t:params="options"
+						t:value="toD" />
+				</t:label>
+				<t:submit></t:submit>
+			</p>
+		</span>
 
 
 
 
-</form>
+	</form>
+
+	<div class="col-left">
+		<t:zone t:id="zone1">
+
+			<div class="accordion">
+				<ul t:type="any" t:mixins="kawwa2/accordion" class="k-menu" accordion.options="{collapsible: true,heightStyle: 'content', autoHeight: false}">
 
 
+					<t:loop t:source="trainings" t:value="training">
+
+						<li><a href="#" title="Click to fold/unfold block">${training.name}</a>
+							
+							<ul class="level2">
+							
+									<t:loop t:source="years" t:value="year">		
+									<li class="year">
+
+										<a 	href="#">${year}</a>
+										<ul class="level3">
+									
+											
+											<li class="fromtoinst"><strong><span class="li-header">${message:from}</span>  - <span class="li-header">${message:to}</span> - <span class="li-header">${message:instructor}</span></strong></li>
+											
+											
+											<t:loop t:source="trainingSessionsbyyear" t:value="trainingSession">
+												<li class="training-session-title">
+													<a t:type="actionLink" t:id="sessionzone" 
+															t:zone="zone2" t:context="trainingSession.id" href="#">
+																<t:output value="trainingSession.dateS.time" format="dateFormat" /> -
+																<t:output value="trainingSession.dateE.time" format="dateFormat" /> -
+																	${trainingSession.instructor.firstname}
+																	${trainingSession.instructor.name }
+													</a>
+			
+			
+													<ul class="trainee-menu">
+														<t:loop t:source="trainees" t:value="trainee">
+															<li class="trainee-title">
+																<a t:type="actionLink" t:id="studentzone" t:zone="zone2" t:context="trainee.id" href="#">${trainee.firstName}
+																	${trainee.name}</a>
+															</li>
+														</t:loop>
+													</ul>
+												</li>
+											</t:loop>
+											
+										</ul>
+									</li>
+							    </t:loop>	
+							</ul>
+						</li>
+					</t:loop>
+				</ul>
 
 
+			</div>
+
+		</t:zone>
+
+	</div>
+	<div class="col-right">
+		<t:zone t:id="zone2" t:visible="false">
+			<t:block t:id="sessionBlock" >
+				<t:admin.trainingSessionComponent t:id="trainingsessionComponent" t:trainingsession="sessionforblock"/>
+			</t:block>
+			<t:block t:id="traineeBlock">
+				<t:admin.traineeComponent t:id="traineecomponent" t:trainingsession="sessionforblock" t:trainee="traineeforblock"/>
+			</t:block>
+		</t:zone>
+	</div>
 
 
+</div>
 
 
 
