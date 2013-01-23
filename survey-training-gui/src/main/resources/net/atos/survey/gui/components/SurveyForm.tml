@@ -17,7 +17,7 @@
 						<h3>${question.theme.name }</h3>
 					</t:if>
 					
-					<t:questioncomponent t:question="question" t:response="response"/>
+					<t:questioncomponent t:question="question" t:response="response" t:mode="mode"/>
 				</t:loop>
 			</fieldset>
 		</t:loop>

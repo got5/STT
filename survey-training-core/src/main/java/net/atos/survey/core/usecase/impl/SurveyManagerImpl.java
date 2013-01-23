@@ -63,6 +63,13 @@ public class SurveyManagerImpl implements SurveyManager{
 		}
 		return questions;
 	}
+
+	@Override
+	public Survey findByTrainingSession(Long trainingSessionId) {
+		Survey s =  surveyDao.findByTrainingSession(trainingSessionId);
+		loadAll(s);
+		return s;
+	}
 	
 	
 

@@ -17,14 +17,9 @@ public class TrainingSessionComponent {
 		
 	@Property
 	@Parameter
-	private TrainingSession trainingSession;
+	private Long trainingSessionId;
 	
-	public int getNumberParticipants(){
-		return trainingSession.loadUsers();
-	}
-	public int getNumberResponses(){
-		return trainingSession.loadResponses();
-	}
+	
 	
 	
 	

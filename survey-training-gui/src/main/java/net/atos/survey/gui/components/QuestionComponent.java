@@ -30,6 +30,10 @@ public class QuestionComponent {
 	
 	@Parameter
 	private Response response;
+	
+	@Parameter
+	@Property
+	private String mode;
 
 	@Property
 	private Choice choice;

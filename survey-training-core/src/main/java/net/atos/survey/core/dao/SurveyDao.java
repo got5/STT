@@ -14,6 +14,8 @@ import net.atos.survey.core.entity.Survey;
 @Local
 public interface SurveyDao extends Dao<Long, Survey> {
 
+	Survey findByTrainingSession(Long trainingSessionId);
+
  
 	
 }

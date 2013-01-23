@@ -11,14 +11,17 @@ import net.atos.survey.core.usecase.TrainingManager;
 import net.atos.survey.core.usecase.TrainingSessionManager;
 import net.atos.survey.core.usecase.UserManager;
 
-import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ComponentEventCallback;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
+import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.AssetSource;
@@ -60,8 +63,8 @@ public class MenuAdmin {
 	@Parameter
 	private Calendar to;
 
-	@Property(read = false)
-	private List<User> trainees;
+	@Property
+	private List<User> trainees=new ArrayList<User>();
 
 	@Property
 	private User trainee;
@@ -95,18 +98,14 @@ public class MenuAdmin {
 	@Property
 	private int year;
 	
-	@Property
-	private TrainingSession sessionForBlock;
+	@Inject
+	ComponentResources cs;
 	
-
-	@Property
-	private User traineeForBlock;
+	private boolean traineesLoaded=false;
 
 	@SetupRender
 	public void applyForActivate() {
 		
-		
-
 		if (messages.contains("datePattern")) {
 			try {
 				dateFormat = new SimpleDateFormat(
@@ -119,21 +118,9 @@ public class MenuAdmin {
 		}
 		
 		
-		/*if (request.isXHR()) {
-			ajaxRR.addCallback(new JavaScriptCallback() {
-
-				public void run(JavaScriptSupport javascriptSupport) {
-					javascriptSupport.addScript("improveaccordion();");
-
-				}
-			});
-		}*/
 	}
 
-	public List<User> getTrainees() {
-
-		return userManager.listTrainees(trainingSession.getId());
-	}
+	
 	
 	@AfterRender
 	public void launchJs() {
@@ -158,9 +145,7 @@ public class MenuAdmin {
 			
 			if (ts.getDateS().get(Calendar.YEAR) != cmp.getDateS().get(
 					Calendar.YEAR)) {
-				System.out.println("ts " + ts.getDateS().get(Calendar.YEAR));
-				System.out.println("cmp " + cmp.getDateS().get(Calendar.YEAR));
-
+				
 				years.add(ts.getDateS().get(Calendar.YEAR));
 				cmp = ts;
 			}
@@ -179,16 +164,39 @@ public class MenuAdmin {
 		return tss;
 	}
 	
+	
+	private Object value;
+	
 	@OnEvent(component = "sessionzone")
-	public void updateSessionZone(Long id) {
-		sessionForBlock = trainingSessionManager.loadAll(id);
+	public void updateSessionZone(final Long id) {
+		 
+		if(!traineesLoaded){
+			 trainees = userManager.listTrainees(id);
+			traineesLoaded=true;
+		}
+		
+		cs.triggerEvent("trainingSession",new Long[]{id},null);
+		
+		arr.addRender("traineesGroup"+id, traineeZone.getBody());
+		arr.addCallback(new JavaScriptCallback() {
+			
+			@Override
+			public void run(JavaScriptSupport javascriptSupport) {
+				javascriptSupport.addScript("handlerontrainee('%s')","menutrainingsession"+id );
+				
+			}
+		});
 		
 	}
-
+	
+	@Inject
+	private AjaxResponseRenderer arr;
+	
+	@InjectComponent private Zone traineeZone;
+	
 	@OnEvent(component = "studentzone")
 	public void updateTraineeZone(Long id) {
-		traineeForBlock = userManager.findById(id);
-		
+		cs.triggerEvent("trainee",new Long[]{id},null);
+			
 	}
-
 }

@@ -2,5 +2,20 @@
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns:p="tapestry:parameter">
 
-	bouh !
+	<t:if test="responses">
+		<div class="k-actions-block">
+			<p class="action-context">${trainee.firstname} ${trainee.name}</p>
+			<ul class="k-actions">
+				<li><a t:type="actionlink" t:id="print" href="#"  class="bt-download">PDF</a></li>
+			</ul>
+		</div>
+
+		<t:surveyForm t:survey="survey" t:id="surveyForm"
+			t:responsesurvey="responsesurvey" />
+		<p:else>
+			<p>${message:notanswered}</p>
+		</p:else>
+
+	</t:if>
+
 </t:container>

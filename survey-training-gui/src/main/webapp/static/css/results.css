@@ -11,19 +11,19 @@
 }
 
 .accordion {
-	width: 80%;
+	width: 100%;
 }
 
 
 
 .col-left {
 	float: left;
-	width: 47%;
+	width: 36%;
 }
 
 .col-right {
 	float: right;
-	width: 47%;
+	width: 62%;
 }
 
 .training-session-title{

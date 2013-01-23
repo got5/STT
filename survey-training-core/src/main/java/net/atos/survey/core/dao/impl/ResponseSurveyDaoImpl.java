@@ -11,15 +11,20 @@ import net.atos.survey.core.entity.User;
 public class ResponseSurveyDaoImpl extends DaoImpl<Long, ResponseSurvey> implements ResponseSurveyDao {
 
 	@Override
-	public ResponseSurvey findByTrainingSessionAndByTrainee(TrainingSession ts,
+	public ResponseSurvey findByTrainingSessionAndByTrainee(Long tsId,
 			User trainee) {
-	    String queryString = "select rs from TrainingSession ts join ts.responses rss join ResponseSurvey rs "
-	    		+" where ts = ?1"
-	    		+" and KEY(rss) = ?2"
-	    		+" and VALUE(rss) = rs "
-	    		;
+		
+		
+		
+		
+		String q = "select value(rss) from TrainingSession ts join ts.responses rss "
+				+" where ts.id = ?1 " 
+				+" and key(rss) = ?2 "
+				;
+	    
+		
 	    		
-	    		return find(null, null, queryString, ts,trainee);
+	    		return find(q,tsId,trainee);
 	}
 
 	

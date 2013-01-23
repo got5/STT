@@ -11,7 +11,7 @@ public interface ResponseSurveyManager {
 
 	ResponseSurvey save(ResponseSurvey responseSurvey);
 
-	ResponseSurvey findByTrainingSessionAndByTrainee(Long id, Long id2);
+	ResponseSurvey findByTrainingSessionAndByTrainee(Long trainingSessionId, Long traineeId);
 	
 	
 

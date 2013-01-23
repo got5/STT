@@ -9,17 +9,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Survey Training</name>
 
+
 	<repositories>
-
-		
-
 		<repository>
-			<id>devlab722-snapshot-repo</id>
-			<url>http://nexus.devlab722.net/nexus/content/repositories/snapshots
-        </url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
+			<id>Kawwa2</id>
+			<name>Kawwa2 Repository</name>
+			<url>http://nexus.devlab722.net/nexus/content/repositories/snapshots/</url>
 		</repository>
 
 		<repository>
@@ -31,16 +26,12 @@
 			</snapshots>
 		</repository>
 
-
-
 		<repository>
-			<!-- This repository is mapped to a Maven2 proxy. This one gives access 
-				to O&D and common Maven2 repositories -->
+
 			<id>proxiedRepositories</id>
 			<name>OD and common proxied repositories</name>
 			<url>http://repository.atosworldline.com/maven2</url>
 		</repository>
-
 
 		<repository>
 			<id>proxiedSnapShotRepositories</id>
@@ -51,21 +42,16 @@
 			</snapshots>
 		</repository>
 
-
-
-
 	</repositories>
 
 	<pluginRepositories>
+
 		<pluginRepository>
-			<!-- This repository is mapped to a Maven2 proxy. This one gives access 
-				to O&D and common Maven2 repositories -->
+
 			<id>proxiedRepositories</id>
 			<name>OD and common proxied repositories</name>
 			<url>http://repository.atosworldline.com/maven2</url>
 		</pluginRepository>
-
-		
 
 		<pluginRepository>
 			<id>maven</id>
@@ -83,8 +69,6 @@
 		</pluginRepository>
 
 	</pluginRepositories>
-
-
 
 
 	<build>
@@ -123,7 +107,7 @@
 		<kawwa.version>2.0.4-SNAPSHOT</kawwa.version>
 		<tomee-xa-version>1.5.1-snapshot</tomee-xa-version>
 		<tomee-plugin-version>1.5.2-SNAPSHOT</tomee-plugin-version>
-		<tapestry.jquery.version>3.3.5-SNAPSHOT</tapestry.jquery.version>
+		<tapestry.jquery.version>3.3.6-SNAPSHOT</tapestry.jquery.version>
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
 		<maven-jar-plugin.version>2.4</maven-jar-plugin.version>
 		<maven-assembly-plugin.version>2.3</maven-assembly-plugin.version>

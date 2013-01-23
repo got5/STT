@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import net.atos.survey.core.entity.Training;
+import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.SimpleMCQResponseManager;
 import net.atos.survey.core.usecase.TrainingManager;
@@ -21,6 +22,7 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.corelib.components.Form;
@@ -31,11 +33,13 @@ import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 @Import(library = { "context:static/js/dateFromTo.js",
-		"context:static/js/accordion.js", "context:static/js/autocomplete.js" }, stylesheet = "context:static/css/results.css")
+		"context:static/js/accordion.js", "context:static/js/autocomplete.js" }, 
+		stylesheet = "context:static/css/results.css")
 public class Results {
 
 	@SessionState
@@ -51,6 +55,13 @@ public class Results {
 
 	@Inject
 	private TrainingManager trainingManager;
+	
+	@Property
+	private TrainingSession sessionForBlock;
+	
+
+	@Property
+	private User traineeForBlock;
 
 	
 
@@ -118,6 +129,14 @@ public class Results {
 	@Inject
 	private Block traineeBlock;
 
+	@Persist
+	@Property
+	private Long trainingSessionIdClicked;
+	
+	@Persist
+	@Property
+	private Long traineeIdClicked;
+	
 
 	@Inject
 	private Request request;
@@ -127,6 +146,8 @@ public class Results {
 	
 	@InjectComponent
 	private MenuAdmin menuAdmin;
+	
+	
 
 	@OnEvent(EventConstants.ACTIVATE)
 	public void applyForActivate() {
@@ -232,18 +253,22 @@ public class Results {
 
 	}
 
-	/*@OnEvent(component = "sessionzone")
-	public Block updateSessionZone(Long id) {
+	@Inject private AjaxResponseRenderer arr;
 	
-		return sessionBlock;
+	@OnEvent(component = "menuAdmin", value="trainingSession")
+	public void updateSessionZone(Long id) {
+		trainingSessionIdClicked=id;
+//		return sessionBlock;
+		arr.addRender("zone2", sessionBlock);
 	}
 
-	@OnEvent(component = "studentzone")
-	public Block updateTraineeZone(Long id) {
-		
-		return traineeBlock;
+	@OnEvent(component = "menuAdmin",value="trainee")
+	public void updateTraineeZone(Long id) {
+		traineeIdClicked=id;
+//		return traineeBlock;
+		arr.addRender("zone2", traineeBlock);
 	}
-*/
+
 	
 	
 

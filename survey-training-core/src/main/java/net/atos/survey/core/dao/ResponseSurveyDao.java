@@ -9,6 +9,6 @@ import net.atos.survey.core.entity.User;
 @Local
 public interface ResponseSurveyDao extends Dao<Long, ResponseSurvey> {
 
-	ResponseSurvey findByTrainingSessionAndByTrainee(TrainingSession ts, User trainee);
+	ResponseSurvey findByTrainingSessionAndByTrainee(Long ts, User trainee);
 
 }

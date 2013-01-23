@@ -57,6 +57,8 @@ public class SummarySurveyForm {
 	
 	@Inject
 	private Messages messages;
+	
+	
 
 	@OnEvent(EventConstants.ACTIVATE)
 	public Object loadingForm(Long trainingSessionId) {
@@ -117,6 +119,10 @@ public class SummarySurveyForm {
 		}
 		jss.addScript("loading();");
 		jss.addScript("checkForm('%s');",mcq_error_message);
+	}
+	
+	public String getMode(){
+		return "WRITE";
 	}
 
 }

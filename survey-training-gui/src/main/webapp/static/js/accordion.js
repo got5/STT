@@ -1,34 +1,41 @@
+function handlerontrainee(id) {
+	
+		
+	$("#" + id + " li.trainee-title > a").click(
+			function() {
+
+				select($(this), $("#" + id + " li.trainee-title > a"),
+						"selected-trainee");
+			});
+}
+
 function improveaccordion(id) {
 	$("ul.trainee-menu").hide();
 	$("ul.level3").hide();
 
-	
-	$("#"+id+" .year > a").click(function() {
+	$("#" + id + " .year > a").click(function() {
 		$(this).next().slideToggle();
-		
-		
-	});
-	
-	$("#"+id+" li.training-session-title > a").click(function() {
 
-		if ($(this).has('ul')) {
-			
-			select($(this),$("#"+id+" li.training-session-title > a"),"selected-session");
-			
-			$(this).nextAll().slideToggle();
-			
-		}
-		return false;
 	});
-	
-	$("#"+id+" li.trainee-title > a").click(function() {
-		
-		select($(this),$("#"+id+" li.trainee-title > a"),"selected-trainee");
-	});
+
+	$("#" + id + " li.training-session-title > a").click(
+			function() {
+
+				if ($(this).has('ul')) {
+
+					select($(this), $("#" + id
+							+ " li.training-session-title > a"),
+							"selected-session");
+
+					$(this).nextAll().slideToggle();
+
+				}
+				return false;
+			});
 
 }
 
-function select(el,li,css) {
+function select(el, li, css) {
 
 	selected = el.hasClass(css);
 

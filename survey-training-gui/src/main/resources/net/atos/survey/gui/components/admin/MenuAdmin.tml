@@ -1,5 +1,4 @@
-<ul id="menuTraining${trainingId}"
-	class="level2"
+<ul id="menuTraining${trainingId}" class="level2"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns:p="tapestry:parameter">
 
@@ -14,8 +13,8 @@
 
 
 				<t:loop t:source="trainingSessionsbyyear" t:value="trainingSession">
-					<li class="training-session-title"><a t:type="actionLink"
-						t:id="sessionzone" t:zone="zone2" t:context="trainingSession.id"
+					<li class="training-session-title" id="menutrainingsession${trainingSession.id}"><a t:type="actionLink"
+						t:id="sessionzone" t:zone="traineesGroup${trainingSession.id}" t:context="trainingSession.id"
 						href="#"> <t:output value="trainingSession.dateS.time"
 								format="dateFormat" /> - <t:output
 								value="trainingSession.dateE.time" format="dateFormat" /> -
@@ -25,11 +24,13 @@
 
 
 						<ul class="trainee-menu">
-							<t:loop t:source="trainees" t:value="trainee">
-								<li class="trainee-title"><a t:type="actionLink"
-									t:id="studentzone" t:zone="zone2" t:context="trainee.id"
-									href="#">${trainee.firstName} ${trainee.name}</a></li>
-							</t:loop>
+							<t:zone t:id="traineeZone" id="traineesGroup${trainingSession.id}">
+								<t:loop t:source="trainees" t:value="trainee">
+									<li class="trainee-title"><a t:type="actionLink"
+										t:id="studentzone" t:zone="zone2" t:context="trainee.id"
+										href="#">${trainee.firstName} ${trainee.name}</a></li>
+								</t:loop>
+							</t:zone>
 						</ul></li>
 				</t:loop>
 

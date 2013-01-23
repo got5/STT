@@ -2,36 +2,79 @@ package net.atos.survey.gui.components.admin;
 
 import net.atos.survey.core.entity.ResponseSurvey;
 import net.atos.survey.core.entity.Survey;
-import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.ResponseSurveyManager;
 import net.atos.survey.core.usecase.SurveyManager;
+import net.atos.survey.core.usecase.UserManager;
+import net.atos.survey.gui.components.SurveyForm;
 
+import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 public class TraineeComponent {
 
 	@Inject
 	private SurveyManager surveyManager;
-	
+
 	@Inject
 	private ResponseSurveyManager responseSurveyManager;
 	
-	
-	
+	@Inject UserManager userManager;
+
 	@Property
-	@Parameter
 	private User trainee;
 	
 	@Property
+	private ResponseSurvey responseSurvey;
+	
+	@Property
+	private Survey survey;
+
+	@Property
 	@Parameter
-	private TrainingSession trainingSession;
-	
-	
-	public ResponseSurvey getResponseSurvey(){
-		return responseSurveyManager.findByTrainingSessionAndByTrainee(trainingSession.getId(),trainee.getId());
+	private Long traineeId;
+
+	@Property
+	@Parameter
+	private Long trainingSessionId;
+
+	@InjectComponent
+	private SurveyForm surveyForm;
+
+
+	@SetupRender
+	public void applyForActivate() {
+		if(traineeId!=null || trainingSessionId!=null){
+			responseSurvey = responseSurveyManager.findByTrainingSessionAndByTrainee(trainingSessionId, traineeId);
+		}
+		
+		if(isResponses()){
+			survey = surveyManager.findByTrainingSession(trainingSessionId);
+			trainee = userManager.findById(traineeId);
+		}
+		
+		
 	}
 	
+	@OnEvent(EventConstants.SUCCESS)
+	public void applyForSuccess() {
+		//do nothing because the form has to be disabled
+		//from surveyevent
+	}
+	
+	@AfterRender
+	public void afterRender(){
+		
+	}
+	
+	public boolean isResponses(){
+		return responseSurvey!=null;
+	}
+
 }

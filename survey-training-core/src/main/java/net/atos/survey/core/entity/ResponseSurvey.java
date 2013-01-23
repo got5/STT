@@ -31,7 +31,6 @@ public class ResponseSurvey implements Serializable {
 	private Map<Question, Response> responses = new HashMap<Question, Response>();
 	
 	
-	
 
 	public ResponseSurvey() {
 		super();

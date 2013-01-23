@@ -9,6 +9,7 @@ import net.atos.survey.core.dao.UserDao;
 import net.atos.survey.core.entity.ResponseSurvey;
 import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
+import net.atos.survey.core.exception.NoTrainingSessionFoundException;
 import net.atos.survey.core.usecase.ResponseSurveyManager;
 
 @Stateless(name="net.atos.survey.core.usecase.ResponseSurveyManager")
@@ -27,11 +28,14 @@ public class ResponseSurveyManagerImpl implements ResponseSurveyManager{
 	}
 
 	@Override
-	public ResponseSurvey findByTrainingSessionAndByTrainee(Long trainingSessionId, Long traineeId) {
-		TrainingSession ts = trainingSessionDao.findById(trainingSessionId);
+	public ResponseSurvey findByTrainingSessionAndByTrainee(Long trainingSessionId, Long traineeId){
 		User trainee = userDao.findById(traineeId);
 		
-		return responseSurveyDao.findByTrainingSessionAndByTrainee(ts,trainee);
+		ResponseSurvey rs =  responseSurveyDao.findByTrainingSessionAndByTrainee(trainingSessionId,trainee);
+		if(rs!=null)
+			rs.getResponses().size();
+		
+		return rs;
 	}
 
 }

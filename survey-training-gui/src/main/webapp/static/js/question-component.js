@@ -1,7 +1,7 @@
 
 function loading() {
 	$(".trigger").click(function() {
-		$(this).parent().parent().parent().next().show()
+		$(this).parent().parent().parent().next().show();
 	});
 
 	$(".notrigger").click(function() {

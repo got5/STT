@@ -9,6 +9,6 @@
  		
  	</div>
 
-	<t:surveyForm t:survey="survey" t:id="surveyForm" t:responsesurvey="responsesurvey" />
+	<t:surveyForm t:survey="survey" t:id="surveyForm" t:responsesurvey="responsesurvey" t:mode="mode" />
 
 </html>

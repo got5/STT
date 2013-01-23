@@ -62,7 +62,7 @@
 						<li>
 							<a href="#" title="Click to fold/unfold block">${training.name}</a>
 							
-							<t:admin.menuadmin t:id="menuAdmin" t:for="for" t:to="to"
+							<t:admin.menuadmin t:id="menuAdmin" t:from="from" t:to="to"
 								t:trainingId="training.id" t:instructorId="instructorId" />
 					   </li>
 					</t:loop>
@@ -74,12 +74,14 @@
 	<div class="col-right">
 		<t:zone t:id="zone2" t:visible="false">
 			<t:block t:id="sessionBlock">
-				<!-- <t:admin.trainingSessionComponent t:id="trainingsessionComponent"
-					t:trainingsession="sessionforblock" /> -->
+				 <t:admin.trainingSessionComponent t:id="trainingsessionComponent" 
+				 		t:trainingsessionid="trainingSessionIdClicked" /> 
 			</t:block>
 			<t:block t:id="traineeBlock">
-				<!-- <t:admin.traineeComponent t:id="traineecomponent"
-					t:trainingsession="sessionforblock" t:trainee="traineeforblock" /> -->
+				 <t:admin.traineeComponent t:id="traineecomponent" 
+				 	t:trainingsessionid="trainingSessionIdClicked"
+				 	t:traineeId="traineeIdClicked"
+					 /> 
 			</t:block>
 		</t:zone>
 	</div>
