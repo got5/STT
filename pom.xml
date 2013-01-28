@@ -11,6 +11,23 @@
 
 
 	<repositories>
+		
+
+		<repository>
+			<id>proxiedRepositories</id>
+			<name>OD and common proxied repositories</name>
+			<url>http://repository.atosworldline.com/maven2</url>
+		</repository>
+
+		<repository>
+			<id>proxiedSnapShotRepositories</id>
+			<name>OD and common proxied snapshot repositories</name>
+			<url>http://repository.atosworldline.com/nexus/content/groups/public-snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		
 		<repository>
 			<id>Kawwa2</id>
 			<name>Kawwa2 Repository</name>
@@ -23,22 +40,6 @@
         </url>
 			<snapshots>
 				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-
-			<id>proxiedRepositories</id>
-			<name>OD and common proxied repositories</name>
-			<url>http://repository.atosworldline.com/maven2</url>
-		</repository>
-
-		<repository>
-			<id>proxiedSnapShotRepositories</id>
-			<name>OD and common proxied snapshot repositories</name>
-			<url>http://repository.atosworldline.com/nexus/content/groups/public-snapshots</url>
-			<snapshots>
-				<enabled>true</enabled>
 			</snapshots>
 		</repository>
 
@@ -105,7 +106,7 @@
 		<easymock.version>2.5.2</easymock.version>
 		<servlet.version>2.5</servlet.version>
 		<kawwa.version>2.0.4-SNAPSHOT</kawwa.version>
-		<tomee-xa-version>1.5.1-snapshot</tomee-xa-version>
+		<tomee-xa-version>1.5.2-SNAPSHOT</tomee-xa-version>
 		<tomee-plugin-version>1.5.2-SNAPSHOT</tomee-plugin-version>
 		<tapestry.jquery.version>3.3.6-SNAPSHOT</tapestry.jquery.version>
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>

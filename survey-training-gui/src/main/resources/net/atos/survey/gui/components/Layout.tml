@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns:p="tapestry:parameter">
 <head>
@@ -11,36 +10,47 @@
 	<div id="container">
 
 		<!-- PAGE HEADER -->
-		<div id="header">
-			<a t:type="pageLink" t:page="Index">
-				<h1>
-					<img src="${asset:context:static/img/xa.png}" />
-				</h1>
-				<div class="clearer"></div>
-			</a>
-			<t:kawwa2.MainNav>
-				<li class="home"><a t:type="pageLink" t:page="Index">Home</a></li>
-				<li><a t:type="pageLink" t:page="admin/Results">Results</a></li>
-				<t:if t:test="loggedUserExists">
-				<li><a t:type="pageLink" t:page="MyTrainings">Welcome,  <span id="user-name">${loggedUser?.firstname}</span></a></li>
-				<li> <strong><a t:type="actionLink" t:id="logout">Logout</a></strong></li>
-				</t:if>
-			</t:kawwa2.MainNav>
-		</div>
-		
-		<hr />
-		<!-- COLUMNS WRAPPER/ -->
-		<div id="wrapper">
-			<t:body />
-		</div>
-		<!-- /COLUMNS WRAPPER -->
+		<header role="banner">
+			<h1>
+				Survey Training Tool <small>Evaluate your trainings</small>
+			</h1>
+		</header>
+
+
+		<nav>
+			<div id="navbar">
+				<p class="k-skip">
+					<a shape="rect" href="#wrapper">Skip this menu</a>
+
+				</p>
+
+				<t:kawwa2.MainNav>
+					<li class="home"><a t:type="pageLink" t:page="Index">Home</a></li>
+					<li><a t:type="pageLink" t:page="admin/Results">Results</a></li>
+					<t:if t:test="loggedUserExists">
+						<li><a t:type="pageLink" t:page="MyTrainings">Welcome, <span
+								id="user-name">${loggedUser?.firstname}</span></a></li>
+						<li><strong><a t:type="actionLink" t:id="logout">Logout</a></strong></li>
+					</t:if>
+				</t:kawwa2.MainNav>
+			</div>
+		</nav>
 
 		<hr />
-		<!-- FOOTER -->
-		<div id="footer">
-			<p class="k-copyright">&copy; Le Studio/Web Platform, Atos
-				Worldline, 2011</p>
-		</div>
+	<!-- COLUMNS WRAPPER/ -->
+	<div id="wrapper">
+		
+	
+		<t:body />
+	</div>
+	<!-- /COLUMNS WRAPPER -->
+
+	<hr />
+	<!-- FOOTER -->
+	<footer role="contentinfo">
+		<p class="k-copyright">© GPS, Web Platform, Atos
+			Worldline, 2011</p>
+	</footer>
 
 	</div>
 	<!-- /container -->

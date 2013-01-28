@@ -22,7 +22,8 @@ import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-@Import(library = {"context:static/js/question-component.js","context:static/js/surveyForm.js"})
+@Import(library = {"context:static/js/question-component.js","context:static/js/surveyForm.js"},
+	stylesheet="context:static/css/summarySurveyForm.css")
 public class SummarySurveyForm {
 
 	@Inject

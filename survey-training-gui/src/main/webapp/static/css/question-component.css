@@ -5,8 +5,13 @@ fieldset.k-radio legend{
 	
 }
 
+.k-radio label{
+	font: 0.95em NovecentowideBook, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	
+}
+
 legend {
-	color:#06A;
+	color:#666666;
 }
 
 form fieldset legend {
@@ -23,9 +28,11 @@ form fieldset legend {
 	width:35em;
 }
 
-.openquestion label{
+.
+.openquestion label, .elseclause label{
 	text-align:left;
 	width: 50em;
+	font: 0.95em NovecentowideBook, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 .openquestion textarea{
 	

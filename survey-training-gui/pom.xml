@@ -29,20 +29,16 @@
 			<artifactId>tapestry5-kawwa-components</artifactId>
 			<version>${kawwa.version}</version>
 
-			<exclusions>
-				<exclusion>
-					<artifactId>tapestry5-jquery</artifactId>
-					<groupId>org.got5</groupId>
-				</exclusion>
-			</exclusions>
+	
 		</dependency>
-
+		
+		<!--
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
 			<version>${tapestry.jquery.version}</version>
 		</dependency>
-
+		  -->
 
 		<dependency>
 			<groupId>org.apache.openejb</groupId>
@@ -122,14 +118,5 @@
 	</build>
 
 
-	<repositories>
-
-
-
-		<repository>
-			<id>Kawwa2</id>
-			<name>Kawwa2 Repository</name>
-			<url>http://nexus.devlab722.net/nexus/content/repositories/snapshots/</url>
-		</repository>
-	</repositories>
+	
 </project>

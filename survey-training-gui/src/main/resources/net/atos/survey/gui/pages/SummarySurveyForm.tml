@@ -2,12 +2,9 @@
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns:p="tapestry:parameter">
 
+	<h2>${message:training}</h2>
+	<h3>${trainingSession.training.name}</h3>
 	
-	<div t:type="kawwa2/collapsiblePanel" t:header="La formation - ${trainingSession.training.name}" 
- 	t:title="literal:title" t:autoOpen="literal:false">
- 		<p><strong>Instructeur : </strong>${trainingSession.instructor.firstname} ${trainingSession.instructor.name}</p>
- 		
- 	</div>
 
 	<t:surveyForm t:survey="survey" t:id="surveyForm" t:responsesurvey="responsesurvey" t:mode="mode" />
 

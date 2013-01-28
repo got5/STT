@@ -11,6 +11,7 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 
+@Import(stylesheet="context:static/css/layout.css")
 public class Layout {
 	
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)

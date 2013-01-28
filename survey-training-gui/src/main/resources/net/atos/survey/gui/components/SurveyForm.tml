@@ -8,13 +8,13 @@
 
 		<t:loop t:index="indexC" t:source="survey.categories" t:formstate="iteration"
 			t:value="category">
-			<fieldset>
+			<fieldset class="k-sub-group">
 				<legend>${category.name }</legend>
 				
 				<t:loop t:index="indexQ" t:source="category.questions" t:formstate="iteration"
 					t:value="question">
 					<t:if test="affichertheme">
-						<h3>${question.theme.name }</h3>
+						<h6>${question.theme.name }</h6>
 					</t:if>
 					
 					<t:questioncomponent t:question="question" t:response="response" t:mode="mode"/>
