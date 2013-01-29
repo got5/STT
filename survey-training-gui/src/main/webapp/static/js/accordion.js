@@ -4,7 +4,7 @@ function handlerontrainee(id) {
 	$("#" + id + " li.trainee-title > a").click(
 			function() {
 
-				select($(this), $("#" + id + " li.trainee-title > a"),
+				select($(this), $(" li.trainee-title > a"),
 						"selected-trainee");
 			});
 }
@@ -23,8 +23,7 @@ function improveaccordion(id) {
 
 				if ($(this).has('ul')) {
 
-					select($(this), $("#" + id
-							+ " li.training-session-title > a"),
+					select($(this), $(" li.training-session-title > a"),
 							"selected-session");
 
 					$(this).nextAll().slideToggle();

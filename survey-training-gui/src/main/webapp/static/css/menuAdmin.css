@@ -10,8 +10,16 @@
 }
 
 
+.trainee-done a{
+	color:#33CC00 !important;
+	background: transparent url(../img/validate-survey.gif) right 4px no-repeat !important;
+	background-size:6.5% !important;
+}
+
+
+
 .selected-session {
-	background-color: #C0C0C0 !important;
+	background-color: #000 !important;
 	color: white !important;
 }
 

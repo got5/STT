@@ -7,17 +7,18 @@ import java.util.List;
 
 import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
+import net.atos.survey.core.exception.UserNotInTrainingSessionException;
 import net.atos.survey.core.usecase.TrainingManager;
 import net.atos.survey.core.usecase.TrainingSessionManager;
 import net.atos.survey.core.usecase.UserManager;
 
-import org.apache.tapestry5.ComponentEventCallback;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.annotations.SetupRender;
@@ -54,6 +55,9 @@ public class MenuAdmin {
 	@Property
 	@Parameter
 	private Long instructorId;
+	
+	@Persist
+	private Long trainingSessionId;
 
 	@Property
 	@Parameter
@@ -64,7 +68,7 @@ public class MenuAdmin {
 	private Calendar to;
 
 	@Property
-	private List<User> trainees=new ArrayList<User>();
+	private List<User> trainees;
 
 	@Property
 	private User trainee;
@@ -99,12 +103,16 @@ public class MenuAdmin {
 	private int year;
 	
 	@Inject
-	ComponentResources cs;
+	private ComponentResources cs;
+	
+	private Object value;
 	
 	private boolean traineesLoaded=false;
 
 	@SetupRender
 	public void applyForActivate() {
+		
+		trainees=new ArrayList<User>();
 		
 		if (messages.contains("datePattern")) {
 			try {
@@ -125,6 +133,21 @@ public class MenuAdmin {
 	@AfterRender
 	public void launchJs() {
 		js.addScript(InitializationPriority.LATE, "improveaccordion('%s');","menuTraining"+trainingId);
+	}
+	
+	public String getClientClassTraineeDone() {
+		String ret =""; 
+		try {
+			//ON a plus accès à trainingSession car la boucle sur les trainee est dans une zone
+			//Du coup on utiliser trainingSessionId
+			if(trainingSessionManager.alreadyAnsweredToSurvey(trainingSessionId, trainee.getId())){
+				ret="trainee-done";
+			}
+		} catch (UserNotInTrainingSessionException e) {
+			
+		}
+		
+		return ret;
 	}
 	
 	public List<Integer> getYears() {
@@ -165,24 +188,26 @@ public class MenuAdmin {
 	}
 	
 	
-	private Object value;
+	
 	
 	@OnEvent(component = "sessionzone")
-	public void updateSessionZone(final Long id) {
-		 
+	public void updateSessionZone(final Long trainingSessionId) {
+		//A ce moment ci, on ne connait plus la trainingSession, c'est pourquoi on en garde une référence maintenant 
+		this.trainingSessionId=trainingSessionId;
+		
 		if(!traineesLoaded){
-			 trainees = userManager.listTrainees(id);
+			 trainees = userManager.listTrainees(trainingSessionId);
 			traineesLoaded=true;
 		}
 		
-		cs.triggerEvent("trainingSession",new Long[]{id},null);
+		cs.triggerEvent("trainingSession",new Long[]{trainingSessionId},null);
 		
-		arr.addRender("traineesGroup"+id, traineeZone.getBody());
+		arr.addRender("traineesGroup"+trainingSessionId, traineeZone.getBody());
 		arr.addCallback(new JavaScriptCallback() {
 			
 			@Override
 			public void run(JavaScriptSupport javascriptSupport) {
-				javascriptSupport.addScript("handlerontrainee('%s')","menutrainingsession"+id );
+				javascriptSupport.addScript("handlerontrainee('%s')","menutrainingsession"+trainingSessionId );
 				
 			}
 		});

@@ -114,12 +114,17 @@ public class SummarySurveyForm {
 	@AfterRender
 	public void loadingScript() {
 		String mcq_error_message = "Veuillez répondre à toutes les questions à choix multiples.";
+		String oq_error_message="Veuillez répondre à toutes les questions.";
 		if(messages.contains("mcq-error")){
 			mcq_error_message = messages.get("mcq-error");
 			
 		}
+		if(messages.contains("oq-error")){
+			oq_error_message = messages.get("oq-error");
+			
+		}
 		jss.addScript("loading();");
-		jss.addScript("checkForm('%s');",mcq_error_message);
+		jss.addScript("checkForm('%s','%s');",mcq_error_message,oq_error_message);
 	}
 	
 	public String getMode(){
