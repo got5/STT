@@ -3,7 +3,7 @@
 	xmlns:p="tapestry:parameter">
 
 <h2>${message:title }</h2>
-<div id="menu"></div>
+
 
 <div id="main">
 

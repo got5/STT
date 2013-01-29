@@ -2,7 +2,7 @@
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns:p="tapestry:parameter">
 
-<div>
+<div id="main">
 	<t:jquery.jgrowl />
 	
 	<h2>My  Trainings</h2>

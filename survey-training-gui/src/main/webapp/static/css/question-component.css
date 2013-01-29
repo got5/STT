@@ -1,40 +1,43 @@
-fieldset.k-radio legend{
-
+fieldset.k-radio > legend{
+	padding-left:10px;
 	text-align:left;
-	width: 40em;
-	
+	width:35em;
+	font: 0.95em bold "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 .k-radio label{
-	font: 0.95em NovecentowideBook, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-	
+	font: 0.95em bold "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
-legend {
-	color:#666666;
-}
 
-form fieldset legend {
+.elseclause label{
 	
-	font-size:1.5em;
 	
-}
-
-.elseclause{
 	margin-left: 1em;
+	margin-right: 1em;
+	font: 0.90em normal "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	
+	
+	
 }
 
-.elseclause textarea{
-	width:35em;
+.elseclause textarea{	
+	width: 25em;
+	
 }
 
-.
-.openquestion label, .elseclause label{
+
+.openquestion label{
+	
+	padding-left:10px;
 	text-align:left;
-	width: 50em;
-	font: 0.95em NovecentowideBook, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	width: 30em;
+	font: 0.95em bold "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	
+	
 }
 .openquestion textarea{
 	
-	width: 50em;
+	width: 30em;
+	
 }

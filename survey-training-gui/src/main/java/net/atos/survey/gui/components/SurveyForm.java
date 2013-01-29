@@ -35,6 +35,10 @@ public class SurveyForm {
 	private Asset handleFormJs;
 	
 	@Inject
+	@Path("context:static/css/surveyForm1.css")
+	private Asset stylesheet1;
+	
+	@Inject
 	private CategoryManager categoryManager;
 
 	@Property
@@ -102,6 +106,9 @@ public class SurveyForm {
 			js.addScript("disableForm('%s')",form.getClientId());
 			
 		}
+		
+		js.importStylesheet(stylesheet1);
+		
 	}
 
 	@OnEvent(value = EventConstants.VALIDATE, component = "form")
