@@ -7,10 +7,12 @@ import net.atos.survey.core.usecase.ResponseSurveyManager;
 import net.atos.survey.core.usecase.SurveyManager;
 import net.atos.survey.core.usecase.UserManager;
 import net.atos.survey.gui.components.SurveyForm;
+import net.atos.survey.gui.pages.admin.PDFPage;
 
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
@@ -46,6 +48,9 @@ public class TraineeComponent {
 
 	@InjectComponent
 	private SurveyForm surveyForm;
+	
+	@InjectPage
+	private PDFPage pdfPage;
 
 
 	@SetupRender
@@ -67,6 +72,7 @@ public class TraineeComponent {
 		//do nothing because the form has to be disabled
 		//from surveyevent
 	}
+
 	
 	@AfterRender
 	public void afterRender(){
@@ -75,6 +81,13 @@ public class TraineeComponent {
 	
 	public boolean isResponses(){
 		return responseSurvey!=null;
+	}
+	
+	@OnEvent(value=EventConstants.ACTION,component="print")
+	public Object makePdf(){
+		pdfPage.configureDocument(trainingSessionId, traineeId);
+		return pdfPage;
+		
 	}
 
 }

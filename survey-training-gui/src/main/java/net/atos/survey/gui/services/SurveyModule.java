@@ -5,6 +5,7 @@ import net.atos.survey.core.entity.Choice;
 import net.atos.survey.core.usecase.CategoryManager;
 import net.atos.survey.core.usecase.ChoiceManager;
 import net.atos.survey.core.usecase.InitManager;
+import net.atos.survey.core.usecase.PDFGeneratorManager;
 import net.atos.survey.core.usecase.ResponseSurveyManager;
 import net.atos.survey.core.usecase.SimpleMCQResponseManager;
 import net.atos.survey.core.usecase.SimpleMCQuestionManager;
@@ -122,6 +123,12 @@ public class SurveyModule {
 		binder.bind(ResponseSurveyManager.class, new ServiceBuilder<ResponseSurveyManager>()  {
 			public ResponseSurveyManager buildService(ServiceResources serviceResources) {
 				return ResourceLocator.lookup(ResponseSurveyManager.class);
+			}
+		});
+		
+		binder.bind(PDFGeneratorManager.class, new ServiceBuilder<PDFGeneratorManager>()  {
+			public PDFGeneratorManager buildService(ServiceResources serviceResources) {
+				return ResourceLocator.lookup(PDFGeneratorManager.class);
 			}
 		});
 	}

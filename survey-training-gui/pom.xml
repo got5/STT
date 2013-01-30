@@ -28,17 +28,10 @@
 			<groupId>net.atos.tapestry</groupId>
 			<artifactId>tapestry5-kawwa-components</artifactId>
 			<version>${kawwa.version}</version>
+		</dependency>
 
-	
-		</dependency>
-		
-		<!--
-		<dependency>
-			<groupId>org.got5</groupId>
-			<artifactId>tapestry5-jquery</artifactId>
-			<version>${tapestry.jquery.version}</version>
-		</dependency>
-		  -->
+		<!-- <dependency> <groupId>org.got5</groupId> <artifactId>tapestry5-jquery</artifactId> 
+			<version>${tapestry.jquery.version}</version> </dependency> -->
 
 		<dependency>
 			<groupId>org.apache.openejb</groupId>
@@ -66,6 +59,8 @@
 			<scope>provided</scope>
 		</dependency>
 
+		
+	
 
 	</dependencies>
 
@@ -118,5 +113,5 @@
 	</build>
 
 
-	
+
 </project>

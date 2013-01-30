@@ -113,6 +113,7 @@
 		<maven-jar-plugin.version>2.4</maven-jar-plugin.version>
 		<maven-assembly-plugin.version>2.3</maven-assembly-plugin.version>
 		<maven-surefire-plugin.version>2.12</maven-surefire-plugin.version>
+		<itext.version>5.3.4</itext.version>
 
 	</properties>
 
