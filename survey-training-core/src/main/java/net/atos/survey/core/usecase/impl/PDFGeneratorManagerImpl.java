@@ -23,6 +23,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -34,8 +35,8 @@ public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 	@Inject
 	UserManager userManager;
 
-	private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 16,Font.BOLD|Font.UNDERLINE,BaseColor.GRAY);		
-	private static Font headerFont = new Font(Font.FontFamily.HELVETICA,8,Font.BOLD,BaseColor.GRAY);
+	private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 14,Font.BOLD|Font.UNDERLINE,BaseColor.GRAY);		
+	private static Font headerFont = new Font(Font.FontFamily.HELVETICA,6,Font.BOLD,BaseColor.GRAY);
 	private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,Font.NORMAL, BaseColor.RED);
 	private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,Font.BOLD);
 	private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,Font.BOLD);
@@ -67,7 +68,7 @@ public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 			throw new UserNotAnsweredToSurveyException();
 
 		// step 1: creation of a document-object
-		Document document = new Document();
+		Document document = new Document(PageSize.A4,10,10,10,20);
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
@@ -77,7 +78,7 @@ public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 			PdfWriter writer = PdfWriter.getInstance(document, baos);
 			// step 3: we open the document
 			document.open();
-			document.setMargins((float)1, (float)1.5,(float)1,(float) 2);
+		
 			// step 4: we add a paragraph to the document
 			addMetaData(document,trainingSessionId,traineeId);
 			addTitlePage(document);
