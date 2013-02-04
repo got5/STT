@@ -10,7 +10,7 @@
 			t:value="category">
 			<fieldset class="k-sub-group">
 				<legend>${category.name }</legend>
-				
+				<p class="remarque-category">${category?.remarque }</p>
 				<t:loop t:index="indexQ" t:source="category.questions" t:formstate="iteration"
 					t:value="question">
 					<t:if test="affichertheme">

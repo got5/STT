@@ -119,7 +119,9 @@ public class InitManagerImpl implements InitManager {
 				// create the categories
 				Category ca0 = new Category("DEFAULT");
 				ca1 = new Category("PRE - REQUIS");
+				ca1.setRemarque("A remplir après la présentation de l’introduction");
 				ca2 = new Category("VOTRE EVALUATION");
+				ca2.setRemarque("A remplir en fin de stage");
 				ca3 = new Category("BILAN PERSONEL");
 
 				ca0 = categoryDao.save(ca0);

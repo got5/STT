@@ -1,12 +1,9 @@
-
-
-
-
-fieldset.k-sub-group  legend{
-	
-	
-	
+.remarque-category {
+	text-decoration: underline;
+	font-size: 0.8em;
+	font-weight: bold;
 }
 
-
-
+fieldset.k-sub-group  legend {
+	
+}

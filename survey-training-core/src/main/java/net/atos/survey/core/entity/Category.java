@@ -34,6 +34,8 @@ public class Category implements Serializable {
 	@OrderColumn
 	private List<Question> questions = new ArrayList<Question>();
 	
+	private String remarque;
+	
 	
 
 	public Category() {
@@ -103,5 +105,15 @@ public class Category implements Serializable {
 		questions.size();
 
 	}
+
+	public String getRemarque() {
+		return remarque;
+	}
+
+	public void setRemarque(String remarque) {
+		this.remarque = remarque;
+	}
+	
+	
 
 }
