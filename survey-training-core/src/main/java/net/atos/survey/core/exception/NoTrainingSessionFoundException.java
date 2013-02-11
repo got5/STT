@@ -7,12 +7,7 @@ public class NoTrainingSessionFoundException extends Exception {
 		// TODO Auto-generated constructor stub
 	}
 
-	public NoTrainingSessionFoundException(String message, Throwable cause,
-			boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-		// TODO Auto-generated constructor stub
-	}
-
+	
 	public NoTrainingSessionFoundException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
