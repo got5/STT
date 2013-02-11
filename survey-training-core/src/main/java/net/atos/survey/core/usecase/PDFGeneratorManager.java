@@ -9,7 +9,6 @@ public interface PDFGeneratorManager {
 	
 	public  InputStream buildPDF(Long trainingSessionId,Long traineeId) throws Exception ;
 
-	public String createTitle(Long trainingSessionId, Long traineeId);
-	
+    String createTitle();
 
 }

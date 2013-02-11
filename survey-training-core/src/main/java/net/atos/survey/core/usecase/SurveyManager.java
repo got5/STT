@@ -24,5 +24,7 @@ public interface SurveyManager{
 	List<Question> getAllQuestion(Survey survey);
 	
 	Survey findByTrainingSession(Long trainingSessionId);
+
+	Survey loadAllR(Survey survey);
 	
 }

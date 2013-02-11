@@ -196,10 +196,17 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 		
 	}
 
+	
 	@Override
 	public TrainingSession loadAll(Long id) {
 		TrainingSession ts = findById(id);
 		ts.loadUsers();
+		ts.loadResponses();
+		return ts;
+	}
+	
+	public TrainingSession loadResponses(Long id){
+		TrainingSession ts = findById(id);
 		ts.loadResponses();
 		return ts;
 	}

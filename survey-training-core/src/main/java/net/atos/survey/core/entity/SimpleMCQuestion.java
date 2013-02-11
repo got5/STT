@@ -15,6 +15,8 @@ import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
+
+
 @Table
 @Entity
 public class SimpleMCQuestion extends Question {
@@ -67,6 +69,16 @@ public class SimpleMCQuestion extends Question {
 	public Collection<Choice> getChoices() {
 		return choices.keySet();
 	}
+	
+	public Map<Choice,Integer> getChoicesAsMap(){
+		return choices;
+	}
+	
+	public Integer getValueOfChoice(Choice c){
+		Integer v = choices.get(c);
+		return getChoicesSize() - v;
+	}
+
 
 	public void deleteLastChoice(Choice choice) {
 		if (choices.containsKey(choice)) {

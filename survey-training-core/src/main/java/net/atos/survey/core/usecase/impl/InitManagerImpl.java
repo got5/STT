@@ -130,18 +130,20 @@ public class InitManagerImpl implements InitManager {
 				ca3 = categoryDao.save(ca3);
 
 				// create the Choices
-				Choice ch1 = new Choice("Très bien");
-				Choice ch2 = new Choice("Bien");
-				Choice ch3 = new Choice("Moyen");
-				Choice ch4 = new Choice("Insufisant");
+				Choice ch1 = new Choice("Très bonne");
+				Choice ch2 = new Choice("Bonne");
+				Choice ch3 = new Choice("Moyenne");
+				Choice ch4 = new Choice("Aucune");
+				
+				Choice ch7 = new Choice("Très bien");
+				Choice ch8 = new Choice("Bien");
+				Choice ch9 = new Choice("Moyen");
+				Choice ch10 = new Choice("Insufisant");
 
 				Choice ch5 = new Choice("Oui");
 				Choice ch6 = new Choice("Non");
 
-				Choice ch7 = new Choice("Très bonne");
-				Choice ch8 = new Choice("Bonne");
-				Choice ch9 = new Choice("Moyenne");
-				Choice ch10 = new Choice("Aucune");
+				
 
 				ch1 = choiceDao.save(ch1);
 				ch2 = choiceDao.save(ch2);

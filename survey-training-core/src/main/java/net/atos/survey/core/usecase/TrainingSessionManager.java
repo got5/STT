@@ -40,5 +40,7 @@ public interface TrainingSessionManager{
 	void loadTrainees(Long trainingSessionId);
 
 	TrainingSession loadAll(Long id);
+	
+	public TrainingSession loadResponses(Long id);
 
 }

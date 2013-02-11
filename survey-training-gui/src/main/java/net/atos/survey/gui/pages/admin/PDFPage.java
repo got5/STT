@@ -29,7 +29,7 @@ public class PDFPage {
 		InputStream is;
 		try {
 			is = pdfGeneratorManager.buildPDF(trainingSessionId,traineeId);
-			String title = pdfGeneratorManager.createTitle(trainingSessionId,traineeId);
+			String title = pdfGeneratorManager.createTitle();
 			
 			return new PDFStreamResponse(is,title);
 		} catch (Exception e) {
