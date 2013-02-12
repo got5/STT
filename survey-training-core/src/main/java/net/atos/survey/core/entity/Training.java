@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -37,6 +38,9 @@ public class Training implements Serializable {
 
 	@ManyToMany
 	private List<User> inChargeUsers = new ArrayList<User>();
+	
+	@ManyToOne
+	private Room defaultRoom;
 	
 	
 
@@ -119,5 +123,15 @@ public class Training implements Serializable {
 	public void setInChargeUsers(List<User> inChargeUsers) {
 		this.inChargeUsers = inChargeUsers;
 	}
+
+	public Room getDefaultRoom() {
+		return defaultRoom;
+	}
+
+	public void setDefaultRoom(Room defaultRoom) {
+		this.defaultRoom = defaultRoom;
+	}
+	
+	
 
 }

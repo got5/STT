@@ -1,0 +1,56 @@
+<html t:type="Layout" t:title="survey-training-gui"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+<div id="main">
+
+	<h2>Welcome on STT</h2>
+
+
+	<div t:type="zone" t:id="myzone">
+		<form t:type="form" t:id="registerForm">
+			<fieldset>
+				<legend>${message:sign-up}</legend>
+				<t:errors t:banner="message:error" />
+
+
+				<p>
+					<t:label t:for="name" />
+					<input t:type="textField" t:id="name" />
+				</p>
+				<p>
+					<t:label t:for="firstname" />
+					<input t:type="textField" t:id="firstname" />
+				</p>
+				<p>
+					<t:label t:for="entity" />
+					<input t:type="textField" t:id="entity" />
+				</p>
+				<p>
+					<t:label t:for="bu" />
+					<input t:type="textField" t:id="bu" />
+				</p>
+				<p>
+					<t:label t:for="dept" />
+					<input t:type="textField" t:id="dept" />
+				</p>
+				<p>
+					<t:label t:for="function" />
+					<input t:type="textField" t:id="function" />
+				</p>
+				
+				<p>
+					<input t:type="submit" value="${message:submit-label}" />
+					
+					
+				</p>
+			</fieldset>
+		</form>
+	
+	</div>
+
+
+	
+
+</div>
+</html>

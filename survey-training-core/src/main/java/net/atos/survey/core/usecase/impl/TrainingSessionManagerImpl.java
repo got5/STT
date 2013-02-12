@@ -54,13 +54,12 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	ResponseSurveyManager responseSurveyManager;
 
 	public TrainingSession createTrainingSession(Calendar dateS,
-			Calendar dateE, Long trainingId, Long roomId)
+			Calendar dateE, Long trainingId,Long instructorId, Long roomId)
 			throws TrainingNotExistException, RoomNotExistException {
-		
 
 		Training training = trainingDao.findById(trainingId);
 		Room room = roomDao.findById(roomId);
-
+		User instructor = userDao.findById(instructorId);
 		if (training == null)
 			throw new TrainingNotExistException();
 		if (room == null)
@@ -68,6 +67,8 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 
 		TrainingSession trainingSession = new TrainingSession(dateS, dateE,
 				training, room);
+		
+		 trainingSession.setInstructor(instructor);
 
 		return trainingSessionDao.save(trainingSession);
 
@@ -78,21 +79,20 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	}
 
 	@Override
-	public TrainingSession findById(Long trainingSessionId,Long userId) {
+	public TrainingSession findById(Long trainingSessionId, Long userId) {
 		User user = userDao.findById(userId);
 		TrainingSession ret = trainingSessionDao.findById(trainingSessionId);
-		
-		if(ret!=null && ret.getTrainees().contains(user))
+
+		if (ret != null && ret.getTrainees().contains(user))
 			return ret;
 		return null;
 	}
-	
+
 	@Override
 	public TrainingSession findById(Long trainingSessionId) {
-		
+
 		return trainingSessionDao.findById(trainingSessionId);
 	}
-
 
 	@Override
 	public ResponseSurvey createResponseSurveyWithoutPersist(
@@ -118,7 +118,8 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	@Override
 	public Boolean alreadyAnsweredToSurvey(Long trainingSessionId, Long userId)
 			throws UserNotInTrainingSessionException {
-		TrainingSession trainingSession =  trainingSessionDao.findById(trainingSessionId);
+		TrainingSession trainingSession = trainingSessionDao
+				.findById(trainingSessionId);
 		User user = userDao.findById(userId);
 
 		trainingSession.loadResponses();
@@ -139,11 +140,13 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	public TrainingSession saveResultForTrainee(Long trainingSessionId,
 			Long userId, ResponseSurvey responseSurvey) {
 
-		TrainingSession trainingSession =  trainingSessionDao.findById(trainingSessionId);
+		TrainingSession trainingSession = trainingSessionDao
+				.findById(trainingSessionId);
 		User user = userDao.findById(userId);
 		List<Response> responses = new ArrayList<Response>();
 
 		for (Response r : responseSurvey.getResponses().values()) {
+			r = cleanResponse(r);
 			responses.add(saveResponse(r));
 		}
 		responseSurvey.setResponse(responses);
@@ -152,6 +155,19 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 		trainingSession.addResponseSurvey(user, responseSurvey);
 
 		return trainingSessionDao.update(trainingSession);
+	}
+
+	private Response cleanResponse(Response r) {
+
+		String answer = r.getAnswer();
+		if (answer != null) {
+
+			answer.replaceAll("[\t\n]", " ");
+
+			r.setAnswer(answer);
+		}
+		return r;
+
 	}
 
 	private Response saveResponse(Response r) {
@@ -163,17 +179,17 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 
 	@Override
 	public List<TrainingSession> findByTrainee(long userId) throws Exception {
-		
-	    User loggedUser = userDao.findById(userId);
-	    if(loggedUser==null)
-	    	throw new UserNotExistException();
-	    //get only the elements from the last 6 months
-	    return trainingSessionDao.findIncompleteByUser(loggedUser,getDateXMonthBefore(6));
-	    
-	    
+
+		User loggedUser = userDao.findById(userId);
+		if (loggedUser == null)
+			throw new UserNotExistException();
+		// get only the elements from the last 6 months
+		return trainingSessionDao.findIncompleteByUser(loggedUser,
+				getDateXMonthBefore(6));
+
 	}
-	
-	private Calendar getDateXMonthBefore(int month){
+
+	private Calendar getDateXMonthBefore(int month) {
 		Calendar ret = new GregorianCalendar();
 		ret.add(Calendar.MONTH, -month);
 		return ret;
@@ -182,21 +198,21 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	@Override
 	public List<TrainingSession> listByCriteria(Long trainingId,
 			Long instructorId, Calendar from, Calendar to) {
-		if(trainingId==null)
+		if (trainingId == null)
 			return new ArrayList<TrainingSession>();
-		
+
 		Training training = trainingDao.findById(trainingId);
 		User instructor = userDao.findById(instructorId);
-		return trainingSessionDao.listByCriteria(training,instructor,from,to);
+		return trainingSessionDao
+				.listByCriteria(training, instructor, from, to);
 	}
 
 	@Override
 	public void loadTrainees(Long trainingSessionId) {
-		 trainingSessionDao.findById(trainingSessionId).loadUsers();
-		
+		trainingSessionDao.findById(trainingSessionId).loadUsers();
+
 	}
 
-	
 	@Override
 	public TrainingSession loadAll(Long id) {
 		TrainingSession ts = findById(id);
@@ -204,12 +220,34 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 		ts.loadResponses();
 		return ts;
 	}
-	
-	public TrainingSession loadResponses(Long id){
+
+	public TrainingSession loadResponses(Long id) {
 		TrainingSession ts = findById(id);
 		ts.loadResponses();
 		return ts;
 	}
 
-	
+	@Override
+	public void applyForTodayTapestrySession(User newUser) {
+		TrainingSession ts;
+		newUser = userDao.findById(newUser.getId());
+		Training tapestry;
+		try {
+			tapestry = trainingDao.findByName("Tapestry Basic");
+
+			Calendar now = new GregorianCalendar();
+			List<TrainingSession> tss = listByCriteria(tapestry.getId(), null,
+					now, now);
+
+			if (tss.size() == 1) {
+				ts = tss.get(0);
+				ts.addTrainee(newUser);
+			}
+
+		} catch (Exception e) {
+			return;
+		}
+
+	}
+
 }

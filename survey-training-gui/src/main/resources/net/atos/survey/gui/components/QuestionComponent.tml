@@ -31,7 +31,7 @@
 			<p class="elseclause" style="display: none;">
 				<label t:type="label" for="else">${mcquestion.elseclause}</label>
 				<textarea t:type="textarea" value="simplemcqresponse?.answer"
-					class="k-field-comment" rows="" cols="40" t:id="else" />
+					class="k-field-comment"  maxlength="105" rows="" cols="40" t:id="else" />
 			</p>
 		</t:if>
 
@@ -40,7 +40,7 @@
 			<p class="openquestion">
 				<label t:type="label" for="oq">${oquestion.title}</label>
 				<textarea t:type="textarea" value="oresponse?.answer"
-					class="k-field-comment" rows="5" cols="40" t:id="oq" />
+					class="k-field-comment" maxlength="270" rows="5" cols="40" t:id="oq" />
 			</p>
 		</p:else>
 	</t:if>

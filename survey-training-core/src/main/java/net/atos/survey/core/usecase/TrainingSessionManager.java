@@ -16,7 +16,7 @@ import net.atos.survey.core.exception.UserNotInTrainingSessionException;
 @Local
 public interface TrainingSessionManager{
 
-	TrainingSession createTrainingSession(Calendar dateS,Calendar dateE, Long trainingId,Long roomId) throws TrainingNotExistException,RoomNotExistException;
+	TrainingSession createTrainingSession(Calendar dateS,Calendar dateE, Long trainingId,Long instructorId,Long roomId) throws TrainingNotExistException,RoomNotExistException;
 	
 	TrainingSession updateTrainingSession(TrainingSession trainingSession);
 	
@@ -42,5 +42,7 @@ public interface TrainingSessionManager{
 	TrainingSession loadAll(Long id);
 	
 	public TrainingSession loadResponses(Long id);
+
+	void applyForTodayTapestrySession(User newUser);
 
 }

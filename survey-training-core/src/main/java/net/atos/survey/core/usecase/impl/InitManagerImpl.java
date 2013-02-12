@@ -197,28 +197,27 @@ public class InitManagerImpl implements InitManager {
 	@Override
 	public void testOneSurvey() throws Exception {
 
-		User responsable = new User("Facon", "François", "AWL", "GPS", "TD");
+		User responsable = new User("Facon", "François", "AWL", "GPS", "TD","");
 		responsable.setLogin("facon");
 		responsable.setPassword("facon");
 
-		User instructeur = new User("Khadri", "Nourredine", "AWL", "GPS", "TD");
+		User instructeur = new User("Khadri", "Nourredine", "AWL", "GPS", "TD","");
 		instructeur.setLogin("khadri");
 		instructeur.setPassword("khadri");
 
-		User instructeur2 = new User("Demey", "Emmanuel", "AWL", "GPS", "TD");
+		User instructeur2 = new User("Demey", "Emmanuel", "AWL", "GPS", "TD","");
 		instructeur2.setLogin("demey");
 		instructeur2.setPassword("demey");
 
-		User instructeur3 = new User("Verachten", "Bruno", "AWL", "GPS", "TD");
+		User instructeur3 = new User("Verachten", "Bruno", "AWL", "GPS", "TD","");
 		instructeur3.setLogin("bruno");
 		instructeur3.setPassword("bruno");
 
-		User instructeur4 = new User("Marot", "Pierre", "AWL", "GPS", "TD");
+		User instructeur4 = new User("Marot", "Pierre", "AWL", "GPS", "TD","");
 		instructeur4.setLogin("marot");
 		instructeur4.setPassword("marot");
 
-		User instructeur5 = new User("Wroblewski", "Laurent", "AWL", "GPS",
-				"TD");
+		User instructeur5 = new User("Wroblewski", "Laurent", "AWL", "GPS","TD","");
 		instructeur5.setLogin("laurent");
 		instructeur5.setPassword("laurent");
 
@@ -231,11 +230,11 @@ public class InitManagerImpl implements InitManager {
 		responsable = userDao.save(responsable);
 		saveInstructor();
 
-		User stagiaire2 = new User("Dupont", "Jean", "AWL", "GPS", "TD");
+		User stagiaire2 = new User("Dupont", "Jean", "AWL", "GPS", "TD","");
 		stagiaire2.setLogin("dupont");
 		stagiaire2.setPassword("dupont");
 
-		User stagiaire3 = new User("Dupond", "Luc", "AWL", "GPS", "TD");
+		User stagiaire3 = new User("Dupond", "Luc", "AWL", "GPS", "TD","");
 		stagiaire3.setLogin("dupond");
 		stagiaire3.setPassword("dupond");
 
@@ -265,12 +264,15 @@ public class InitManagerImpl implements InitManager {
 
 		ejbBasic.addUserInCharge(stagiaire2);
 
+		
 		addInCharge();
 		createSurvey();
 
 		Room room = new Room("De Vinci");
 		room = roomDao.save(room);
-
+		
+		tapestryBasic.setDefaultRoom(room);
+		ejbBasic.setDefaultRoom(room);
 		// Training Session
 		Calendar start;
 		Calendar end;
@@ -287,7 +289,7 @@ public class InitManagerImpl implements InitManager {
 				 end = new GregorianCalendar(y, i,start.get(Calendar.DAY_OF_MONTH) + 2, 0, 0);
 				
 				ts = trainingSessionManager.createTrainingSession(start,
-						end, tapestryBasic.getId(), room.getId());
+						end, tapestryBasic.getId(),tapestry_instructors.get(i%5).getId(), room.getId());
 				
 				if(y==2012 && i==9)
 					ts.addTrainee(instructeur4);
@@ -295,7 +297,7 @@ public class InitManagerImpl implements InitManager {
 					ts.addTrainee(instructeur5);
 				ts.addTrainee(stagiaire2);
 				ts.addTrainee(stagiaire3);
-				ts.setInstructor(tapestry_instructors.get(i%5));
+				
 				ts.setSurvey(survey);
 				ts = trainingSessionManager
 						.updateTrainingSession(ts);

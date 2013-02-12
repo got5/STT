@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import net.atos.survey.core.entity.Training;
 import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.exception.UserNotInTrainingSessionException;
@@ -13,6 +14,10 @@ import net.atos.survey.core.usecase.TrainingSessionManager;
 import net.atos.survey.core.usecase.UserManager;
 
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.alerts.AlertManager;
+import org.apache.tapestry5.alerts.Duration;
+import org.apache.tapestry5.alerts.Severity;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
@@ -50,7 +55,7 @@ public class MenuAdmin {
 
 	@Property
 	@Parameter
-	private Long trainingId;
+	private Long trainingId; 
 
 	@Property
 	@Parameter
@@ -108,6 +113,8 @@ public class MenuAdmin {
 	private Object value;
 	
 	private boolean traineesLoaded=false;
+	
+
 
 	@SetupRender
 	public void applyForActivate() {
@@ -224,4 +231,6 @@ public class MenuAdmin {
 		cs.triggerEvent("trainee",new Long[]{id},null);
 			
 	}
+	
+	
 }

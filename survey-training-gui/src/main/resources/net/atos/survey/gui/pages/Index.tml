@@ -26,6 +26,8 @@
 				</p>
 				<p>
 					<input t:type="submit" value="${message:submit-label}" />
+					<a t:type="pagelink" t:page="register" href="#" class="k-button optional">${message:register-label}</a>
+					
 				</p>
 			</fieldset>
 		</form>

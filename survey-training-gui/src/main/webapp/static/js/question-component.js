@@ -8,6 +8,7 @@ function loading() {
 		
 		var $myP = $(this).parent().parent().parent().next();
 		if($myP.is("p")){
+			$myP.children().last().val('');
 			$myP.hide();
 		}
 	});

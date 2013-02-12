@@ -98,7 +98,7 @@ public class MyTrainings {
 		public void setStatusFromSurvey(String status){
 			if(status.equals("OK")){
 				if(messages.contains("status-message-ok")){
-					 manager.alert(Duration.SINGLE, Severity.INFO, messages.get("status-message-ok"));
+					 manager.alert(Duration.SINGLE, Severity.SUCCESS, messages.get("status-message-ok"));
 				}
 				
 			}
@@ -115,6 +115,10 @@ public class MyTrainings {
 				
 			}
 				
+		}
+		public void setStatusFromRegister(){
+			manager.alert(Duration.SINGLE, Severity.SUCCESS, "Welcome on STT !");
+			manager.alert(Duration.SINGLE,Severity.SUCCESS,"Login : "+loggedUser.getLogin()+"\n Password : "+loggedUser.getPassword());
 		}
 		
 	}

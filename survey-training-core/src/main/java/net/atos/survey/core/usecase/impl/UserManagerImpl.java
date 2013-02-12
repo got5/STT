@@ -43,7 +43,7 @@ public class UserManagerImpl implements UserManager {
 	}
 
 	@Override
-	public List<User> listTrainees(long id) {
+	public List<User> listTrainees(Long id) {
 	
 		
 	TrainingSession	ts = trainingSessionDao.findById(id);
@@ -54,6 +54,34 @@ public class UserManagerImpl implements UserManager {
 	@Override
 	public User findById(Long id) {
 		return userDao.findById(id);
+	}
+
+	@Override
+	public List<Training> loadInChargeOf(Long id) {
+		User u = findById(id);
+		u.getCountOfInChargeOfTraining();
+		return u.getInChargeOfTrainings();
+		
+	}
+
+	@Override
+	public User register(User newUser) {
+		String login =newUser.getName().toLowerCase();
+		String firstname = newUser.getFirstName().toLowerCase();
+		int index=0;
+		
+		while(userDao.getUserByLogin(login)!=null){
+			System.out.println("********" +userDao.getUserByLogin(login));
+			login+=firstname.substring(index, index+1);
+			System.out.println("******"+login+" "+index);
+			index++;
+		}
+		String password = "azerty123";
+		newUser.setLogin(login);
+		newUser.setPassword(password);
+		return userDao.save(newUser);
+		
+		
 	}
 	
 	

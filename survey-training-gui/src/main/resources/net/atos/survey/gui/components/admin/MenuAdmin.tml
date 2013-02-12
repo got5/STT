@@ -1,7 +1,7 @@
 <ul id="menuTraining${trainingId}" class="level2"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns:p="tapestry:parameter">
-
+	
 	<t:loop t:source="years" t:value="year">
 		<li class="year"><a href="#">${year}</a>
 			<ul class="level3">

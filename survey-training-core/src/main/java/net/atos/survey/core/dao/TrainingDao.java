@@ -15,6 +15,8 @@ public interface TrainingDao extends Dao<Long, Training> {
 
 	List<Training> listByName(String trainingName);
 
+	Training findByName(String string) throws Exception;
+
 
 	
 }

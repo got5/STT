@@ -52,10 +52,8 @@ public class Index {
 	private Zone myZone;
 	
 	@OnEvent(value=EventConstants.ACTIVATE)
-	public Object activate(){
-		if(loggedUserExists)
-			return MyTrainings.class;
-		return null;
+	public void activate(){
+		loggedUser=null;
 	}
 
 	@OnEvent(value = EventConstants.VALIDATE, component = "loginForm")
@@ -105,6 +103,8 @@ public class Index {
 		}
 		return myZone.getBody();
 	}
+	
+	
 
 	private boolean getMaxAttemptsExceeded() {
 		return count >= 3;

@@ -1,3 +1,12 @@
 #main{
 	margin-bottom:20px;
 }
+
+h1{
+	background: url(../img/atos-logo-black.png) -1px 10px no-repeat;
+}
+
+h1:before{
+	content:none;
+}
+

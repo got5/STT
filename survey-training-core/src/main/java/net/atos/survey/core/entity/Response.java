@@ -2,6 +2,7 @@ package net.atos.survey.core.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +31,7 @@ public class Response implements Serializable {
 	@JoinColumn(name="QUESTION_REF")
 	protected Question question;
 	
+	@Column(length=300)
 	private String answer;
 
 	

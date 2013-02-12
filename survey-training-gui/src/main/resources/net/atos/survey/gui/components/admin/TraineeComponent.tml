@@ -13,7 +13,7 @@
 		<t:surveyForm t:survey="survey" t:id="surveyForm"
 			t:responsesurvey="responsesurvey" />
 		<p:else>
-			<p>${message:notanswered}</p>
+			<h1>${message:notanswered}</h1>
 		</p:else>
 
 	</t:if>

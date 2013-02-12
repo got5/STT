@@ -42,4 +42,9 @@ public class TrainingManagerImpl implements TrainingManager{
 			
 	}
 
+	@Override
+	public Training findById(Long trainingId) {
+		return trainingDao.findById(trainingId);
+	}
+
 }

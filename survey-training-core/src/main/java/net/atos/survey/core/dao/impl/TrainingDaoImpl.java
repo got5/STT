@@ -27,6 +27,20 @@ public class TrainingDaoImpl extends DaoImpl<Long, Training> implements Training
 		return list(null, null, queryString);
 	}
 
+	@Override
+	public Training findByName(String mot) throws Exception{
+		if (mot != null)
+			if (!mot.equals("")) {
+				mot = mot.toLowerCase();
+
+				String queryString = "select t from Training t "
+						
+						+ " where lower(t.name) like ?1 ";
+				return find(queryString, mot);
+			}
+		return null;
+	}
+
 	
 	
 	

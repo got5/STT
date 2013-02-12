@@ -37,6 +37,8 @@ public class User implements Serializable {
 	private String login;
 
 	private String password;
+	
+	private String function;
 
 	@ManyToMany(mappedBy = "inChargeUsers")
 	private List<Training> inChargeOfTrainings = new ArrayList<Training>();
@@ -47,13 +49,14 @@ public class User implements Serializable {
 	}
 
 	public User(String name, String firstName, String entity, String bu,
-			String dept) {
+			String dept,String function) {
 		super();
 		this.name = name;
 		this.firstName = firstName;
 		this.entity = entity;
 		this.bu = bu;
 		this.dept = dept;
+		this.function = function;
 	}
 
 	public void addInChargeOfTrainings(Training training) {
@@ -103,6 +106,20 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public int getCountOfInChargeOfTraining(){
+		return inChargeOfTrainings.size();
+	}
+	
+	
+
+	public String getFunction() {
+		return function;
+	}
+
+	public void setFunction(String function) {
+		this.function = function;
 	}
 
 	@Override

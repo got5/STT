@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import net.atos.survey.core.entity.TrainingSession;
+import net.atos.survey.core.entity.Training;
 import net.atos.survey.core.entity.User;
 
 
@@ -19,7 +19,12 @@ public interface UserManager {
 
 	List<User> listInstructor(String mot);
 
-	List<User> listTrainees(long id);
+	List<User> listTrainees(Long id);
+	
+	List<Training> loadInChargeOf(Long id);
+
+	User register(User newUser);
+	
 	
 	
 

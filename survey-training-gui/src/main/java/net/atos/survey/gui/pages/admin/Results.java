@@ -12,11 +12,16 @@ import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.SimpleMCQResponseManager;
 import net.atos.survey.core.usecase.TrainingManager;
+import net.atos.survey.core.usecase.TrainingSessionManager;
 import net.atos.survey.core.usecase.UserManager;
 import net.atos.survey.gui.components.admin.MenuAdmin;
+import net.atos.survey.gui.pages.Index;
 
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.alerts.AlertManager;
+import org.apache.tapestry5.alerts.Duration;
+import org.apache.tapestry5.alerts.Severity;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
@@ -26,6 +31,7 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.Submit;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -38,8 +44,7 @@ import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 @Import(library = { "context:static/js/dateFromTo.js",
-		"context:static/js/accordion.js", "context:static/js/autocomplete.js" }, 
-		stylesheet = "context:static/css/results.css")
+		"context:static/js/accordion.js", "context:static/js/autocomplete.js" }, stylesheet = "context:static/css/results.css")
 public class Results {
 
 	@SessionState
@@ -55,15 +60,15 @@ public class Results {
 
 	@Inject
 	private TrainingManager trainingManager;
-	
+
+	@Inject
+	private TrainingSessionManager trainingSessionManager;
+
 	@Property
 	private TrainingSession sessionForBlock;
-	
 
 	@Property
 	private User traineeForBlock;
-
-	
 
 	@Inject
 	private SimpleMCQResponseManager simpleMCQResponseManager;
@@ -90,7 +95,6 @@ public class Results {
 	@Property
 	private Training training;
 
-	
 	@Property
 	private Date fromD;
 
@@ -99,7 +103,7 @@ public class Results {
 
 	@Property
 	private Date toD;
-	
+
 	@Property
 	private Calendar to;
 
@@ -122,6 +126,9 @@ public class Results {
 
 	@Component
 	private Zone zone1;
+	
+	@Component
+	private Zone zone3;
 
 	@Inject
 	private Block sessionBlock;
@@ -132,25 +139,39 @@ public class Results {
 	@Persist
 	@Property
 	private Long trainingSessionIdClicked;
-	
+
 	@Persist
 	@Property
 	private Long traineeIdClicked;
-	
 
 	@Inject
 	private Request request;
 
 	@Property
 	private int year;
-	
+
 	@InjectComponent
 	private MenuAdmin menuAdmin;
-	
-	
+
+	@Inject
+	private AlertManager manager;
+
+	@Component
+	private Submit addSubmit;
+
+	private boolean add = false;
 
 	@OnEvent(EventConstants.ACTIVATE)
-	public void applyForActivate() {
+	public Object applyForActivate() {
+
+		if (!loggedUserExists) {
+			return Index.class;
+		}
+
+		List<Training> licot = userManager.loadInChargeOf(loggedUser.getId());
+		if (licot.size() == 0) {
+			return Index.class;
+		}
 
 		if (messages.contains("datePattern")) {
 			try {
@@ -165,6 +186,14 @@ public class Results {
 
 		if (!request.isXHR())
 			applyForSuccess();
+
+		return null;
+	}
+
+	@OnEvent(value = "selected", component = "addSubmit")
+	public void submitFromAdd() {
+		this.add = true;
+
 	}
 
 	@OnEvent(value = EventConstants.SUCCESS)
@@ -189,11 +218,15 @@ public class Results {
 					+ to.get(Calendar.YEAR));
 		}
 
-		trainings = trainingManager.listTrainingName(trainingName);
+		if (add) {
+			addSession();
+			return zone3.getBody();
+		} else {
+			trainings = trainingManager.listTrainingName(trainingName);
+			return zone1.getBody();
+		}
 
 		
-
-		return zone1.getBody();
 
 	}
 
@@ -208,8 +241,6 @@ public class Results {
 		from = null;
 		to = null;
 	}
-
-	
 
 	@OnEvent(value = "provideCompletions", component = "training")
 	public List<JSONObject> provideTrainingCompletion(String mot) {
@@ -246,30 +277,55 @@ public class Results {
 
 	@AfterRender
 	public void launchJs() {
-		
+
 		js.addScript(InitializationPriority.LATE, "customAutocomplete(%s);",
 				new JSONArray());
-		
 
 	}
 
-	@Inject private AjaxResponseRenderer arr;
-	
-	@OnEvent(component = "menuAdmin", value="trainingSession")
+	@Inject
+	private AjaxResponseRenderer arr;
+
+	@OnEvent(component = "menuAdmin", value = "trainingSession")
 	public void updateSessionZone(Long id) {
-		trainingSessionIdClicked=id;
-//		return sessionBlock;
+		trainingSessionIdClicked = id;
+		// return sessionBlock;
 		arr.addRender("zone2", sessionBlock);
 	}
 
-	@OnEvent(component = "menuAdmin",value="trainee")
+	@OnEvent(component = "menuAdmin", value = "trainee")
 	public void updateTraineeZone(Long id) {
-		traineeIdClicked=id;
-//		return traineeBlock;
+		traineeIdClicked = id;
+		// return traineeBlock;
 		arr.addRender("zone2", traineeBlock);
 	}
 
-	
-	
+	public void addSession() {
+		Training training = trainingManager.findById(trainingId);
+
+		if (isAllSet()) {
+			try {
+				trainingSessionManager.createTrainingSession(from, to,
+						trainingId, instructorId, training.getDefaultRoom()
+								.getId());
+				manager.alert(Duration.SINGLE, Severity.INFO,
+						"New Session created");
+			} catch (Exception e) {
+				manager.alert(Duration.SINGLE, Severity.INFO,
+						"Error occured while creating a new session");
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public boolean isAllSet() {
+		boolean ret = false;
+		if (trainingId != null && instructorId != null && from != null
+				&& to != null) {
+			ret = true;
+		}
+		return ret;
+	}
 
 }
