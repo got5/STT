@@ -239,11 +239,12 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 		try {
 			
 			Training tapestry = trainingDao.findByName("Tapestry Basic");
-			Calendar now = new GregorianCalendar();
-			Calendar nowMinus1 = new GregorianCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH)+1, now.get(Calendar.DAY_OF_MONTH)-1);
 			
+			Calendar nowMinus1 = new GregorianCalendar();
+			nowMinus1.add(Calendar.DAY_OF_MONTH, -1);
 			
-			Calendar nowPlus3 = new GregorianCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH)+1, now.get(Calendar.DAY_OF_MONTH)+3);
+			Calendar nowPlus3 = new GregorianCalendar();
+			nowPlus3.add(Calendar.DAY_OF_MONTH, 3);
 			
 			List<TrainingSession> tss = listByCriteria(tapestry.getId(), null,nowMinus1,nowPlus3);
 			
