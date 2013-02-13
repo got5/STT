@@ -126,9 +126,12 @@ public class Results {
 
 	@Component
 	private Zone zone1;
-	
+
 	@Component
 	private Zone zone3;
+	
+	@Component
+	private Zone zone4;
 
 	@Inject
 	private Block sessionBlock;
@@ -219,14 +222,17 @@ public class Results {
 		}
 
 		if (add) {
-			addSession();
-			return zone3.getBody();
+			if (isAllSet()) {
+				addSession();
+				return zone3.getBody();
+			}
+			else{
+				return zone4.getBody();
+			}
 		} else {
 			trainings = trainingManager.listTrainingName(trainingName);
 			return zone1.getBody();
 		}
-
-		
 
 	}
 
@@ -303,18 +309,14 @@ public class Results {
 	public void addSession() {
 		Training training = trainingManager.findById(trainingId);
 
-		if (isAllSet()) {
-			try {
-				trainingSessionManager.createTrainingSession(from, to,
-						trainingId, instructorId, training.getDefaultRoom()
-								.getId());
-				manager.alert(Duration.SINGLE, Severity.INFO,
-						"New Session created");
-			} catch (Exception e) {
-				manager.alert(Duration.SINGLE, Severity.INFO,
-						"Error occured while creating a new session");
-				e.printStackTrace();
-			}
+		try {
+			trainingSessionManager.createTrainingSession(from, to, trainingId,
+					instructorId, training.getDefaultRoom().getId());
+			manager.alert(Duration.SINGLE, Severity.INFO, "New Session created");
+		} catch (Exception e) {
+			manager.alert(Duration.SINGLE, Severity.INFO,
+					"Error occured while creating a new session");
+			e.printStackTrace();
 		}
 
 	}

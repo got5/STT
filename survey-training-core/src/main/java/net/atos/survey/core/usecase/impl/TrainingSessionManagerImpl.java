@@ -1,5 +1,6 @@
 package net.atos.survey.core.usecase.impl;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -208,8 +209,11 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	}
 
 	@Override
-	public void loadTrainees(Long trainingSessionId) {
-		trainingSessionDao.findById(trainingSessionId).loadUsers();
+	public TrainingSession loadTrainees(Long trainingSessionId) {
+		TrainingSession ts = trainingSessionDao.findById(trainingSessionId);
+		ts.loadUsers();
+		return ts;
+		
 
 	}
 
@@ -228,26 +232,55 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	}
 
 	@Override
-	public void applyForTodayTapestrySession(User newUser) {
-		TrainingSession ts;
+	public Long applyForTodayTapestrySession(User newUser) {
+	
 		newUser = userDao.findById(newUser.getId());
-		Training tapestry;
+		Long ret = -1l;
 		try {
-			tapestry = trainingDao.findByName("Tapestry Basic");
-
+			
+			Training tapestry = trainingDao.findByName("Tapestry Basic");
 			Calendar now = new GregorianCalendar();
-			List<TrainingSession> tss = listByCriteria(tapestry.getId(), null,
-					now, now);
-
-			if (tss.size() == 1) {
-				ts = tss.get(0);
+			Calendar nowMinus1 = new GregorianCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH)+1, now.get(Calendar.DAY_OF_MONTH)-1);
+			
+			
+			Calendar nowPlus3 = new GregorianCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH)+1, now.get(Calendar.DAY_OF_MONTH)+3);
+			
+			List<TrainingSession> tss = listByCriteria(tapestry.getId(), null,nowMinus1,nowPlus3);
+			
+			
+			ret = tapestry.getId();
+			for(TrainingSession ts: tss){
+				
 				ts.addTrainee(newUser);
+				trainingSessionDao.update(ts);
 			}
+			
 
 		} catch (Exception e) {
-			return;
+			e.printStackTrace();
 		}
+		
+		return ret;
 
+	}
+
+	@Override
+	public void removeTrainee(Long trainingSessionId, Long traineeId) {
+		TrainingSession ts = loadTrainees(trainingSessionId);
+		
+		User trainee = userDao.findById(traineeId);
+		ts.removeTrainee(trainee);
+		trainingSessionDao.update(ts);
+			
+	}
+
+	@Override
+	public void delete(Long trainingSessionId) {
+		TrainingSession ts = findById(trainingSessionId);
+		if(ts!=null){
+			trainingSessionDao.delete(trainingSessionId);
+		}
+		
 	}
 
 }

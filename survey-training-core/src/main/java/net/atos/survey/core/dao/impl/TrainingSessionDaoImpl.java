@@ -60,7 +60,7 @@ public class TrainingSessionDaoImpl extends DaoImpl<Long, TrainingSession> imple
 					return list(null, null, queryString+orderByString, training,instructor);
 				}
 			}else{
-				queryString+=" and ts.dateS > ?2 ";
+				queryString+=" and ts.dateS >= ?2 ";
 				if(instructor == null){
 					return list(null, null, queryString+orderByString, training,from,TemporalType.DATE);
 					
@@ -72,7 +72,7 @@ public class TrainingSessionDaoImpl extends DaoImpl<Long, TrainingSession> imple
 			}
 		}
 		else{
-			queryString+=" and ts.dateE < ?2 ";
+			queryString+=" and ts.dateE <= ?2 ";
 			
 			if(from == null){
 				//rien
@@ -84,7 +84,7 @@ public class TrainingSessionDaoImpl extends DaoImpl<Long, TrainingSession> imple
 					return list(null, null, queryString+orderByString, training, to,TemporalType.DATE,instructor);
 				}
 			}else{
-				queryString+=" and ts.dateS > ?3 ";
+				queryString+=" and ts.dateS >= ?3 ";
 				if(instructor == null){
 					return list(null, null, queryString+orderByString, training,to,TemporalType.DATE,from,TemporalType.DATE);
 					

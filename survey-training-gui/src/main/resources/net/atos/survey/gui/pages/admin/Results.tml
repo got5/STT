@@ -76,7 +76,18 @@
 			<div class="k-confirm-messages">
 				<h3>Confirm</h3>
 				<p>A new Session has been created</p>
-				
+
+			</div>
+
+
+		</t:zone>
+
+		<t:zone t:id="zone4" t:visible="false">
+
+			<div class="k-error-messages">
+				<h3>Form Error</h3>
+				<p>All fields must be filled</p>
+
 			</div>
 
 

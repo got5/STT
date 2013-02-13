@@ -6,14 +6,26 @@
 		<div class="k-actions-block">
 			<p class="action-context">${trainee.firstname} ${trainee.name}</p>
 			<ul class="k-actions">
-				<li><a t:type="actionlink" t:id="print" href="#"  class="bt-download">PDF</a></li>
+				<li><a t:type="actionlink" t:id="print" href="#"
+					class="bt-download">PDF</a></li>
 			</ul>
 		</div>
 
+
 		<t:surveyForm t:survey="survey" t:id="surveyForm"
 			t:responsesurvey="responsesurvey" />
+
+
 		<p:else>
-			<h1>${message:notanswered}</h1>
+			<div class="k-actions-block">
+				<ul class="k-actions">
+					<p class="action-context">${message:notanswered}</p>
+					<li t:type="if" t:test="infuture"><a t:type="actionlink"
+						t:id="delete" href="#" class="bt-del">Delete</a></li>
+				</ul>
+			</div>
+
+
 		</p:else>
 
 	</t:if>

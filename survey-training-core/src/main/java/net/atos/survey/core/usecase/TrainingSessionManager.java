@@ -37,12 +37,16 @@ public interface TrainingSessionManager{
 	List<TrainingSession> listByCriteria(Long trainingId, Long instructorId,
 			Calendar from, Calendar to);
 	
-	void loadTrainees(Long trainingSessionId);
+	TrainingSession loadTrainees(Long trainingSessionId);
 
 	TrainingSession loadAll(Long id);
 	
 	public TrainingSession loadResponses(Long id);
 
-	void applyForTodayTapestrySession(User newUser);
+	Long applyForTodayTapestrySession(User newUser);
 
+	void removeTrainee(Long trainingSessionId, Long traineeId);
+	
+	void delete(Long trainingSessionId);
+	
 }
