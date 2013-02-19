@@ -22,12 +22,19 @@
 
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.got5</groupId>
+			<artifactId>tapestry5-cdi</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<!-- AWL Kawwa2 components -->
 
 		<dependency>
 			<groupId>net.atos.tapestry</groupId>
 			<artifactId>tapestry5-kawwa-components</artifactId>
 			<version>${kawwa.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- <dependency> <groupId>org.got5</groupId> <artifactId>tapestry5-jquery</artifactId> 
@@ -59,8 +66,8 @@
 			<scope>provided</scope>
 		</dependency>
 
-		
-	
+
+
 
 	</dependencies>
 

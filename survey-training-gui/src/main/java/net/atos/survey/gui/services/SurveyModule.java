@@ -25,10 +25,14 @@ import org.apache.tapestry5.ioc.ServiceResources;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Local;
+import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.services.ValueEncoderFactory;
 import org.apache.tapestry5.services.ValueEncoderSource;
+import org.got5.tapestry5.cdi.CDIInjectModule;
 
-
+@SubModule({
+    CDIInjectModule.class
+})
 public class SurveyModule {
 	
 	
