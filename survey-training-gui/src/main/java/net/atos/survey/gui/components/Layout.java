@@ -2,6 +2,8 @@ package net.atos.survey.gui.components;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import net.atos.survey.core.entity.Training;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.UserManager;
@@ -14,7 +16,7 @@ import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
-import org.apache.tapestry5.ioc.annotations.Inject;
+
 
 @Import(stylesheet = "context:static/css/layout.css")
 public class Layout {

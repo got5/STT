@@ -13,7 +13,7 @@ import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.ioc.annotations.Inject;
+import javax.inject.Inject;
 
 
 @Import(stylesheet="context:static/css/question-component.css")

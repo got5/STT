@@ -21,7 +21,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
-import org.apache.tapestry5.ioc.annotations.Inject;
+import javax.inject.Inject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 

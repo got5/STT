@@ -13,18 +13,19 @@
 	<packaging>war</packaging>
 	<name>survey-training-gui Tapestry 5 Application</name>
 
-
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 
-
 	<dependencies>
 
 
-
+		<dependency>
+			<groupId>org.got5</groupId>
+			<artifactId>tapestry5-cdi</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		
 		<!-- AWL Kawwa2 components -->
@@ -53,9 +54,6 @@
 			<scope>compile</scope>
 		</dependency>
 
-
-
-
 		<!-- Provided by the servlet container, but sometimes referenced in the 
 			application code. -->
 		<dependency>
@@ -64,9 +62,6 @@
 			<version>${servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
-
-
 
 	</dependencies>
 
@@ -85,8 +80,6 @@
 					<optimize>true</optimize>
 				</configuration>
 			</plugin>
-
-
 
 			<plugin>
 				<groupId>org.apache.openejb.maven</groupId>
@@ -117,7 +110,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 
 </project>

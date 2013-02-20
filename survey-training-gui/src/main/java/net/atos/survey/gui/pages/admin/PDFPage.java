@@ -8,7 +8,7 @@ import net.atos.survey.gui.pages.Index;
 
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.ioc.annotations.Inject;
+import javax.inject.Inject;
 
 
 public class PDFPage {

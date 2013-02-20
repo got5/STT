@@ -19,7 +19,7 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.ioc.Messages;
-import org.apache.tapestry5.ioc.annotations.Inject;
+import javax.inject.Inject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 @Import(library = {"context:static/js/question-component.js","context:static/js/surveyForm.js"},

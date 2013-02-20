@@ -89,13 +89,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Resource locators -->
-		<dependency>
-			<groupId>net.atos.xa.resourcelocator</groupId>
-			<artifactId>xa-rl-openejb</artifactId>
-			<version>${xa-rl-openejb.version}</version>
-		</dependency>
-
 		<!-- openejb -->
 		<dependency>
 			<groupId>org.apache.openejb</groupId>
@@ -140,7 +133,6 @@
 				<version>${openjpa.version}</version>
 				<configuration>
 					<persistenceXmlFile>${project.basedir}/src/main/resources/META-INF/persistence.xml</persistenceXmlFile>
-					<includes>net/atos/survey/core/domaine/Usager.class</includes>
 					<addDefaultConstructor>true</addDefaultConstructor>
 					<enforcePropertyRestrictions>true</enforcePropertyRestrictions>
 				</configuration>
@@ -200,11 +192,7 @@
 				</configuration>
 			</plugin>
 
-			<!-- <plugin> <groupId>net.atos.xa.maven.plugin</groupId> <artifactId>sharing.ejb3.entity</artifactId> 
-				<version>${sharing.ejb3.entity.version}</version> <executions> <execution> 
-				<phase>process-test-resources</phase> <goals> <goal>handle-ejb-jar</goal> 
-				</goals> </execution> </executions> </plugin> -->
-
+			
 		</plugins>
 	</build>
 
