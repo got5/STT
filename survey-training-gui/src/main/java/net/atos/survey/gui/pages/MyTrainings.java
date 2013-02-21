@@ -19,109 +19,110 @@ import javax.inject.Inject;
 
 public class MyTrainings {
 
-		@Inject
-		private TrainingSessionManager trainingSessionManager;
-		
-		@Property(write=false)
-		private List<TrainingSession> trainingSessions;
-		
-		@Property
-		private TrainingSession trainingSession;
+	@Inject
+	private TrainingSessionManager trainingSessionManager;
 
-		@Property
-		@SessionState
-		private User loggedUser;
+	@Property(write = false)
+	private List<TrainingSession> trainingSessions;
 
-		private boolean loggedUserExists;
+	@Property
+	private TrainingSession trainingSession;
 
-		@Property
-		private int index = 0;
-		
-		@Property
-		private SimpleDateFormat dateFormat;
-		
-		@Inject
-		private Messages messages;
-		
-		@Inject
-	    private AlertManager manager;
-		
+	@Property
+	@SessionState
+	private User loggedUser;
 
-		private String rowClass;
-		
-		private static final String DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
-		
+	private boolean loggedUserExists;
 
-		@OnEvent(EventConstants.ACTIVATE)
-		public Object loadingForm() {
+	@Property
+	private int index = 0;
 
-			if (!loggedUserExists) {
-				return Index.class;
-			}
+	@Property
+	private SimpleDateFormat dateFormat;
+
+	@Inject
+	private Messages messages;
+
+	@Inject
+	private AlertManager manager;
+
+	private String rowClass;
+
+	private static final String DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
+
+	@OnEvent(EventConstants.ACTIVATE)
+	public Object loadingForm() {
+
+		if (!loggedUserExists) {
+			return Index.class;
+		}
+		try {
+			trainingSessions = trainingSessionManager.findByTrainee(loggedUser
+					.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Index.class;
+		}
+
+		if (messages.contains("datePattern")) {
 			try {
-				trainingSessions = trainingSessionManager.findByTrainee(loggedUser.getId());
-			} catch (Exception e) {
-				e.printStackTrace();
-				return Index.class;
-			}
-						
-			if (messages.contains("datePattern")) {
-				try {
-					dateFormat = new SimpleDateFormat(messages.get("datePattern"));
-				} catch (Exception ex) {
-					dateFormat = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
-				}
-			} else {
+				dateFormat = new SimpleDateFormat(messages.get("datePattern"));
+			} catch (Exception ex) {
 				dateFormat = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
 			}
-
-			return null;
+		} else {
+			dateFormat = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
 		}
 
-		
-		public String getRowClass() {
-			if (index % 2 == 0) {
-				return "tbl1";
-			} else {
-				return "tbl2";
-			}
-		}
-
-		public void setRowClass(String rowClass) {
-			this.rowClass = rowClass;
-		}
-
-		public boolean isNoTrainingSession(){
-			return trainingSessions.size()==0;
-		}
-		
-		public void setStatusFromSurvey(String status){
-			if(status.equals("OK")){
-				if(messages.contains("status-message-ok")){
-					 manager.alert(Duration.SINGLE, Severity.SUCCESS, messages.get("status-message-ok"));
-				}
-				
-			}
-			if(status.equals("ERROR")){
-				if(messages.contains("status-message-error")){
-					 manager.alert(Duration.SINGLE, Severity.ERROR, messages.get("status-message-error"));
-				}
-				
-			}
-			if(status.equals("PERMISSION")){
-				if(messages.contains("status-message-permission")){
-					 manager.alert(Duration.SINGLE, Severity.ERROR, messages.get("status-message-permission"));
-				}
-				
-			}
-				
-		}
-		public void setStatusFromRegister(){
-			manager.alert(Duration.SINGLE, Severity.SUCCESS, "Welcome on STT !");
-			manager.alert(Duration.SINGLE,Severity.SUCCESS,"Login : "+loggedUser.getLogin()+"\n Password : "+loggedUser.getPassword());
-		}
-		
+		return null;
 	}
 
+	public String getRowClass() {
+		if (index % 2 == 0) {
+			return "tbl1";
+		} else {
+			return "tbl2";
+		}
+	}
 
+	public void setRowClass(String rowClass) {
+		this.rowClass = rowClass;
+	}
 
+	public boolean isNoTrainingSession() {
+		return trainingSessions.size() == 0;
+	}
+
+	public void setStatusFromSurvey(String status) {
+		if (status.equals("OK")) {
+			if (messages.contains("status-message-ok")) {
+				manager.alert(Duration.SINGLE, Severity.SUCCESS,
+						messages.get("status-message-ok"));
+			}
+
+		}
+		if (status.equals("ERROR")) {
+			if (messages.contains("status-message-error")) {
+				manager.alert(Duration.SINGLE, Severity.ERROR,
+						messages.get("status-message-error"));
+			}
+
+		}
+		if (status.equals("PERMISSION")) {
+			if (messages.contains("status-message-permission")) {
+				manager.alert(Duration.SINGLE, Severity.ERROR,
+						messages.get("status-message-permission"));
+			}
+
+		}
+
+	}
+
+	public void setStatusFromRegister() {
+		manager.alert(Duration.SINGLE, Severity.SUCCESS, "Welcome on STT !");
+		manager.alert(Duration.SINGLE, Severity.SUCCESS,
+				"Login : " + loggedUser.getLogin() + "\n Password : "
+						+ loggedUser.getPassword());
+	}
+
+}

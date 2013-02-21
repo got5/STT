@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import net.atos.survey.core.annotation.User2;
 import net.atos.survey.core.entity.Training;
 import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
@@ -56,6 +57,7 @@ public class Results {
 
 	/* EJB */
 	@Inject
+	@User2
 	private UserManager userManager;
 
 	@Inject

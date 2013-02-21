@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import net.atos.survey.core.annotation.User1;
+import net.atos.survey.core.annotation.User2;
 import net.atos.survey.core.dao.TrainingSessionDao;
 import net.atos.survey.core.dao.UserDao;
 import net.atos.survey.core.entity.Training;
@@ -14,8 +14,8 @@ import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.UserManager;
 
 @Stateless(name = "net.atos.survey.core.usecase.UserManager")
-@User1
-public class UserManagerImpl implements UserManager {
+@User2
+public class UserManagerImpl2 implements UserManager {
 
 	@Inject
 	UserDao userDao;
@@ -44,6 +44,7 @@ public class UserManagerImpl implements UserManager {
 
 	@Override
 	public List<User> listTrainees(Long id) {
+
 		TrainingSession ts = trainingSessionDao.findById(id);
 		ts.loadUsers();
 		return ts.getTrainees();
@@ -74,7 +75,7 @@ public class UserManagerImpl implements UserManager {
 			System.out.println("******" + login + " " + index);
 			index++;
 		}
-		String password = "azerty123";
+		String password = "azerty1234";
 		newUser.setLogin(login);
 		newUser.setPassword(password);
 		return userDao.save(newUser);

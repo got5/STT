@@ -12,6 +12,7 @@ import java.util.Calendar;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import net.atos.survey.core.annotation.User1;
 import net.atos.survey.core.entity.Category;
 import net.atos.survey.core.entity.ResponseSurvey;
 import net.atos.survey.core.entity.Survey;
@@ -43,6 +44,7 @@ public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 	@Inject
 	TrainingSessionManager trainingSessionManager;
 	@Inject
+	@User1
 	UserManager userManager;
 	@Inject
 	SurveyManager surveyManager;
@@ -57,21 +59,19 @@ public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 	ResponseSurvey responseSurvey;
 	Survey survey;
 
-	
-
 	public static final float[][] COLUMNS_VS = { { 46, 700, 287, 750 },
 			{ 316, 700, 565, 750 } };
 
-	public InputStream buildPDF(Long trainingSessionId, Long traineeId) throws Exception {
+	public InputStream buildPDF(Long trainingSessionId, Long traineeId)
+			throws Exception {
 
-		
 		if (trainingSessionId == null || traineeId == null) {
 			throw new NullPointerException("Page PDFGenerator non initialisé");
 		}
 
-		 ts = trainingSessionManager.findById(trainingSessionId);
-		 trainee = userManager.findById(traineeId);
-		 responseSurvey = ts.getResponseSurvey(trainee);
+		ts = trainingSessionManager.findById(trainingSessionId);
+		trainee = userManager.findById(traineeId);
+		responseSurvey = ts.getResponseSurvey(trainee);
 
 		if (ts == null)
 			throw new NoTrainingSessionFoundException();
@@ -86,18 +86,9 @@ public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 
 		if (responseSurvey == null)
 			throw new UserNotAnsweredToSurveyException();
-		
 
 		survey = surveyManager.loadAllR(ts.getSurvey());
-		
-		
-		
-			
-		
-		
-		
-		
-		
+
 		// step 1: creation of a document-object
 		document = new Document(PageSize.A4, 20, 10, 20, 20);
 
@@ -130,12 +121,9 @@ public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 		footer.addFooter("Atos Worldline");
 	}
 
-	
 	private void addContent() throws Exception {
 
 		addVousStage();
-
-		
 
 		CategoryPDF cPDF;
 		float[] coord = { COLUMNS_VS[0][0], COLUMNS_VS[0][1], COLUMNS_VS[1][2],
@@ -221,10 +209,4 @@ public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 		return df.format(d.getTime());
 	}
 
-	
-
-	
-
-
-	 
 }

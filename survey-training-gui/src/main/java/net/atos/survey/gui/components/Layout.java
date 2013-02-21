@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import net.atos.survey.core.annotation.User1;
 import net.atos.survey.core.entity.Training;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.UserManager;
@@ -17,11 +18,11 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 
-
 @Import(stylesheet = "context:static/css/layout.css")
 public class Layout {
 
 	@Inject
+	@User1
 	private UserManager userManager;
 
 	@Parameter(defaultPrefix = BindingConstants.LITERAL)

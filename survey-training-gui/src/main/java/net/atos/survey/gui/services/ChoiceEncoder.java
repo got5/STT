@@ -1,5 +1,7 @@
 package net.atos.survey.gui.services;
 
+import javax.inject.Inject;
+
 import net.atos.survey.core.entity.Choice;
 import net.atos.survey.core.usecase.ChoiceManager;
 
@@ -7,11 +9,8 @@ import org.apache.tapestry5.ValueEncoder;
 
 public class ChoiceEncoder implements ValueEncoder<Choice> {
 
-	ChoiceManager choiceManager;
-
-	public ChoiceEncoder(ChoiceManager choiceManager) {
-		this.choiceManager = choiceManager;
-	}
+	@Inject
+	private ChoiceManager choiceManager;
 
 	@Override
 	public String toClient(Choice choice) {
@@ -22,7 +21,7 @@ public class ChoiceEncoder implements ValueEncoder<Choice> {
 
 	@Override
 	public Choice toValue(String clientValue) {
-		if(clientValue ==null)
+		if (clientValue == null)
 			return null;
 		Long id = Long.valueOf(clientValue);
 		return choiceManager.findById(id);

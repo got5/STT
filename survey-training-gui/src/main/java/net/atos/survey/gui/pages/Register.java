@@ -1,5 +1,6 @@
 package net.atos.survey.gui.pages;
 
+import net.atos.survey.core.annotation.User2;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.TrainingSessionManager;
 import net.atos.survey.core.usecase.UserManager;
@@ -20,6 +21,7 @@ public class Register {
 	private User loggedUser;
 	
 	@Inject
+	@User2
 	UserManager userManager;
 	@Inject
 	TrainingSessionManager trainingSessionManager;

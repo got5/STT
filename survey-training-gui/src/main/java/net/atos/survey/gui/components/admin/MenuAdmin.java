@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import net.atos.survey.core.annotation.User1;
 import net.atos.survey.core.entity.Training;
 import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
@@ -45,6 +46,7 @@ public class MenuAdmin {
 	private User loggedUser;
 
 	@Inject
+	@User1
 	private UserManager userManager;
 
 	@Inject
@@ -55,12 +57,12 @@ public class MenuAdmin {
 
 	@Property
 	@Parameter
-	private Long trainingId; 
+	private Long trainingId;
 
 	@Property
 	@Parameter
 	private Long instructorId;
-	
+
 	@Persist
 	private Long trainingSessionId;
 
@@ -89,10 +91,10 @@ public class MenuAdmin {
 
 	@Inject
 	private JavaScriptSupport js;
-	
+
 	@Inject
 	private AjaxResponseRenderer ajaxRR;
-	
+
 	@Inject
 	private Request request;
 
@@ -106,21 +108,19 @@ public class MenuAdmin {
 
 	@Property
 	private int year;
-	
+
 	@Inject
 	private ComponentResources cs;
-	
-	private Object value;
-	
-	private boolean traineesLoaded=false;
-	
 
+	private Object value;
+
+	private boolean traineesLoaded = false;
 
 	@SetupRender
 	public void applyForActivate() {
-		
-		trainees=new ArrayList<User>();
-		
+
+		trainees = new ArrayList<User>();
+
 		if (messages.contains("datePattern")) {
 			try {
 				dateFormat = new SimpleDateFormat(
@@ -131,39 +131,39 @@ public class MenuAdmin {
 		} else {
 			dateFormat = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
 		}
-		
-		
+
 	}
 
-	
-	
 	@AfterRender
 	public void launchJs() {
-		js.addScript(InitializationPriority.LATE, "improveaccordion('%s');","menuTraining"+trainingId);
+		js.addScript(InitializationPriority.LATE, "improveaccordion('%s');",
+				"menuTraining" + trainingId);
 	}
-	
+
 	public String getClientClassTraineeDone() {
-		String ret =""; 
+		String ret = "";
 		try {
-			//ON a plus accès à trainingSession car la boucle sur les trainee est dans une zone
-			//Du coup on utiliser trainingSessionId
-			if(trainingSessionManager.alreadyAnsweredToSurvey(trainingSessionId, trainee.getId())){
-				ret="trainee-done";
+			// ON a plus accès à trainingSession car la boucle sur les trainee
+			// est dans une zone
+			// Du coup on utiliser trainingSessionId
+			if (trainingSessionManager.alreadyAnsweredToSurvey(
+					trainingSessionId, trainee.getId())) {
+				ret = "trainee-done";
 			}
 		} catch (UserNotInTrainingSessionException e) {
-			
+
 		}
-		
+
 		return ret;
 	}
-	
+
 	public List<Integer> getYears() {
-		
+
 		// on assume que les trainingSession sont ordonné par date
 		List<Integer> years = new ArrayList<Integer>();
 
-		trainingSessions = trainingSessionManager.listByCriteria(
-				trainingId, instructorId, from, to);
+		trainingSessions = trainingSessionManager.listByCriteria(trainingId,
+				instructorId, from, to);
 
 		if (trainingSessions.size() == 0)
 			return years;
@@ -172,14 +172,14 @@ public class MenuAdmin {
 		years.add(cmp.getDateS().get(Calendar.YEAR));
 
 		for (TrainingSession ts : trainingSessions) {
-			
+
 			if (ts.getDateS().get(Calendar.YEAR) != cmp.getDateS().get(
 					Calendar.YEAR)) {
-				
+
 				years.add(ts.getDateS().get(Calendar.YEAR));
 				cmp = ts;
 			}
-			
+
 		}
 		return years;
 
@@ -193,44 +193,45 @@ public class MenuAdmin {
 		}
 		return tss;
 	}
-	
-	
-	
-	
+
 	@OnEvent(component = "sessionzone")
 	public void updateSessionZone(final Long trainingSessionId) {
-		//A ce moment ci, on ne connait plus la trainingSession, c'est pourquoi on en garde une référence maintenant 
-		this.trainingSessionId=trainingSessionId;
-		
-		if(!traineesLoaded){
-			 trainees = userManager.listTrainees(trainingSessionId);
-			traineesLoaded=true;
+		// A ce moment ci, on ne connait plus la trainingSession, c'est pourquoi
+		// on en garde une référence maintenant
+		this.trainingSessionId = trainingSessionId;
+
+		if (!traineesLoaded) {
+			trainees = userManager.listTrainees(trainingSessionId);
+			traineesLoaded = true;
 		}
-		
-		cs.triggerEvent("trainingSession",new Long[]{trainingSessionId},null);
-		
-		arr.addRender("traineesGroup"+trainingSessionId, traineeZone.getBody());
+
+		cs.triggerEvent("trainingSession", new Long[] { trainingSessionId },
+				null);
+
+		arr.addRender("traineesGroup" + trainingSessionId,
+				traineeZone.getBody());
 		arr.addCallback(new JavaScriptCallback() {
-			
+
 			@Override
 			public void run(JavaScriptSupport javascriptSupport) {
-				javascriptSupport.addScript("handlerontrainee('%s')","menutrainingsession"+trainingSessionId );
-				
+				javascriptSupport.addScript("handlerontrainee('%s')",
+						"menutrainingsession" + trainingSessionId);
+
 			}
 		});
-		
+
 	}
-	
+
 	@Inject
 	private AjaxResponseRenderer arr;
-	
-	@InjectComponent private Zone traineeZone;
-	
+
+	@InjectComponent
+	private Zone traineeZone;
+
 	@OnEvent(component = "studentzone")
 	public void updateTraineeZone(Long id) {
-		cs.triggerEvent("trainee",new Long[]{id},null);
-			
+		cs.triggerEvent("trainee", new Long[] { id }, null);
+
 	}
-	
-	
+
 }

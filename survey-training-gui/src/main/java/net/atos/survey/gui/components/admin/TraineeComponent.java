@@ -3,6 +3,7 @@ package net.atos.survey.gui.components.admin;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import net.atos.survey.core.annotation.User1;
 import net.atos.survey.core.entity.ResponseSurvey;
 import net.atos.survey.core.entity.Survey;
 import net.atos.survey.core.entity.TrainingSession;
@@ -36,6 +37,7 @@ public class TraineeComponent {
 	private TrainingSessionManager trainingSessionManager;
 
 	@Inject
+	@User1
 	UserManager userManager;
 
 	private TrainingSession ts;

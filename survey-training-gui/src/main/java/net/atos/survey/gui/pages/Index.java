@@ -3,6 +3,9 @@
  */
 package net.atos.survey.gui.pages;
 
+import javax.inject.Inject;
+
+import net.atos.survey.core.annotation.User1;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.UserManager;
 
@@ -16,7 +19,6 @@ import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.Messages;
-import javax.inject.Inject;
 
 public class Index {
 
@@ -42,28 +44,29 @@ public class Index {
 	private Messages messages;
 
 	@Inject
+	@User1
 	private UserManager userManager;
 
 	@Property
 	@Persist
 	private int count;
-	
+
 	@Component
 	private Zone myZone;
-	
-	@OnEvent(value=EventConstants.ACTIVATE)
-	public void activate(){
-		loggedUser=null;
+
+	@OnEvent(value = EventConstants.ACTIVATE)
+	public void activate() {
+		loggedUser = null;
 	}
 
 	@OnEvent(value = EventConstants.VALIDATE, component = "loginForm")
 	public void validation() {
-		
+
 		if (!userManager.checkLoginPassword(login, password)) {
-				String errorMessage = "Wrong login or password";
-				if (messages.contains("wrong-login-password"))
-					errorMessage = messages.get("wrong-login-password");
-				loginForm.recordError(errorMessage);
+			String errorMessage = "Wrong login or password";
+			if (messages.contains("wrong-login-password"))
+				errorMessage = messages.get("wrong-login-password");
+			loginForm.recordError(errorMessage);
 		}
 	}
 
@@ -74,7 +77,7 @@ public class Index {
 	@OnEvent(value = EventConstants.SUCCESS, component = "loginForm")
 	public Object loggingSuccess() {
 		loggedUser = userManager.getUserByLogin(login);
-		count=0;
+		count = 0;
 		return MyTrainings.class;
 	}
 
@@ -84,7 +87,7 @@ public class Index {
 	 */
 	@OnEvent(value = EventConstants.FAILURE, component = "loginForm")
 	public void loggingFailure() {
-		
+
 		count++;
 	}
 
@@ -103,12 +106,9 @@ public class Index {
 		}
 		return myZone.getBody();
 	}
-	
-	
 
 	private boolean getMaxAttemptsExceeded() {
 		return count >= 3;
 	}
 
-	
 }

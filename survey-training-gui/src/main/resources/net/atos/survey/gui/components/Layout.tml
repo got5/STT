@@ -27,7 +27,7 @@
 				<t:kawwa2.MainNav>
 					<li class="home"><a t:type="pageLink" t:page="Index">Home</a></li>
 					<t:if t:test="admin">
-					<li><a t:type="pageLink" t:page="admin/Results">Results</a></li>
+						<li><a t:type="pageLink" t:page="admin/Results">Results</a></li>
 					</t:if>
 					<t:if t:test="loggedUserExists">
 						<li><a t:type="pageLink" t:page="MyTrainings">Welcome, <span
@@ -39,20 +39,19 @@
 		</nav>
 
 		<hr />
-	<!-- COLUMNS WRAPPER/ -->
-	<div id="wrapper">
-		
-	
-		<t:body />
-	</div>
-	<!-- /COLUMNS WRAPPER -->
+		<!-- COLUMNS WRAPPER/ -->
+		<div id="wrapper">
 
-	<hr />
-	<!-- FOOTER -->
-	<footer role="contentinfo">
-		<p class="k-copyright">© GPS, Web Platform, Atos
-			Worldline, 2011</p>
-	</footer>
+
+			<t:body />
+		</div>
+		<!-- /COLUMNS WRAPPER -->
+
+		<hr />
+		<!-- FOOTER -->
+		<footer role="contentinfo">
+			<p class="k-copyright">© GPS, Web Platform, Atos Worldline, 2011</p>
+		</footer>
 
 	</div>
 	<!-- /container -->
