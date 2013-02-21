@@ -11,23 +11,7 @@
 
 
 	<repositories>
-		
 
-		<repository>
-			<id>proxiedRepositories</id>
-			<name>OD and common proxied repositories</name>
-			<url>http://repository.atosworldline.com/maven2</url>
-		</repository>
-
-		<repository>
-			<id>proxiedSnapShotRepositories</id>
-			<name>OD and common proxied snapshot repositories</name>
-			<url>http://repository.atosworldline.com/nexus/content/groups/public-snapshots</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		
 		<repository>
 			<id>Kawwa2</id>
 			<name>Kawwa2 Repository</name>
@@ -47,28 +31,7 @@
 
 	<pluginRepositories>
 
-		<pluginRepository>
-
-			<id>proxiedRepositories</id>
-			<name>OD and common proxied repositories</name>
-			<url>http://repository.atosworldline.com/maven2</url>
-		</pluginRepository>
-
-		<pluginRepository>
-			<id>maven</id>
-			<name>tomee</name>
-			<url>http://repository.atosworldline.com/nexus/content/groups/public
-                  </url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>proxiedSnapShotRepositories</id>
-			<name>OD and common proxied snapshot repositories</name>
-			<url>http://repository.atosworldline.com/nexus/content/groups/public-snapshots</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-
+		
 	</pluginRepositories>
 
 
@@ -90,12 +53,10 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xa-rm-version>3.1.0</xa-rm-version>
-		<shiro-version>1.2.1</shiro-version>
-		<tynamo.version>0.4.6</tynamo.version>
+		
+		
 		<openjpa.version>2.2.0</openjpa.version>
-		<openejb.version>4.1.0.xa</openejb.version>
-		<xa-rl-openejb.version>2.1.0</xa-rl-openejb.version>
+		<openejb.version>4.5.1</openejb.version>
 		<sharing.ejb3.entity.version>0.0.6</sharing.ejb3.entity.version>
 		<javaee-api.version>6.0-3</javaee-api.version>
 		<tapestry.version>5.3.6</tapestry.version>
@@ -106,8 +67,8 @@
 		<easymock.version>2.5.2</easymock.version>
 		<servlet.version>2.5</servlet.version>
 		<kawwa.version>2.0.4-SNAPSHOT</kawwa.version>
-		<tomee-xa-version>1.5.2-SNAPSHOT</tomee-xa-version>
-		<tomee-plugin-version>1.5.2-SNAPSHOT</tomee-plugin-version>
+		<tomee-version>1.5.1</tomee-version>
+		<tomee-plugin-version>1.0.1</tomee-plugin-version>
 		<tapestry.jquery.version>3.3.6-SNAPSHOT</tapestry.jquery.version>
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
 		<maven-jar-plugin.version>2.4</maven-jar-plugin.version>

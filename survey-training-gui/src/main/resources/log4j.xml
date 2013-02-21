@@ -31,9 +31,9 @@
   <!-- Setup the Root category -->
   <!-- ======================= -->
   
-<!--  <logger name="net.atos.xa">-->
-<!--    <level value="info" />-->
-<!--  </logger>-->
+  <logger name="org.got5.tapestry5.cdi.CDIInjectionProvider">
+    <level value="DEBUG" />
+  </logger>
 
   <root>
     <priority value ="INFO" /> 

@@ -86,7 +86,7 @@
 				<artifactId>tomee-maven-plugin</artifactId>
 				<version>${tomee-plugin-version}</version>
 				<configuration>
-					<tomeeVersion>${tomee-xa-version}</tomeeVersion>
+					<tomeeVersion>${tomee-version}</tomeeVersion>
 					<!-- <debug>true</debug> -->
 					<tomeeClassifier>plus</tomeeClassifier>
 					<config>${basedir}/../survey-training-core/src/main/conf</config>
