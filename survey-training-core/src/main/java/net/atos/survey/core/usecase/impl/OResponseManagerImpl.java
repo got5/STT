@@ -7,7 +7,7 @@ import net.atos.survey.core.dao.OResponseDao;
 import net.atos.survey.core.entity.OResponse;
 import net.atos.survey.core.usecase.OResponseManager;
 
-@Stateless(name = "net.atos.survey.core.usecase.OResponseManager")
+@Stateless
 public class OResponseManagerImpl implements OResponseManager {
 
 	@Inject

@@ -12,7 +12,7 @@ import net.atos.survey.core.entity.User;
 import net.atos.survey.core.exception.NoTrainingSessionFoundException;
 import net.atos.survey.core.usecase.ResponseSurveyManager;
 
-@Stateless(name="net.atos.survey.core.usecase.ResponseSurveyManager")
+@Stateless
 public class ResponseSurveyManagerImpl implements ResponseSurveyManager{
 	
 	@Inject

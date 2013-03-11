@@ -19,7 +19,7 @@ import net.atos.survey.core.usecase.CategoryManager;
 import net.atos.survey.core.usecase.SimpleMCQuestionManager;
 import net.atos.survey.core.usecase.SurveyManager;
 
-@Stateless(name="net.atos.survey.core.usecase.SurveyManager")
+@Stateless
 public class SurveyManagerImpl implements SurveyManager{
 
 	@Inject SurveyDao surveyDao;

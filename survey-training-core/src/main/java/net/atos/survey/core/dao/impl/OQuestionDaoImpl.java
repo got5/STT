@@ -5,7 +5,7 @@ import javax.ejb.Stateless;
 import net.atos.survey.core.dao.OQuestionDao;
 import net.atos.survey.core.entity.OQuestion;
 
-@Stateless(name="net.atos.survey.core.dao.OQuestionDao")
+@Stateless
 public class OQuestionDaoImpl extends DaoImpl<Long, OQuestion> implements OQuestionDao {
 
 	@Override

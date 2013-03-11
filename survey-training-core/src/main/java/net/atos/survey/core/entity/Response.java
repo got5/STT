@@ -28,7 +28,7 @@ public class Response implements Serializable {
 	private long id;
 
 	@ManyToOne
-	@JoinColumn(name="QUESTION_REF")
+	@JoinColumn
 	protected Question question;
 	
 	@Column(length=300)

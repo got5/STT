@@ -15,7 +15,7 @@ import net.atos.survey.core.entity.SimpleMCQuestion;
 import net.atos.survey.core.exception.NotInitaliazedSurveyDataBaseException;
 import net.atos.survey.core.usecase.SimpleMCQuestionManager;
 
-@Stateless(name="net.atos.survey.core.usecase.SimpleMCQuestionManager")
+@Stateless
 public class SimpleMCQuestionManagerImpl implements SimpleMCQuestionManager{
 	
 	@Inject SimpleMCQuestionDao simpleMCQuestionDao;

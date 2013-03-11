@@ -38,7 +38,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
 
-@Stateless(name = "net.atos.survey.core.usecase.PDFGeneratorManager")
+@Stateless
 public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 
 	@Inject

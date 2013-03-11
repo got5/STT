@@ -8,7 +8,7 @@ import net.atos.survey.core.dao.UserDao;
 import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 
-@Stateless(name="net.atos.survey.core.dao.UserDao")
+@Stateless
 public class UserDaoImpl extends DaoImpl<Long, User> implements UserDao {
 
 	@Override

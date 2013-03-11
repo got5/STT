@@ -14,7 +14,7 @@ import net.atos.survey.core.entity.User;
 import net.atos.survey.core.exception.UserNotExistException;
 import net.atos.survey.core.usecase.TrainingManager;
 
-@Stateless(name="net.atos.survey.core.usecase.TrainingManager")
+@Stateless
 public class TrainingManagerImpl implements TrainingManager{
 
 	@Inject TrainingDao trainingDao;

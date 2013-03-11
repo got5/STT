@@ -7,7 +7,7 @@ import net.atos.survey.core.dao.ChoiceDao;
 import net.atos.survey.core.entity.Choice;
 import net.atos.survey.core.usecase.ChoiceManager;
 
-@Stateless(name="net.atos.survey.core.usecase.ChoiceManager")
+@Stateless
 public class ChoiceManagerImpl implements ChoiceManager {
 	
 	@Inject 

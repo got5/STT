@@ -12,7 +12,7 @@ import net.atos.survey.core.entity.Training;
 import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 
-@Stateless(name="net.atos.survey.core.dao.TrainingSessionDao")
+@Stateless
 public class TrainingSessionDaoImpl extends DaoImpl<Long, TrainingSession> implements TrainingSessionDao {
 
 	@Override

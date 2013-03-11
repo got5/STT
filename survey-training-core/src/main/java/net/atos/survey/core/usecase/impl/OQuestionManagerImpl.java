@@ -12,7 +12,7 @@ import net.atos.survey.core.entity.OQuestion;
 import net.atos.survey.core.exception.NotInitaliazedSurveyDataBaseException;
 import net.atos.survey.core.usecase.OQuestionManager;
 
-@Stateless(name = "net.atos.survey.core.usecase.OQuestionManager")
+@Stateless
 public class OQuestionManagerImpl implements OQuestionManager {
 
 	@Inject

@@ -10,7 +10,7 @@ import net.atos.survey.core.entity.SimpleMCQResponse;
 import net.atos.survey.core.entity.Training;
 import net.atos.survey.core.entity.User;
 
-@Stateless(name="net.atos.survey.core.dao.SimpleMCQResponseDao")
+@Stateless
 public class SimpleMCQResponseDaoImpl extends DaoImpl<Long, SimpleMCQResponse> implements SimpleMCQResponseDao {
 
 	@Override

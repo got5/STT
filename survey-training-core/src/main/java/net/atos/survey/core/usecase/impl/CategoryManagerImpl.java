@@ -7,7 +7,7 @@ import net.atos.survey.core.dao.CategoryDao;
 import net.atos.survey.core.entity.Category;
 import net.atos.survey.core.usecase.CategoryManager;
 
-@Stateless(name="net.atos.survey.core.usecase.CategoryManager")
+@Stateless
 public class CategoryManagerImpl implements CategoryManager {
 	
 	@Inject 

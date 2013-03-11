@@ -46,7 +46,7 @@ import net.atos.survey.core.usecase.SurveyManager;
 import net.atos.survey.core.usecase.TrainingManager;
 import net.atos.survey.core.usecase.TrainingSessionManager;
 
-@Stateless(name = "net.atos.survey.core.usecase.InitManager")
+@Stateless
 public class InitManagerImpl implements InitManager {
 
 	@Inject

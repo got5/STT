@@ -13,7 +13,7 @@ import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.UserManager;
 
-@Stateless(name = "net.atos.survey.core.usecase.UserManager")
+@Stateless
 @User2
 public class UserManagerImpl2 implements UserManager {
 

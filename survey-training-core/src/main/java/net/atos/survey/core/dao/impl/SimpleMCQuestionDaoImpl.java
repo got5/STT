@@ -5,7 +5,7 @@ import javax.ejb.Stateless;
 import net.atos.survey.core.dao.SimpleMCQuestionDao;
 import net.atos.survey.core.entity.SimpleMCQuestion;
 
-@Stateless(name="net.atos.survey.core.dao.SimpleMCQuestionDao")
+@Stateless
 public class SimpleMCQuestionDaoImpl extends DaoImpl<Long, SimpleMCQuestion> implements SimpleMCQuestionDao {
 
 	

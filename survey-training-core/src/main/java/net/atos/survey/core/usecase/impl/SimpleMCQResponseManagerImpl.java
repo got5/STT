@@ -14,7 +14,7 @@ import net.atos.survey.core.entity.Training;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.SimpleMCQResponseManager;
 
-@Stateless(name = "net.atos.survey.core.usecase.SimpleMCQResponseManager")
+@Stateless
 public class SimpleMCQResponseManagerImpl implements SimpleMCQResponseManager {
 
 	@Inject

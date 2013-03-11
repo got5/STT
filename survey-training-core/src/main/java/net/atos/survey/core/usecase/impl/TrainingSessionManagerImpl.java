@@ -34,7 +34,7 @@ import net.atos.survey.core.usecase.SimpleMCQResponseManager;
 import net.atos.survey.core.usecase.SurveyManager;
 import net.atos.survey.core.usecase.TrainingSessionManager;
 
-@Stateless(name = "net.atos.survey.core.usecase.TrainingSessionManager")
+@Stateless
 public class TrainingSessionManagerImpl implements TrainingSessionManager {
 
 	@Inject
