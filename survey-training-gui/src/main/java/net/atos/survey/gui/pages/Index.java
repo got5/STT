@@ -5,7 +5,6 @@ package net.atos.survey.gui.pages;
 
 import javax.inject.Inject;
 
-import net.atos.survey.core.annotation.User1;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.UserManager;
 
@@ -44,7 +43,6 @@ public class Index {
 	private Messages messages;
 
 	@Inject
-	@User1
 	private UserManager userManager;
 
 	@Property

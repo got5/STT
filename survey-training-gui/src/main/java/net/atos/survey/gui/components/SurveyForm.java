@@ -1,5 +1,7 @@
 package net.atos.survey.gui.components;
 
+import javax.inject.Inject;
+
 import net.atos.survey.core.entity.Category;
 import net.atos.survey.core.entity.Question;
 import net.atos.survey.core.entity.Response;
@@ -21,11 +23,14 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
-import javax.inject.Inject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.slf4j.Logger;
 
 
 public class SurveyForm {
+	
+	@Inject
+	Logger log;
 
 	@SessionState
 	private User user;
@@ -79,6 +84,8 @@ public class SurveyForm {
 	}
 
 	public Response getResponse() {
+		
+		log.info("MMOOHAAAAAAjJLKJDSFLKJFSDLKJ FSDLKJDFLSKJ FDSLKJ3" + responseSurvey.getResponses().get(question));
 		return responseSurvey.getResponses().get(question);
 	}
 

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import net.atos.survey.core.annotation.User1;
 import net.atos.survey.core.dao.TrainingSessionDao;
 import net.atos.survey.core.dao.UserDao;
 import net.atos.survey.core.entity.Training;
@@ -14,7 +13,6 @@ import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.UserManager;
 
 @Stateless
-@User1
 public class UserManagerImpl implements UserManager {
 
 	@Inject

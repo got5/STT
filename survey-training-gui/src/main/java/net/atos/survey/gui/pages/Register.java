@@ -1,6 +1,7 @@
 package net.atos.survey.gui.pages;
 
-import net.atos.survey.core.annotation.User2;
+import javax.inject.Inject;
+
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.usecase.TrainingSessionManager;
 import net.atos.survey.core.usecase.UserManager;
@@ -13,7 +14,6 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.Form;
-import javax.inject.Inject;
 
 public class Register {
 	
@@ -21,7 +21,7 @@ public class Register {
 	private User loggedUser;
 	
 	@Inject
-	@User2
+	
 	UserManager userManager;
 	@Inject
 	TrainingSessionManager trainingSessionManager;

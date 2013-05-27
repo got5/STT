@@ -32,7 +32,7 @@
 					<t:if t:test="loggedUserExists">
 						<li><a t:type="pageLink" t:page="MyTrainings">Welcome, <span
 								id="user-name">${loggedUser?.firstname}</span></a></li>
-						<li><strong><a t:type="actionLink" t:id="logout">Logout</a></strong></li>
+						<li><a t:type="actionLink" t:id="logout">Logout</a></li>
 					</t:if>
 				</t:kawwa2.MainNav>
 			</div>

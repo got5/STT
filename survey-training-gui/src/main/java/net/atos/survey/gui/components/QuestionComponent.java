@@ -21,6 +21,7 @@ public class QuestionComponent {
 	
 	
 	
+	
 	@Inject 
 	SimpleMCQuestionManager simpleMCQuestionManager;
 

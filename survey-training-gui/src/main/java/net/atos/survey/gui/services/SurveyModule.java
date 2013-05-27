@@ -1,13 +1,14 @@
 package net.atos.survey.gui.services;
 
 import net.atos.survey.core.entity.Choice;
+import net.atos.survey.core.usecase.ChoiceManager;
 
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
-import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.ValueEncoderFactory;
 import org.apache.tapestry5.services.ValueEncoderSource;
 
@@ -15,11 +16,12 @@ public class SurveyModule {
 
 	@Contribute(ValueEncoderSource.class)
 	public static void provideEncoders(
-			MappedConfiguration<Class, ValueEncoderFactory> configuration) {
+			MappedConfiguration<Class, ValueEncoderFactory> configuration,
+			final  @Inject ChoiceManager choiceManager) {
 
 		ValueEncoderFactory<Choice> factory = new ValueEncoderFactory<Choice>() {
 			public ValueEncoder<Choice> create(Class<Choice> clazz) {
-				return new ChoiceEncoder();
+				return new ChoiceEncoder(choiceManager);
 			}
 
 		};
@@ -42,7 +44,12 @@ public class SurveyModule {
 			Configuration<String> configuration) {
 	}
 
-	public static void bind(ServiceBinder binder) {
-
-	}
+//	public static void bind(ServiceBinder binder) {
+//		binder.bind(ChoiceManager.class,ChoiceManagerImpl.class);
+//	
+//	}
+	
+//	public ChoiceManager buildChoiceManager(){
+//		return BeanHelper.get(ChoiceManager.class);
+//	}
 }

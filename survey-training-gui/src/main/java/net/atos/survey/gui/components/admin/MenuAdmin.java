@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import net.atos.survey.core.annotation.User1;
-import net.atos.survey.core.entity.Training;
+import javax.inject.Inject;
+
 import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.exception.UserNotInTrainingSessionException;
@@ -15,10 +15,6 @@ import net.atos.survey.core.usecase.TrainingSessionManager;
 import net.atos.survey.core.usecase.UserManager;
 
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.EventConstants;
-import org.apache.tapestry5.alerts.AlertManager;
-import org.apache.tapestry5.alerts.Duration;
-import org.apache.tapestry5.alerts.Severity;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
@@ -30,7 +26,6 @@ import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.Messages;
-import javax.inject.Inject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
@@ -46,7 +41,6 @@ public class MenuAdmin {
 	private User loggedUser;
 
 	@Inject
-	@User1
 	private UserManager userManager;
 
 	@Inject

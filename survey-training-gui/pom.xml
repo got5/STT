@@ -23,7 +23,7 @@
 
 		<dependency>
 			<groupId>org.got5</groupId>
-			<artifactId>tapestry5-cdi</artifactId>
+			<artifactId>tapestry-cdi</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 

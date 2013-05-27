@@ -3,7 +3,8 @@ package net.atos.survey.gui.components.admin;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import net.atos.survey.core.annotation.User1;
+import javax.inject.Inject;
+
 import net.atos.survey.core.entity.ResponseSurvey;
 import net.atos.survey.core.entity.Survey;
 import net.atos.survey.core.entity.TrainingSession;
@@ -23,7 +24,6 @@ import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
-import javax.inject.Inject;
 
 public class TraineeComponent {
 
@@ -37,7 +37,6 @@ public class TraineeComponent {
 	private TrainingSessionManager trainingSessionManager;
 
 	@Inject
-	@User1
 	UserManager userManager;
 
 	private TrainingSession ts;

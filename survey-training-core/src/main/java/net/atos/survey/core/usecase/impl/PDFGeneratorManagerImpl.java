@@ -12,7 +12,6 @@ import java.util.Calendar;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import net.atos.survey.core.annotation.User1;
 import net.atos.survey.core.entity.Category;
 import net.atos.survey.core.entity.ResponseSurvey;
 import net.atos.survey.core.entity.Survey;
@@ -44,7 +43,6 @@ public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 	@Inject
 	TrainingSessionManager trainingSessionManager;
 	@Inject
-	@User1
 	UserManager userManager;
 	@Inject
 	SurveyManager surveyManager;

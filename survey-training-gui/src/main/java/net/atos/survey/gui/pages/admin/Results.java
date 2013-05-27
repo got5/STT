@@ -7,7 +7,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import net.atos.survey.core.annotation.User2;
+import javax.inject.Inject;
+
 import net.atos.survey.core.entity.Training;
 import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
@@ -35,7 +36,6 @@ import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Submit;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.Messages;
-import javax.inject.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
@@ -57,7 +57,6 @@ public class Results {
 
 	/* EJB */
 	@Inject
-	@User2
 	private UserManager userManager;
 
 	@Inject
