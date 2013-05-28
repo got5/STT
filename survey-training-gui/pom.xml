@@ -35,6 +35,12 @@
 			<artifactId>tapestry5-kawwa-components</artifactId>
 			<version>${kawwa.version}</version>
 			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>tapestry5-jquery</artifactId>
+					<groupId>org.got5</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- <dependency> <groupId>org.got5</groupId> <artifactId>tapestry5-jquery</artifactId> 
