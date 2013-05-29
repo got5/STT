@@ -84,8 +84,6 @@ public class SurveyForm {
 	}
 
 	public Response getResponse() {
-		
-		log.info("MMOOHAAAAAAjJLKJDSFLKJFSDLKJ FSDLKJDFLSKJ FDSLKJ3" + responseSurvey.getResponses().get(question));
 		return responseSurvey.getResponses().get(question);
 	}
 

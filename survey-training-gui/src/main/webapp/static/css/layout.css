@@ -2,7 +2,9 @@
 	margin-bottom:20px;
 }
 
-h1{
+h1.title{
+    margin-left: 1%;
+    padding: 10px 0 0.3em 80px;
 	background: url(../img/atos-logo-black.png) -1px 10px no-repeat;
 }
 

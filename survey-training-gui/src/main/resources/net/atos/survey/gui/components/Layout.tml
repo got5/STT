@@ -11,7 +11,7 @@
 
 		<!-- PAGE HEADER -->
 		<header role="banner">
-			<h1>
+			<h1 class="title">
 				Survey Training Tool <small>Evaluate your trainings</small>
 			</h1>
 		</header>

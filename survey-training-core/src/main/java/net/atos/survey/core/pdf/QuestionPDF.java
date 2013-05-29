@@ -37,6 +37,8 @@ public class QuestionPDF {
 	private Question question;
 	private Response response;
 
+
+
 	public QuestionPDF(PdfWriter writer, Document document, float[] coord,
 			Question question, Response response) throws Exception {
 		super();
@@ -101,6 +103,7 @@ public class QuestionPDF {
 	
 	private void addChoice() throws DocumentException {
 		SimpleMCQResponse mcqr = (SimpleMCQResponse) response;
+
 		Phrase p = new Phrase(mcqr.getChoice().getName(),responseFont);
 
 		float width = (coordRight[2] - coordRight[0]) / 2;
