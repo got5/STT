@@ -2,6 +2,5 @@
 .project
 .settings/
 target/
-.iml
-.iml/
+*.iml
 .idea/
