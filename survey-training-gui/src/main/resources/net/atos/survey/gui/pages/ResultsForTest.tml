@@ -1,0 +1,10 @@
+<html t:type="Layout" t:title="survey-training-gui"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+<h2>Hello</h2>
+
+<t:admin.traineeComponent  t:trainingsessionId="trainingSessionId" t:traineeId="traineeId" />
+
+
+</html>
