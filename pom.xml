@@ -10,6 +10,46 @@
 	<name>Survey Training</name>
 
 
+
+
+
+    <profiles>
+        <profile>
+            <id>mysql</id>
+            <dependencies>
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>${mysql-connector-java.version}</version>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+            <properties>
+                <env>mysql</env>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>hsqldb</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.hsqldb</groupId>
+                    <artifactId>hsqldb</artifactId>
+                    <version>${hsqldb.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+            <properties>
+                <env>hsqldb</env>
+            </properties>
+        </profile>
+
+    </profiles>
+
+
 	<repositories>
 
 		<repository>
@@ -61,7 +101,7 @@
 		<javaee-api.version>6.0-3</javaee-api.version>
 		<tapestry.version>5.3.6</tapestry.version>
 		<mysql-connector-java.version>5.1.6</mysql-connector-java.version>
-		<ojdbc14.version>10.2.0.4</ojdbc14.version>
+        <hsqldb.version>2.2.8</hsqldb.version>
 		<junit.version>4.8.1</junit.version>
 		<testng.version>5.12.1</testng.version>
 		<easymock.version>2.5.2</easymock.version>

@@ -5,7 +5,7 @@
 <head>
 <title>${title}</title>
 </head>
-<body>
+<body style="overflow:hidden;">
 
 	<div id="container">
 
@@ -50,7 +50,7 @@
 		<hr />
 		<!-- FOOTER -->
 		<footer role="contentinfo">
-			<p class="k-copyright">© GPS, Web Platform, Atos Worldline, 2011</p>
+			<p class="k-copyright">© Web &amp; Mobile Frameworks, Software Engineering, Worldline, 2013</p>
 		</footer>
 
 	</div>

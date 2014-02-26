@@ -1,5 +1,8 @@
 package net.atos.survey.gui.services;
 
+import net.atos.kawwaportal.components.KawwaConstants;
+import net.atos.kawwaportal.components.services.Theme0Stack;
+import net.atos.kawwaportal.components.services.Theme1Stack;
 import net.atos.survey.core.entity.Choice;
 import net.atos.survey.core.usecase.ChoiceManager;
 
@@ -9,8 +12,10 @@ import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.ValueEncoderFactory;
 import org.apache.tapestry5.services.ValueEncoderSource;
+import org.apache.tapestry5.services.javascript.JavaScriptStack;
 
 public class SurveyModule {
 
@@ -39,6 +44,8 @@ public class SurveyModule {
 				"GPS_rules_the_world_689");
 
 	}
+
+
 
 	public static void contributeIgnoredPathsFilter(
 			Configuration<String> configuration) {

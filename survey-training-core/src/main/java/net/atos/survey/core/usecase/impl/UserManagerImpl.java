@@ -79,4 +79,8 @@ public class UserManagerImpl implements UserManager {
 
 	}
 
+    @Override
+    public Long countUser() {
+        return userDao.countLister();
+    }
 }

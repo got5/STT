@@ -15,70 +15,7 @@
 
 
 	<!-- Database dependencies -->
-	<profiles>
-		<profile>
-			<id>mysql</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>mysql</groupId>
-					<artifactId>mysql-connector-java</artifactId>
-					<version>${mysql-connector-java.version}</version>
-					<scope>runtime</scope>
-				</dependency>
-			</dependencies>
-		</profile>
 
-		<profile>
-			<id>arquillian-tomee-embedded</id>
-			<dependencies>
-				<dependency>
-					<groupId>org.apache.openejb</groupId>
-					<artifactId>arquillian-tomee-embedded</artifactId>
-					<version>1.0.0</version>
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>arquillian-tomee-managed</id>
-			<dependencies>
-				<dependency>
-					<groupId>org.jboss.spec</groupId>
-					<artifactId>jboss-javaee-6.0</artifactId>
-					<version>1.0.0.Final</version>
-					<type>pom</type>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.openejb</groupId>
-					<artifactId>arquillian-tomee-managed</artifactId>
-					<version>1.0.0</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>arquillian-tomee-remote</id>
-			<dependencies>
-				<dependency>
-					<groupId>org.jboss.spec</groupId>
-					<artifactId>jboss-javaee-6.0</artifactId>
-					<version>1.0.0.Final</version>
-					<type>pom</type>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.openejb</groupId>
-					<artifactId>arquillian-tomee-remote</artifactId>
-					<version>1.0.0</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-	</profiles>
 
 	<dependencies>
 		<!-- Testing dependencies -->

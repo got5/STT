@@ -160,7 +160,8 @@
 #http://openejb.apache.org/example-generated-documentation.html
 -->
 
-<Resource id="jdbc/surveyDS" type="DataSource">
+
+<Resource id="jdbc/surveyMYSQLDS" type="DataSource">
 		JdbcDriver com.mysql.jdbc.Driver
 		JdbcUrl jdbc:mysql://localhost:3306/survey_training?useUnicode=true&amp;cacheResultSetMetadata=true
 		UserName root
@@ -172,19 +173,21 @@
 		PoolPreparedStatements true
 		MaxOpenPreparedStatements 128
 	</Resource>
+    <Resource id="jdbc/surveyHSQLDS" type="DataSource">
+        JdbcDriver org.hsqldb.jdbcDriver
+        JdbcUrl jdbc:hsqldb:file:stt-hsql
+        UserName sa
+        Password
+        JtaManaged true
+        InitialSize 3
+        MaxActive 20
+        TestOnBorrow true
+        PoolPreparedStatements true
+        MaxOpenPreparedStatements 128
+    </Resource>
 
-<!-- Resource id="jdbc/training.ActiveMQ.DB" type="DataSource">
-  JdbcDriver ${activeMQ.database.driver}
-  JdbcUrl ${activeMQ.database.url}
-  UserName ${activeMQ.database.user}
-  Password ${activeMQ.database.password}
-  JtaManaged true
-  InitialSize ${activeMQ.database.initialsize}
-  MaxActive ${activeMQ.database.maxactive}
-  TestOnBorrow true
-  PoolPreparedStatements true
-  MaxOpenPreparedStatements 128
-</Resource -->
+
+
 
 
 

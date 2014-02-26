@@ -24,6 +24,8 @@ public interface UserManager {
 	List<Training> loadInChargeOf(Long id);
 
 	User register(User newUser);
+
+    Long countUser();
 	
 	
 	

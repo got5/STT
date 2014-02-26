@@ -55,7 +55,15 @@ public class Index {
 	@OnEvent(value = EventConstants.ACTIVATE)
 	public void activate() {
 		loggedUser = null;
+
 	}
+
+    public boolean getDbNotLoaded(){
+        if (userManager.countUser() != 0) {
+            return false;
+        }
+        return true;
+    }
 
 	@OnEvent(value = EventConstants.VALIDATE, component = "loginForm")
 	public void validation() {

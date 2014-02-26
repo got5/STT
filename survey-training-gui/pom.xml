@@ -100,7 +100,7 @@
 					<tomeeVersion>${tomee-version}</tomeeVersion>
 					<!-- <debug>true</debug> -->
 					<tomeeClassifier>plus</tomeeClassifier>
-					<config>${basedir}/../survey-training-core/src/main/conf</config>
+					<config>${basedir}/../survey-training-core/src/main/config/${env}/conf</config>
 					<systemVariables>
 						<openjpa.Log>DefaultLevel=TRACE</openjpa.Log>
 					</systemVariables>
@@ -109,7 +109,6 @@
 					</libs>
 					<args>-Xms256m -Xmx1024m</args>
 					<synchronization>
-
 						<extensions>
 							<extension>.class</extension>
 							<extension>.tml</extension>

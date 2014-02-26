@@ -34,8 +34,10 @@
 	
 	</div>
 
+    <p t:type="if" t:test="dbnotloaded">
+        <a t:type="pageLink" t:page="Init">Init </a>
+    </p>
 
-	<a t:type="pageLink" t:page="Init">Init </a> <br />
 
 </div>
 </html>
