@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry-cdi</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.1</version>
 		</dependency>
 
         <dependency>
@@ -32,7 +32,7 @@
             <artifactId>tapestry5-jquery</artifactId>
             <version>3.3.6</version>
         </dependency>
-		
+
 		<!-- AWL Kawwa2 components -->
 
 		<dependency>
@@ -48,7 +48,7 @@
 			</exclusions>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.got5</groupId> <artifactId>tapestry5-jquery</artifactId> 
+		<!-- <dependency> <groupId>org.got5</groupId> <artifactId>tapestry5-jquery</artifactId>
 			<version>${tapestry.jquery.version}</version> </dependency> -->
 
 		<dependency>
@@ -65,7 +65,7 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- Provided by the servlet container, but sometimes referenced in the 
+		<!-- Provided by the servlet container, but sometimes referenced in the
 			application code. -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

@@ -52,6 +52,11 @@
 
 	<repositories>
 
+            <repository>
+              <id>kazan-nexus</id>
+              <name>Kazan Nexus</name>
+              <url>http://repository.atosworldline.com/nexus/content/repositories/public/</url>
+            </repository>
 		<repository>
 			<id>Kawwa2</id>
 			<name>Kawwa2 Repository</name>
@@ -71,7 +76,7 @@
 
 	<pluginRepositories>
 
-		
+
 	</pluginRepositories>
 
 
@@ -93,8 +98,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
-		
+
+
 		<openjpa.version>2.2.0</openjpa.version>
 		<javaee-api.version>6.0-4</javaee-api.version>
 		<sharing.ejb3.entity.version>0.0.6</sharing.ejb3.entity.version>
