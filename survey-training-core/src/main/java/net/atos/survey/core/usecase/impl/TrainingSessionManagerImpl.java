@@ -199,8 +199,6 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	@Override
 	public List<TrainingSession> listByCriteria(Long trainingId,
 			Long instructorId, Calendar from, Calendar to) {
-		if (trainingId == null)
-			return new ArrayList<TrainingSession>();
 
 		Training training = trainingDao.findById(trainingId);
 		User instructor = userDao.findById(instructorId);
@@ -265,14 +263,26 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 
 	}
 
-	@Override
-	public void removeTrainee(Long trainingSessionId, Long traineeId) {
+    @Override
+    public TrainingSession applyForSession(TrainingSession trainingSession, User newUser) {
+
+        TrainingSession session = trainingSessionDao.findById(trainingSession.getId());
+
+        User user = userDao.findById(newUser.getId());
+        if(user == null){
+            user = userDao.save(newUser);
+        }
+        session.addTrainee(user);
+        return trainingSessionDao.update(session);
+    }
+
+    @Override
+	public TrainingSession removeTrainee(Long trainingSessionId, Long traineeId) {
 		TrainingSession ts = loadTrainees(trainingSessionId);
 		
 		User trainee = userDao.findById(traineeId);
 		ts.removeTrainee(trainee);
-		trainingSessionDao.update(ts);
-			
+		return trainingSessionDao.update(ts);
 	}
 
 	@Override

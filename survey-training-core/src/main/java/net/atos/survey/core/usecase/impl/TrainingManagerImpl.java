@@ -47,4 +47,11 @@ public class TrainingManagerImpl implements TrainingManager{
 		return trainingDao.findById(trainingId);
 	}
 
+    @Override
+    public List<Training> listManagingTraining(String trainingName, long userId) {
+        User loggedUser = userDao.findById(userId);
+
+        return trainingDao.listManagingTraining(trainingName,loggedUser);
+    }
+
 }

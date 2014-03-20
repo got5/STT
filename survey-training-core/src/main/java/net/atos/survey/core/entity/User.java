@@ -92,6 +92,8 @@ public class User implements Serializable {
 		return firstName;
 	}
 
+    public String getDisplayName(){ return firstName + " " + name; }
+
 	public String getLogin() {
 		return login;
 	}

@@ -17,6 +17,7 @@ public interface TrainingManager {
 	List<Training>listTrainingName(String trainingName);
 
 	Training findById(Long trainingId);
-	
-	
+
+
+    List<Training> listManagingTraining(String trainingName, long userId);
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import net.atos.survey.core.entity.Training;
 import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.exception.UserNotInTrainingSessionException;
@@ -113,6 +114,8 @@ public class MenuAdmin {
 	@SetupRender
 	public void applyForActivate() {
 
+
+
 		trainees = new ArrayList<User>();
 
 		if (messages.contains("datePattern")) {
@@ -133,6 +136,7 @@ public class MenuAdmin {
 		js.addScript(InitializationPriority.LATE, "improveaccordion('%s');",
 				"menuTraining" + trainingId);
 	}
+
 
 	public String getClientClassTraineeDone() {
 		String ret = "";

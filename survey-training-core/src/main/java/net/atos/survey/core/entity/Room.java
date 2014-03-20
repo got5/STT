@@ -2,18 +2,14 @@ package net.atos.survey.core.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Table
 @Entity
 public class Room implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 8008503619290696220L;
 
@@ -21,11 +17,11 @@ public class Room implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+    @Column(unique=true, nullable = false)
 	private String name;
 
 	public Room() {
 		super();
-
 	}
 
 	public Room(String name) {

@@ -45,8 +45,9 @@ public interface TrainingSessionManager{
 
 	Long applyForTodayTapestrySession(User newUser);
 
-	void removeTrainee(Long trainingSessionId, Long traineeId);
+	TrainingSession removeTrainee(Long trainingSessionId, Long traineeId);
 	
 	void delete(Long trainingSessionId);
-	
+
+    public TrainingSession applyForSession(TrainingSession trainingSession, User newUser);
 }

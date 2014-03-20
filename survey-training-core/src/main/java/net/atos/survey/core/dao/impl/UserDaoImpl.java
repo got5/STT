@@ -21,7 +21,7 @@ public class UserDaoImpl extends DaoImpl<Long, User> implements UserDao {
 
 
 	@Override
-	public List<User> listByName(String mot) {
+	public List<User> listInstructorByName(String mot) {
 		String queryString;
 		if (mot != null)
 			if (!mot.equals("")) {
@@ -38,9 +38,23 @@ public class UserDaoImpl extends DaoImpl<Long, User> implements UserDao {
 		return list(null, null, queryString);
 	}
 
+    @Override
+    public List<User> listUserByName(String mot) {
+        String queryString;
+        if (mot != null)
+            if (!mot.equals("")) {
+                mot = mot.toLowerCase() + "%";
+
+                queryString = "select distinct u from User u "
+                        + "where (lower(u.name) like ?1 "
+                        + "or lower(u.firstName) like ?1 )"
+                        + "order by u.name";
+                return list(null, null, queryString, mot);
+            }
+        queryString = "select distinct u from User u "
+                + "order by u.name";
+        return list(null, null, queryString);
+    }
 
 
-
-
-	
 }

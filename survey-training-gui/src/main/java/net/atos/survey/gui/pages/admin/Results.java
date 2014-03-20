@@ -37,6 +37,7 @@ import org.apache.tapestry5.corelib.components.Submit;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.json.JSONArray;
+import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.Request;
@@ -75,6 +76,9 @@ public class Results {
 	private SimpleMCQResponseManager simpleMCQResponseManager;
 
 	/* filled by the form */
+
+    private List<Training> inchargeOfTrainings;
+
 
 	@Property
 	private String trainingName;
@@ -128,11 +132,6 @@ public class Results {
 	@Component
 	private Zone zone1;
 
-	@Component
-	private Zone zone3;
-	
-	@Component
-	private Zone zone4;
 
 	@Inject
 	private Block sessionBlock;
@@ -157,13 +156,6 @@ public class Results {
 	@InjectComponent
 	private MenuAdmin menuAdmin;
 
-	@Inject
-	private AlertManager manager;
-
-	@Component
-	private Submit addSubmit;
-
-	private boolean add = false;
 
 	@OnEvent(EventConstants.ACTIVATE)
 	public Object applyForActivate() {
@@ -172,8 +164,8 @@ public class Results {
 			return Index.class;
 		}
 
-		List<Training> licot = userManager.loadInChargeOf(loggedUser.getId());
-		if (licot.size() == 0) {
+		inchargeOfTrainings = userManager.loadInChargeOf(loggedUser.getId());
+		if (inchargeOfTrainings.size() == 0) {
 			return Index.class;
 		}
 
@@ -194,11 +186,6 @@ public class Results {
 		return null;
 	}
 
-	@OnEvent(value = "selected", component = "addSubmit")
-	public void submitFromAdd() {
-		this.add = true;
-
-	}
 
 	@OnEvent(value = EventConstants.SUCCESS)
 	public Block applyForSuccess() {
@@ -208,36 +195,20 @@ public class Results {
 		if (fromD != null) {
 			from = new GregorianCalendar();
 			from.setTime(fromD);
-			System.out.println("from " + " day "
-					+ from.get(Calendar.DAY_OF_MONTH) + " month "
-					+ from.get(Calendar.MONTH) + " year "
-					+ from.get(Calendar.YEAR));
 		}
 
 		if (toD != null) {
 			to = new GregorianCalendar();
 			to.setTime(toD);
-			System.out.println("to " + " day " + to.get(Calendar.DAY_OF_MONTH)
-					+ " month " + to.get(Calendar.MONTH) + " year "
-					+ to.get(Calendar.YEAR));
 		}
 
-		if (add) {
-			if (isAllSet()) {
-				addSession();
-				return zone3.getBody();
-			}
-			else{
-				return zone4.getBody();
-			}
-		} else {
-			trainings = trainingManager.listTrainingName(trainingName);
+			trainings = trainingManager.listManagingTraining(trainingName,loggedUser.getId());
 			return zone1.getBody();
-		}
 
 	}
 
-	private void reset() {
+
+    private void reset() {
 		training = null;
 
 		if (instructorName == null)
@@ -277,8 +248,8 @@ public class Results {
 	public JSONObject getOptions() {
 
 		return new JSONObject().put("dateFormat",
-				messages.get("datePatternJquery")).put("showOn", "focus");
-		// .put("onSelect", new JSONLiteral("onSelectClosure()"));
+				messages.get("datePatternJquery")).put("showOn", "focus")
+		 .put("onSelect", new JSONLiteral("onSelectClosure()"));
 
 	}
 
@@ -307,28 +278,5 @@ public class Results {
 		arr.addRender("zone2", traineeBlock);
 	}
 
-	public void addSession() {
-		Training training = trainingManager.findById(trainingId);
-
-		try {
-			trainingSessionManager.createTrainingSession(from, to, trainingId,
-					instructorId, training.getDefaultRoom().getId());
-			manager.alert(Duration.SINGLE, Severity.INFO, "New Session created");
-		} catch (Exception e) {
-			manager.alert(Duration.SINGLE, Severity.INFO,
-					"Error occured while creating a new session");
-			e.printStackTrace();
-		}
-
-	}
-
-	public boolean isAllSet() {
-		boolean ret = false;
-		if (trainingId != null && instructorId != null && from != null
-				&& to != null) {
-			ret = true;
-		}
-		return ret;
-	}
 
 }

@@ -5,9 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import net.atos.survey.core.entity.Training;
-
-
-
+import net.atos.survey.core.entity.User;
 
 
 @Local
@@ -18,5 +16,5 @@ public interface TrainingDao extends Dao<Long, Training> {
 	Training findByName(String string) throws Exception;
 
 
-	
+    List<Training> listManagingTraining(String trainingName, User user);
 }

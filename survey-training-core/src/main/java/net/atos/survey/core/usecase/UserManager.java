@@ -26,8 +26,7 @@ public interface UserManager {
 	User register(User newUser);
 
     Long countUser();
-	
-	
-	
 
+
+    List<User> listTrainees(String mot);
 }

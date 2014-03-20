@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-	xmlns:p="tapestry:parameter">
+      xmlns:p="tapestry:parameter">
 <head>
-<title>${title}</title>
+    <title>${title}</title>
 </head>
 <body style="overflow:hidden;">
 
-	<div id="container">
+<div id="container">
 
-		<!-- PAGE HEADER -->
-		<header role="banner">
-			<h1 class="title">
-				Survey Training Tool <small>Evaluate your trainings</small>
-			</h1>
-		</header>
+    <!-- PAGE HEADER -->
+    <a t:type="pageLink" t:page="Index">
+    <header role="banner">
+        <h1 class="title">
+            Survey Training Tool
+            <small>Evaluate your trainings</small>
+        </h1>
+    </header>
+    </a>
+
+    <nav>
+        <div id="navbar">
+
+            <t:kawwa2.ResponsiveMainNav>
+                <p:items>
+                    <t:if t:test="admin">
+                        <li><a t:type="pagelink" t:page="admin/createsession">Sessions</a></li>
+                        <li><a t:type="pageLink" t:page="admin/Results">Results</a></li>
+                    </t:if>
+                    <t:if t:test="loggedUserExists">
+                        <li><a t:type="pageLink" t:page="MyTrainings">Welcome: <span
+                                id="user-name">${loggedUser?.firstname}</span></a></li>
+                        <li><a t:type="actionLink" t:id="logout">Logout</a></li>
+                    </t:if>
+                </p:items>
+            </t:kawwa2.ResponsiveMainNav>
+        </div>
+    </nav>
+
+    <hr/>
+    <!-- COLUMNS WRAPPER/ -->
+    <div id="wrapper">
 
 
-		<nav>
-			<div id="navbar">
-				<p class="k-skip">
-					<a shape="rect" href="#wrapper">Skip this menu</a>
+        <t:body/>
+    </div>
+    <!-- /COLUMNS WRAPPER -->
 
-				</p>
+    <hr/>
+    <!-- FOOTER -->
+    <footer role="contentinfo">
+        <p class="k-copyright">© Web &amp; Mobile Frameworks, Software Engineering, Worldline, 2013</p>
+    </footer>
 
-				<t:kawwa2.MainNav>
-					<li class="home"><a t:type="pageLink" t:page="Index">Home</a></li>
-					<t:if t:test="admin">
-						<li><a t:type="pageLink" t:page="admin/Results">Results</a></li>
-					</t:if>
-					<t:if t:test="loggedUserExists">
-						<li><a t:type="pageLink" t:page="MyTrainings">Welcome, <span
-								id="user-name">${loggedUser?.firstname}</span></a></li>
-						<li><a t:type="actionLink" t:id="logout">Logout</a></li>
-					</t:if>
-				</t:kawwa2.MainNav>
-			</div>
-		</nav>
-
-		<hr />
-		<!-- COLUMNS WRAPPER/ -->
-		<div id="wrapper">
-
-
-			<t:body />
-		</div>
-		<!-- /COLUMNS WRAPPER -->
-
-		<hr />
-		<!-- FOOTER -->
-		<footer role="contentinfo">
-			<p class="k-copyright">© Web &amp; Mobile Frameworks, Software Engineering, Worldline, 2013</p>
-		</footer>
-
-	</div>
-	<!-- /container -->
+</div>
+<!-- /container -->
 </body>
 </html>

@@ -16,7 +16,9 @@ public interface UserDao extends Dao<Long, User> {
 
 	User getUserByLogin(String login);
 
-	List<User> listByName(String mot);
+	List<User> listInstructorByName(String mot);
+
+    List<User> listUserByName(String mot);
 
 	
 

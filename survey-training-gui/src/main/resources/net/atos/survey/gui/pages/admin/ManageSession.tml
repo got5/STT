@@ -1,0 +1,69 @@
+<html t:type="Layout" t:title="survey-training-gui"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+<h2>${message:title }</h2>
+
+<div id="main">
+
+    <h3>Training : </h3>
+
+    <div class="k-info-block">
+        <div class="hgroup">
+            <h3>${trainingSession.training.name}</h3>
+        </div>
+        <div class="content">
+            <p>Date : From
+                <t:output value="trainingSession.dateE.time" format="dateFormat"/>
+                to
+                <t:output value="trainingSession.dateS.time" format="dateFormat"/>
+            </p>
+            <p>Given by : ${trainingSession.instructor.displayName}</p>
+        </div>
+
+    </div>
+
+    <h3>Registered Trainees</h3>
+
+    <form t:type="form" t:id="searchForm" t:disableKawwaMandatory="true"
+          t:zone="zone1">
+        <t:label t:for="newUser">${message:search} :
+            <t:hidden t:id="trainingId" t:value="newUserId"/>
+            <input t:type="TextField" t:id="newUser" t:name="newUser"
+                   t:mixins="jquery/Autocomplete" t:minChars="3"
+                   t:value="newUserName" t:options="prop:options"/>
+        </t:label>
+
+    </form>
+    <t:zone t:id="zone1" t:visible="true">
+        <table>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Entity</th>
+                <th>Department</th>
+                <th>BU</th>
+                <th>Role</th>
+                <th></th>
+            </tr>
+            <tr t:type="if" t:test="noTrainees">
+                <td colspan="7">No registered trainees</td>
+            </tr>
+            <t:loop t:source="trainingSession.trainees" t:value="trainee">
+
+                <tr>
+                    <td>${trainee.name}</td>
+                    <td>${trainee.firstName}</td>
+                    <td>${trainee.entity}</td>
+                    <td>${trainee.dept}</td>
+                    <td>${trainee.bu}</td>
+                    <td>${trainee.function}</td>
+                    <td><a t:type="actionlink" t:id="deleteTrainee" t:zone="^" t:context="trainee.id"
+                           class="bt-del" title="Delete item">Delete</a></td>
+                </tr>
+            </t:loop>
+        </table>
+
+    </t:zone>
+</div>
+</html>

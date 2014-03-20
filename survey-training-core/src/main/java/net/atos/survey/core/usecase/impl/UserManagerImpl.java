@@ -36,7 +36,7 @@ public class UserManagerImpl implements UserManager {
 
 	@Override
 	public List<User> listInstructor(String mot) {
-		return userDao.listByName(mot);
+		return userDao.listInstructorByName(mot);
 
 	}
 
@@ -67,14 +67,11 @@ public class UserManagerImpl implements UserManager {
 		int index = 0;
 
 		while (userDao.getUserByLogin(login) != null) {
-			System.out.println("********" + userDao.getUserByLogin(login));
 			login += firstname.substring(index, index + 1);
-			System.out.println("******" + login + " " + index);
 			index++;
 		}
-		String password = "azerty123";
-		newUser.setLogin(login);
-		newUser.setPassword(password);
+		newUser.setLogin(newUser.getName());
+		newUser.setPassword(newUser.getFirstName());
 		return userDao.save(newUser);
 
 	}
@@ -82,5 +79,10 @@ public class UserManagerImpl implements UserManager {
     @Override
     public Long countUser() {
         return userDao.countLister();
+    }
+
+    @Override
+    public List<User> listTrainees(String mot) {
+        return userDao.listUserByName(mot);
     }
 }

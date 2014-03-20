@@ -1,0 +1,138 @@
+<html t:type="Layout" t:title="survey-training-gui"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+<h2>${message:title }</h2>
+
+
+<div id="main">
+
+
+    <div class="col-left">
+
+        <t:zone t:id="zone3" t:visible="false">
+
+            <div class="k-confirm-messages">
+                <h3>Confirm</h3>
+
+                <p>A new Session has been created</p>
+
+            </div>
+
+
+        </t:zone>
+
+        <t:zone t:id="zone4" t:visible="false">
+
+            <div class="k-error-messages">
+                <h3>Form Error</h3>
+
+                <p>All fields must be filled</p>
+
+            </div>
+
+
+        </t:zone>
+        <form t:type="form" t:id="searchForm" t:disableKawwaMandatory="true"
+              t:zone="zone2" t:mixins="">
+
+
+            <p>
+
+                <t:label t:for="training">${message:training} :
+                    <t:hidden t:id="trainingId" t:value="trainingId"/>
+                    <input t:type="TextField" t:id="training" t:name="training"
+                           t:mixins="jquery/Autocomplete" t:minChars="3"
+                           t:value="trainingName"/>
+                </t:label>
+            </p>
+
+
+            <p>
+                <t:label t:for="instructor">${message:instructor} :
+                    <t:hidden t:id="instructorId" t:value="instructorId"/>
+                    <input t:type="TextField" t:id="instructor" t:name="instructor"
+                           t:mixins="jquery/Autocomplete" t:minChars="3"
+                           t:value="instructorName"/>
+                </t:label>
+            </p>
+
+
+            <p>
+                <t:label t:for="fromD">${message:from } :
+                    <input t:type="datefield"
+                           t:format="message:datePatternJava" t:id="fromD" class="k-datepick"
+                           t:name="fromD" t:mixins="jquery/CustomDatepicker"
+                           t:params="options" t:value="fromD"/>
+
+                </t:label>
+            </p>
+            <p>
+                <t:label t:for="toD">${message:to } :
+                    <input t:type="datefield"
+                           t:format="message:datePatternJava" t:id="toD" class="k-datepick"
+                           t:name="toD" t:mixins="jquery/CustomDatepicker" t:params="options"
+                           t:value="toD"/>
+                </t:label>
+
+            </p>
+            <p>
+                <t:label t:for="room">${message:room} :
+                    <t:hidden t:id="roomId" t:value="roomId"/>
+                    <input t:type="TextField" t:id="room" t:name="room"
+                           t:mixins="jquery/Autocomplete" t:minChars="3"
+                           t:value="roomName"/>
+                </t:label>
+
+            </p>
+            <p>
+                <t:submit t:id="search" value="message:search"></t:submit>
+                <t:submit t:id="addsubmit" value="message:add"></t:submit>
+            </p>
+        </form>
+
+    </div>
+    <div class="col-right">
+
+        <h3>Scheduled Trainings</h3>
+        <t:zone t:id="zone2" t:visible="true">
+            <table>
+                <tr>
+                    <th>Training</th>
+                    <th>Starting Date</th>
+                    <th>End Date</th>
+                    <th>Trainer</th>
+                    <th>Room</th>
+                    <th></th>
+                </tr>
+                <tr t:type="if" t:test="noSession">
+                    <td colspan="6">No training scheduled</td>
+                </tr>
+                <t:loop t:source="trainingSessions" t:value="trainingSession">
+
+                    <tr>
+
+                        <td><a t:type="pagelink" t:page="admin/managesession"
+                               t:context="trainingSession.id">${trainingsession.training.name}</a></td>
+                        <td>
+                            <t:output value="trainingSession.dateS.time"
+                                      format="dateFormat"/>
+                        </td>
+                        <td>
+                            <t:output value="trainingSession.dateE.time"
+                                      format="dateFormat"/>
+                        </td>
+                        <td>${trainingSession.instructor.name}</td>
+                        <td>${trainingSession.room.name}</td>
+                        <td><a t:type="actionlink" t:id="deleteSession" t:zone="^" t:context="trainingSession.id"
+                               class="bt-del" title="Delete item">Delete</a></td>
+                    </tr>
+                </t:loop>
+            </table>
+
+        </t:zone>
+    </div>
+</div>
+
+
+</html>

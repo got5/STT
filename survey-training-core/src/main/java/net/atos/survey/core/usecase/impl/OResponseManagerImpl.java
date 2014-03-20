@@ -15,7 +15,6 @@ public class OResponseManagerImpl implements OResponseManager {
 
 	@Override
 	public OResponse save(OResponse oResponse) {
-		System.out.println(oResponseDao==null);
 		return oResponseDao.save(oResponse);
 	}
 	

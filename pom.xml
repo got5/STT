@@ -108,7 +108,7 @@
         <testng.version>5.12.1</testng.version>
         <easymock.version>2.5.2</easymock.version>
         <servlet.version>2.5</servlet.version>
-        <kawwa.version>2.0.4</kawwa.version>
+        <kawwa.version>2.0.5.2</kawwa.version>
         <tomee-version>1.5.1</tomee-version>
         <tomee-plugin-version>1.0.1</tomee-plugin-version>
         <tapestry.jquery.version>3.3.6</tapestry.jquery.version>
