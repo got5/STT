@@ -24,13 +24,13 @@
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry-cdi</artifactId>
-			<version>0.0.1</version>
+			<version>${tapestry.cdi.version}</version>
 		</dependency>
 
         <dependency>
             <groupId>org.got5</groupId>
             <artifactId>tapestry5-jquery</artifactId>
-            <version>3.3.6</version>
+            <version>${tapestry.jquery.version}</version>
         </dependency>
 
 		<!-- AWL Kawwa2 components -->
@@ -47,9 +47,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-		<!-- <dependency> <groupId>org.got5</groupId> <artifactId>tapestry5-jquery</artifactId>
-			<version>${tapestry.jquery.version}</version> </dependency> -->
 
 		<dependency>
 			<groupId>org.apache.openejb</groupId>

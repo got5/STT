@@ -117,6 +117,7 @@
         <maven-assembly-plugin.version>2.3</maven-assembly-plugin.version>
         <maven-surefire-plugin.version>2.12</maven-surefire-plugin.version>
         <itext.version>5.3.4</itext.version>
+        <tapestry.cdi.version>0.0.1</tapestry.cdi.version>
 
     </properties>
 
