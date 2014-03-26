@@ -9,6 +9,8 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.net.URL;
+
 public class HeaderPDF {
 	
 	private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 13,
@@ -39,9 +41,8 @@ public class HeaderPDF {
 		preface.add(new Paragraph(" "));
 	}
 	
-	public void addLogo(String path) throws Exception{
-		Image image = Image
-				.getInstance(path);
+	public void addLogo(URL url) throws Exception{
+		Image image = Image.getInstance(url);
 		image.setAlignment(Image.RIGHT | Image.TEXTWRAP);
 		image.scalePercent(10);
 		document.add(image);

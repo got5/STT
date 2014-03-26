@@ -66,6 +66,7 @@ public class TraineeComponent {
 
 	@SetupRender
 	public void applyForActivate() {
+
 		
 		ts = trainingSessionManager.findById(trainingSessionId);
 		

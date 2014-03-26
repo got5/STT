@@ -88,14 +88,12 @@ public class QuestionPDF {
 		float sizeTitle = bf.getWidthPoint(titleStr, fontSize);
 		
 		
-		System.out.println("sizeTitle ******************* "+sizeTitle);
-		
+
 		Phrase p = new Phrase(question.getTitle(), questionFont);
 		float width = (coordLeft[2] - coordLeft[0]) / 2;
 		float[] coordTitle = { coordLeft[0], coordLeft[1], coordLeft[0] + width, coordLeft[3] };
 		printText(p, coordTitle); 
-		System.out.println("width "+width);
-		
+
 		if(sizeTitle>=width){
 			coordLeft[3]=coordLeft[3]-10;
 		}

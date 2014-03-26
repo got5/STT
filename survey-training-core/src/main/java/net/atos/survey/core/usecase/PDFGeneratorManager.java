@@ -6,9 +6,13 @@ import javax.ejb.Local;
 
 @Local
 public interface PDFGeneratorManager {
-	
-	public  InputStream buildPDF(Long trainingSessionId,Long traineeId) throws Exception ;
 
-    String createTitle();
+    InputStream buildPDF(Long trainingSessionId, Long traineeId) throws Exception;
+
+    InputStream buildAllPDF(Long trainingSessionId) throws Exception;
+
+    String createTitle(Long tsId, Long traineeId);
+
+    String createTitleForSession(Long tsId);
 
 }

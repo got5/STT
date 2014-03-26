@@ -65,8 +65,6 @@ public class MCQuestionWithThemePDF {
 						this.coord[1], this.coord[2], this.coord[3] };
 
 				printText(new Phrase(response.getAnswer(), elseFont), coord);
-				if(response.getAnswer()!=null)
-					System.out.println("******************###"+response.getAnswer().length());
 			}
 		}
 

@@ -3,10 +3,16 @@
 	xmlns:p="tapestry:parameter">
 
 	<div class="k-actions-block">
+        <h3>Training : ${ts.training.name}</h3>
+        <p> When : from  <t:output value="ts.dateS.time"
+                     format="dateFormat" /> to <t:output
+                value="ts.dateE.time" format="dateFormat" /> </p>
+        <p>Trainer : ${ts.instructor.firstname} ${ts.instructor.name }</p>
 		<ul class="k-actions">
-			<p class="action-context">Session Selected</p>
-			<li t:type="if" t:test="infuture"><a t:type="actionlink"
-				t:id="delete" href="#" class="bt-del">Delete</a></li>
+
+			<li t:type="if" negate="true" t:test="infuture"><a t:type="actionlink"
+				t:id="pdfs" href="#" class="bt-download">Download all answers</a>
+            </li>
 		</ul>
 	</div>
 

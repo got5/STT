@@ -1,30 +1,40 @@
 package net.atos.survey.gui.components.admin;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import net.atos.survey.core.entity.TrainingSession;
 import net.atos.survey.core.usecase.TrainingSessionManager;
 
+import net.atos.survey.gui.pages.admin.PDFPage;
 import org.apache.tapestry5.EventConstants;
-import org.apache.tapestry5.annotations.OnEvent;
-import org.apache.tapestry5.annotations.Parameter;
-import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.ioc.Messages;
 import javax.inject.Inject;
 
 public class TrainingSessionComponent {
-	
+
+    private static final String DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
+
 	@Inject
 	private Messages messages;
-	
+
+    @Property
 	private TrainingSession ts;
 	
 	@Inject TrainingSessionManager trainingSessionManager;
-	
-	@SetupRender
+
+    @InjectPage
+    private PDFPage pdfPage;
+
+    @Property
+    private SimpleDateFormat dateFormat;
+
+
+    @SetupRender
 	public void load(){
+        dateFormat = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
 		ts = trainingSessionManager.findById(trainingSessionId);
 	}
 		
@@ -43,14 +53,16 @@ public class TrainingSessionComponent {
 		return ret;
 	}
 	
-	
 
-	@OnEvent(value=EventConstants.ACTION,component="delete")
-	public void deleteTrainingSession(){
-		trainingSessionManager.delete(trainingSessionId);
-		
+
+	@OnEvent(value=EventConstants.ACTION,component="pdfs")
+	public Object generateAllPDF(){
+
+        pdfPage.configureDocument(trainingSessionId);
+        return pdfPage;
+
 	}
-	
-	
+
+
 
 }
