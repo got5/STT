@@ -25,9 +25,9 @@
         <t:zone t:id="zone4" t:visible="false">
 
             <div class="k-error-messages">
-                <h3>Form Error</h3>
+                <h3>${errorTitle}</h3>
 
-                <p>All fields must be filled</p>
+                <p>${errorMessage}</p>
 
             </div>
 

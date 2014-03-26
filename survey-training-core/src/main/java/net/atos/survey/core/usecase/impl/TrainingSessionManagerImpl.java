@@ -95,6 +95,12 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 		return trainingSessionDao.findById(trainingSessionId);
 	}
 
+    public TrainingSession findByIdWithTrainees(Long trainingSessionId){
+        TrainingSession ret = trainingSessionDao.findById(trainingSessionId);
+        ret.loadUsers();
+        return ret;
+    }
+
 	@Override
 	public ResponseSurvey createResponseSurveyWithoutPersist(
 			TrainingSession trainingSession) {

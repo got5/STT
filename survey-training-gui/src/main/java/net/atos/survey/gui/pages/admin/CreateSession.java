@@ -51,6 +51,12 @@ public class CreateSession {
     @Property
     private boolean loggedUserExists;
 
+    @Property
+    private String errorTitle;
+
+    @Property
+    private String errorMessage;
+
     /* EJB */
     @Inject
     private UserManager userManager;
@@ -216,10 +222,18 @@ public class CreateSession {
 
         if (add) {
             if (isAllSet()) {
-                addSession();
-
+                Training training = trainingManager.findById(trainingId);
+                if (isAllowed(training)) {
+                    if(addSession()) {
+                        //Alright zone refreshed soon
+                    } else {
+                        return errorOccurred("Internal Error", "An error occurred while adding a session.");
+                    }
+                } else {
+                    return notAllowed();
+                }
             } else {
-                return zone4.getBody();
+                return notSet();
             }
         }
         if (from == null) {
@@ -300,30 +314,23 @@ public class CreateSession {
     }
 
 
-    public void addSession() {
-        Training training = trainingManager.findById(trainingId);
-        if (isAllowed(training)) {
-            try {
+    public boolean addSession() {
+        try {
 
-                trainingSessionManager.createTrainingSession(from, to, trainingId,
-                        instructorId, roomId);
-                roomName = null;
-                trainingName = null;
-                instructorName = null;
-                reset();
+            trainingSessionManager.createTrainingSession(from, to, trainingId,
+                    instructorId, roomId);
+            roomName = null;
+            trainingName = null;
+            instructorName = null;
+            reset();
 
-
-                alertManager.alert(Duration.SINGLE, Severity.SUCCESS, "New Session created");
-            } catch (Exception e) {
-                alertManager.alert(Duration.SINGLE, Severity.SUCCESS,
-                        "Error occured while creating a new session");
-                e.printStackTrace();
-            }
+            return true;
+        } catch (Exception e) {
+            alertManager.alert(Duration.SINGLE, Severity.SUCCESS,
+                    "Error occured while creating a new session");
+            e.printStackTrace();
+            return false;
         }
-        else{
-            alertManager.error("Error occured while creating a new session");
-        }
-
     }
 
     private boolean isAllowed(Training training) {
@@ -360,8 +367,21 @@ public class CreateSession {
             trainingSessions = trainingSessionManager.listByCriteria(null, null, new GregorianCalendar(), null);
             return zone2.getBody();
         }
-        alertManager.error("Error occured while creating a new session");
-        return null;
+        return notAllowed();
+    }
+
+    private Block notAllowed() {
+       return errorOccurred("Sorry", "You don't have permission to manage this training");
+    }
+
+    private Block notSet() {
+       return errorOccurred("Form error", "All field are mandatory"); 
+    }
+
+    private Block errorOccurred(String title, String message){
+        errorMessage = message;
+        errorTitle = title;
+        return zone4.getBody();
     }
 
 }

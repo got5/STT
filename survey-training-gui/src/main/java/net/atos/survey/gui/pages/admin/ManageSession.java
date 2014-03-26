@@ -79,7 +79,7 @@ public class ManageSession {
     public Object applyForActivate(Long trainingSessionId) {
         this.tsId = trainingSessionId;
 
-        trainingSession = trainingSessionManager.findById(trainingSessionId);
+        trainingSession = trainingSessionManager.findByIdWithTrainees(trainingSessionId);
 
         if (!loggedUserExists) {
             return Index.class;

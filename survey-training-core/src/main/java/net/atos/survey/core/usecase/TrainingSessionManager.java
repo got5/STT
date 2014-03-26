@@ -23,8 +23,8 @@ public interface TrainingSessionManager{
 	TrainingSession findById(Long trainingSessionId,Long userId);
 	
 	TrainingSession findById(Long trainingSessionId);
-	
-	
+
+    TrainingSession findByIdWithTrainees(Long trainingSessionId);
 	
 	ResponseSurvey createResponseSurveyWithoutPersist(TrainingSession trainingSession);
 	

@@ -23,18 +23,21 @@ public class UserDaoImpl extends DaoImpl<Long, User> implements UserDao {
 	@Override
 	public List<User> listInstructorByName(String mot) {
 		String queryString;
+        String inChargeOf = "AND u.inChargeOfTrainings IS NOT EMPTY ";
 		if (mot != null)
 			if (!mot.equals("")) {
 				mot = mot.toLowerCase() + "%";
 
-				queryString = "select distinct t.instructor from TrainingSession t "
-						+ "where (lower(t.instructor.name) like ?1 "
-						+ "or lower(t.instructor.firstName) like ?1 )"
-						+ "order by t.instructor.name";
+				queryString = "select u from User u "
+						+ "where (lower(u.name) like ?1 "
+						+ "or lower(u.firstName) like ?1 ) "
+                        + inChargeOf
+						+ "order by u.name";
 				return list(null, null, queryString, mot);
 			}
-		queryString = "select distinct t.instructor from TrainingSession t "
-				+ "order by t.instructor.name";
+		queryString = "select u from User u "
+                + inChargeOf
+				+ "order by u.name";
 		return list(null, null, queryString);
 	}
 
