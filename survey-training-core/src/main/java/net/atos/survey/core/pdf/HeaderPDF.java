@@ -57,10 +57,9 @@ public class HeaderPDF {
 	}
 
 
-	public void addRemarquePlus(String text,String plus) {
+	public void addRemarquePlus(String text) {
 		Paragraph p = new Paragraph(text,headerFont);
-		p.add(new Chunk(plus, headerFontUnderline));
-		
+
 		p.setAlignment(Paragraph.ALIGN_CENTER);
 		preface.add(p);
 	}

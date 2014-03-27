@@ -53,7 +53,7 @@ public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 
 
     public static final float[][] COLUMNS_VS = {{46, 700, 287, 750},
-            {316, 700, 565, 750}};
+            {316, 700, 565, 760}};
 
     public InputStream buildPDF(Long trainingSessionId, Long traineeId)
             throws Exception {
@@ -200,12 +200,11 @@ public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 
     private void addTitlePage(PdfWriter writer, Document document) throws Exception {
         HeaderPDF header = new HeaderPDF(writer, document);
-        header.addTitle("EVALUATION DE STAGE");
+        header.addTitle("Training Survey");
         header.addLogo(getClass().getClassLoader().getResource("atos-logo.jpg"));
-        header.addRemarque("Vos remarques nous sont utiles pour adapter les formations à vos besoins. ");
+        header.addRemarque("Your feedback is useful to adapt the training to your needs.");
         header.addRemarquePlus(
-                "Merci de remplir ce questionnaire le plus précisément possible et de le retourner au service ",
-                "Formation.");
+                "Thank you for completing this form as accurately as possible.");
         header.configure();
     }
 
@@ -213,26 +212,30 @@ public class PDFGeneratorManagerImpl implements PDFGeneratorManager {
 
         createVSContent(ts, trainee, COLUMNS_VS, writer, document);
         new VerticalLabelPDF(writer, document, COLUMNS_VS[0])
-                .addVerticalLabel("VOUS");
+                .addVerticalLabel("YOU");
         new VerticalLabelPDF(writer, document, COLUMNS_VS[1])
-                .addVerticalLabel("STAGE");
+                .addVerticalLabel("COURSE");
     }
 
     private void createVSContent(TrainingSession ts, User trainee, float[][] COLUMNS_VS, PdfWriter writer, Document document) throws DocumentException {
 
         ColumnSectionPDF twoC = new ColumnSectionPDF(writer, document,
                 COLUMNS_VS);
-        twoC.addText("Nom-Prénom: ",
+        twoC.addText("Name: ",
                 trainee.getName() + " " + trainee.getFirstName());
         twoC.addText(
-                "Entité/BU/Dépt. ",
+                "Entity/BU/Dept. ",
                 trainee.getEntity() + "/" + trainee.getBu() + "/"
                         + trainee.getDept());
-        twoC.addText("Fonction: ", "Assistant Etudes et Développement");
-        twoC.addText("Titre: ", ts.getTraining().getName());
+        if(trainee.getFunction() == null || trainee.getFunction().equals("")){
+            twoC.addText("Role: ","Ingénieur étude et développement");
+        }else{
+            twoC.addText("Role: ",trainee.getFunction());
+        }
+        twoC.addText("Title: ", ts.getTraining().getName());
         twoC.addText("Dates: ",
-                getDate(ts.getDateS()) + " à " + getDate(ts.getDateE()));
-        twoC.addText("Formateur: ", ts.getInstructor().getName() + " "
+                getDate(ts.getDateS()) + " to " + getDate(ts.getDateE()));
+        twoC.addText("Trainer: ", ts.getInstructor().getName() + " "
                 + ts.getInstructor().getFirstName());
 
         twoC.configure();

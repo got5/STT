@@ -34,10 +34,9 @@
 	
 	</div>
 
-    <p t:type="if" t:test="dbnotloaded">
+    <!--<p t:type="if" t:test="dbnotloaded">
         <a t:type="pageLink" t:page="Init">Init </a>
-    </p>
-
+    </p>-->
 
 </div>
 </html>

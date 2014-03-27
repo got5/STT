@@ -70,8 +70,8 @@ public class UserManagerImpl implements UserManager {
 			login += firstname.substring(index, index + 1);
 			index++;
 		}
-		newUser.setLogin(newUser.getName());
-		newUser.setPassword(newUser.getFirstName());
+		newUser.setLogin(login);
+		newUser.setPassword(firstname);
 		return userDao.save(newUser);
 
 	}

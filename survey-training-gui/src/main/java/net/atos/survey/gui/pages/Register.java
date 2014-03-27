@@ -61,7 +61,7 @@ public class Register {
 		User newUser = new User(name, firstName, entity, bu, dept, function);
 		newUser = userManager.register(newUser);
 		
-		trainingSessionManager.applyForTodayTapestrySession(newUser);
+		/*trainingSessionManager.applyForTodayTapestrySession(newUser);*/
 		
 		loggedUser=newUser;
 		mytrainings.setStatusFromRegister();

@@ -36,9 +36,9 @@ public class SurveyModule {
     public static void contributeApplicationDefaults(
             MappedConfiguration<String, String> configuration) {
         configuration.add(SymbolConstants.START_PAGE_NAME, "Index");
-        configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
-        configuration.add(SymbolConstants.APPLICATION_VERSION, "1.0.2.1");
-        configuration.add(SymbolConstants.SUPPORTED_LOCALES, "fr,en");
+        configuration.add(SymbolConstants.PRODUCTION_MODE, "true");
+        configuration.add(SymbolConstants.APPLICATION_VERSION, "1.0.2.2");
+        configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en");
 
         configuration.add(SymbolConstants.HMAC_PASSPHRASE,
                 "GPS_rules_the_world_689");

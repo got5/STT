@@ -4,10 +4,12 @@
 
 	<t:if test="responses">
 		<div class="k-actions-block">
-			<p class="action-context">${trainee.firstname} ${trainee.name}</p>
+            <h3>Training : ${trainee.firstname} ${trainee.name}</h3>
+            <p>Entité/BU/Département : ${trainee.entity}/${trainee.bu}/${trainee.dept}</p>
+            <p>Role : ${trainee.function}</p>
 			<ul class="k-actions">
 				<li><a t:type="actionlink" t:id="print" href="#"
-					class="bt-download">PDF</a></li>
+					class="bt-download">Download answers</a></li>
 			</ul>
 		</div>
 

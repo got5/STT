@@ -217,9 +217,9 @@ public class InitManagerImpl implements InitManager {
 		instructeur4.setLogin("marot");
 		instructeur4.setPassword("marot");
 
-		User instructeur5 = new User("Wroblewski", "Laurent", "AWL", "GPS","TD","");
-		instructeur5.setLogin("laurent");
-		instructeur5.setPassword("laurent");
+		User instructeur5 = new User("Legrand", "Régis", "AWL", "GPS","TD","");
+		instructeur5.setLogin("legrand");
+		instructeur5.setPassword("legrand");
 
 		tapestry_instructors.add(instructeur);
 		tapestry_instructors.add(instructeur2);
