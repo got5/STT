@@ -18,19 +18,18 @@ public class TrainingSessionDaoImpl extends DaoImpl<Long, TrainingSession> imple
     @Override
     public List<TrainingSession> findIncompleteByUser(User loggedUser,
                                                       Calendar dateXMonthBefore) {
-        Calendar now = new GregorianCalendar();
+
 
         String orderQuery = " order by t.dateS DESC ";
         String queryString = "select t from TrainingSession t "
                 + " where not exists ( select r.id from t.responses r "
                 + " where key(r) = ?1) "
                 + " and t.dateS > ?2 "
-                + " and ?1 MEMBER OF t.trainees "
-                + " and t.dateS < ?3";
+                + " and ?1 MEMBER OF t.trainees ";
 
         queryString += orderQuery;
 
-        return list(null, null, queryString, loggedUser, dateXMonthBefore, TemporalType.DATE, now, TemporalType.DATE);
+        return list(null, null, queryString, loggedUser, dateXMonthBefore, TemporalType.DATE);
 
     }
 
