@@ -10,4 +10,5 @@ public class Param {
 	
 	public static final String CAT_DEFAULT="DEFAULT";
 
+    public static final String DEFAULT_SURVEY = "Questionnaire d'évaluation" ;
 }

@@ -16,6 +16,7 @@ public interface SurveyDao extends Dao<Long, Survey> {
 
 	Survey findByTrainingSession(Long trainingSessionId);
 
- 
-	
+
+    Survey findOne();
+
 }

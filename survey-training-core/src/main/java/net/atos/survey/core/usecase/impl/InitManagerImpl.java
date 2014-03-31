@@ -39,6 +39,7 @@ import net.atos.survey.core.entity.TypeTraining;
 import net.atos.survey.core.entity.User;
 import net.atos.survey.core.exception.NotInitaliazedSurveyDataBaseException;
 import net.atos.survey.core.exception.TrainingNotExistException;
+import net.atos.survey.core.tool.Param;
 import net.atos.survey.core.usecase.InitManager;
 import net.atos.survey.core.usecase.OQuestionManager;
 import net.atos.survey.core.usecase.SimpleMCQuestionManager;
@@ -421,7 +422,7 @@ public class InitManagerImpl implements InitManager {
 
 		// Survey
 
-		survey = surveyManager.createSurvey("Questionnaire d'évaluation",
+		survey = surveyManager.createSurvey(Param.DEFAULT_SURVEY,
 				tapestryBasic.getId());
 
 		survey.addCategory(ca1);

@@ -20,9 +20,14 @@ public class SurveyDaoImpl extends DaoImpl<Long, Survey> implements SurveyDao {
 		return find(queryString, trainingSessionId);
 	}
 
-	
+    @Override
+    public Survey findOne() {
 
-	
-	
-	
+        String queryString = "select s from Survey s ";
+
+
+        return find(queryString);
+    }
+
+
 }

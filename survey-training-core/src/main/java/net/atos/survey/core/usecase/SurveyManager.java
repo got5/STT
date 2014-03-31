@@ -26,5 +26,6 @@ public interface SurveyManager{
 	Survey findByTrainingSession(Long trainingSessionId);
 
 	Survey loadAllR(Survey survey);
-	
+
+    Survey findOne();
 }

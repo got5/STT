@@ -91,7 +91,11 @@ public class SurveyManagerImpl implements SurveyManager{
 		}
 		return surveyR;
 	}
-	
-	
+
+    @Override
+    public Survey findOne() {
+        return surveyDao.findOne();
+    }
+
 
 }

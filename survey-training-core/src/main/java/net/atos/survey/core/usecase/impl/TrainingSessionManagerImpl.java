@@ -28,6 +28,7 @@ import net.atos.survey.core.exception.RoomNotExistException;
 import net.atos.survey.core.exception.TrainingNotExistException;
 import net.atos.survey.core.exception.UserNotExistException;
 import net.atos.survey.core.exception.UserNotInTrainingSessionException;
+import net.atos.survey.core.tool.Param;
 import net.atos.survey.core.usecase.OResponseManager;
 import net.atos.survey.core.usecase.ResponseSurveyManager;
 import net.atos.survey.core.usecase.SimpleMCQResponseManager;
@@ -54,10 +55,13 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 	@Inject
 	ResponseSurveyManager responseSurveyManager;
 
+
+
+
 	public TrainingSession createTrainingSession(Calendar dateS,
 			Calendar dateE, Long trainingId,Long instructorId, Long roomId)
 			throws TrainingNotExistException, RoomNotExistException {
-
+        Survey survey = surveyManager.findOne();
 		Training training = trainingDao.findById(trainingId);
 		Room room = roomDao.findById(roomId);
 		User instructor = userDao.findById(instructorId);
@@ -70,7 +74,7 @@ public class TrainingSessionManagerImpl implements TrainingSessionManager {
 				training, room);
 		
 		 trainingSession.setInstructor(instructor);
-
+         trainingSession.setSurvey(survey);
 		return trainingSessionDao.save(trainingSession);
 
 	}
