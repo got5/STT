@@ -302,7 +302,7 @@ public class CreateSession {
         return new JSONObject().put("dateFormat",
                 messages.get("datePatternJquery")).put("showOn", "focus")
                 .put("onSelect", new JSONLiteral("onSelectClosure()"))
-                .put("minDate", 0);
+                .put("minDate", -3);
     }
 
     @AfterRender
